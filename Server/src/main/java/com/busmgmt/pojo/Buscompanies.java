@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Buscompanies.findByCompanyId", query = "SELECT b FROM Buscompanies b WHERE b.companyId = :companyId"),
     @NamedQuery(name = "Buscompanies.findByNameCompany", query = "SELECT b FROM Buscompanies b WHERE b.nameCompany = :nameCompany"),
     @NamedQuery(name = "Buscompanies.findByTotalBus", query = "SELECT b FROM Buscompanies b WHERE b.totalBus = :totalBus"),
-    @NamedQuery(name = "Buscompanies.findByAvata", query = "SELECT b FROM Buscompanies b WHERE b.avata = :avata"),
+    @NamedQuery(name = "Buscompanies.findByAvatar", query = "SELECT b FROM Buscompanies b WHERE b.avatar = :avatar"),
     @NamedQuery(name = "Buscompanies.findByStatus", query = "SELECT b FROM Buscompanies b WHERE b.status = :status"),
     @NamedQuery(name = "Buscompanies.findByAddress", query = "SELECT b FROM Buscompanies b WHERE b.address = :address"),
     @NamedQuery(name = "Buscompanies.findByPhone", query = "SELECT b FROM Buscompanies b WHERE b.phone = :phone"),
@@ -60,21 +60,22 @@ public class Buscompanies implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 256)
-    @Column(name = "avata")
-    private String avata;
+    @Column(name = "avatar")
+    private String avatar;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "status")
-    private short status;
+    private String status;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 256)
     @Column(name = "address")
     private String address;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 11)
     @Column(name = "phone")
     private String phone;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -102,11 +103,11 @@ public class Buscompanies implements Serializable {
         this.companyId = companyId;
     }
 
-    public Buscompanies(Integer companyId, String nameCompany, int totalBus, String avata, short status, String address, String phone, String email, short allowedDelivery) {
+    public Buscompanies(Integer companyId, String nameCompany, int totalBus, String avatar, String status, String address, String phone, String email, short allowedDelivery) {
         this.companyId = companyId;
         this.nameCompany = nameCompany;
         this.totalBus = totalBus;
-        this.avata = avata;
+        this.avatar = avatar;
         this.status = status;
         this.address = address;
         this.phone = phone;
@@ -138,19 +139,19 @@ public class Buscompanies implements Serializable {
         this.totalBus = totalBus;
     }
 
-    public String getAvata() {
-        return avata;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvata(String avata) {
-        this.avata = avata;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public short getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(short status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

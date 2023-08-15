@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Customers.findByLastName", query = "SELECT c FROM Customers c WHERE c.lastName = :lastName"),
     @NamedQuery(name = "Customers.findByPhone", query = "SELECT c FROM Customers c WHERE c.phone = :phone"),
     @NamedQuery(name = "Customers.findByAddress", query = "SELECT c FROM Customers c WHERE c.address = :address"),
-    @NamedQuery(name = "Customers.findByAvata", query = "SELECT c FROM Customers c WHERE c.avata = :avata"),
+    @NamedQuery(name = "Customers.findByAvatar", query = "SELECT c FROM Customers c WHERE c.avatar = :avatar"),
     @NamedQuery(name = "Customers.findByEmail", query = "SELECT c FROM Customers c WHERE c.email = :email")})
 public class Customers implements Serializable {
 
@@ -70,8 +70,8 @@ public class Customers implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 256)
-    @Column(name = "avata")
-    private String avata;
+    @Column(name = "avatar")
+    private String avatar;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -95,13 +95,13 @@ public class Customers implements Serializable {
         this.customerId = customerId;
     }
 
-    public Customers(Integer customerId, String firstName, String lastName, String phone, String address, String avata, String email) {
+    public Customers(Integer customerId, String firstName, String lastName, String phone, String address, String avatar, String email) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.address = address;
-        this.avata = avata;
+        this.avatar = avatar;
         this.email = email;
     }
 
@@ -145,12 +145,12 @@ public class Customers implements Serializable {
         this.address = address;
     }
 
-    public String getAvata() {
-        return avata;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvata(String avata) {
-        this.avata = avata;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getEmail() {

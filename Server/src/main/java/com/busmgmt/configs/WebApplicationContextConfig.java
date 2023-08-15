@@ -21,7 +21,11 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages = "com.busmgmt.controllers")
+@ComponentScan(basePackages = {
+    "com.busmgmt.controllers",
+    "com.busmgmt.repository",
+    "com.busmgmt.service"
+})
 public class WebApplicationContextConfig implements WebMvcConfigurer{
 
     @Override

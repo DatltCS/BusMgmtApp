@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Bus.findAll", query = "SELECT b FROM Bus b"),
     @NamedQuery(name = "Bus.findByLicensePlateId", query = "SELECT b FROM Bus b WHERE b.licensePlateId = :licensePlateId"),
     @NamedQuery(name = "Bus.findByBusName", query = "SELECT b FROM Bus b WHERE b.busName = :busName"),
-    @NamedQuery(name = "Bus.findByTotalSeat", query = "SELECT b FROM Bus b WHERE b.totalSeat = :totalSeat")})
+    @NamedQuery(name = "Bus.findByTotalSeat", query = "SELECT b FROM Bus b WHERE b.totalSeat = :totalSeat"),
+    @NamedQuery(name = "Bus.findByBusType", query = "SELECT b FROM Bus b WHERE b.busType = :busType")})
 public class Bus implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +52,11 @@ public class Bus implements Serializable {
     @NotNull
     @Column(name = "totalSeat")
     private int totalSeat;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "busType")
+    private String busType;
     @JoinColumn(name = "companyId", referencedColumnName = "companyId")
     @ManyToOne(optional = false)
     private Buscompanies companyId;
@@ -64,10 +70,11 @@ public class Bus implements Serializable {
         this.licensePlateId = licensePlateId;
     }
 
-    public Bus(Integer licensePlateId, String busName, int totalSeat) {
+    public Bus(Integer licensePlateId, String busName, int totalSeat, String busType) {
         this.licensePlateId = licensePlateId;
         this.busName = busName;
         this.totalSeat = totalSeat;
+        this.busType = busType;
     }
 
     public Integer getLicensePlateId() {
@@ -92,6 +99,14 @@ public class Bus implements Serializable {
 
     public void setTotalSeat(int totalSeat) {
         this.totalSeat = totalSeat;
+    }
+
+    public String getBusType() {
+        return busType;
+    }
+
+    public void setBusType(String busType) {
+        this.busType = busType;
     }
 
     public Buscompanies getCompanyId() {

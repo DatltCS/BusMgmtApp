@@ -4,12 +4,9 @@
  */
 package com.busmgmt.controllers;
 
-import javax.persistence.Query;
-import org.hibernate.Session;
+import com.busmgmt.service.BusTripService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,15 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
     @Autowired
-    private LocalSessionFactoryBean factory;
-    
+    private BusTripService busTripService;
     
     @RequestMapping("/")
-    @Transactional
     public String index(Model model){
-        Session s = factory.getObject().getCurrentSession();
-        Query q = s.createQuery("FROM Users");
-        model.addAttribute("users", q.getResultList());
+        
+        model.addAttribute("bustrips", this.busTripService.getBustrips(null));
         return "index";
     }
     

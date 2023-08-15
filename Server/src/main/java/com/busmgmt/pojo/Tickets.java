@@ -55,8 +55,9 @@ public class Tickets implements Serializable {
     private long price;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "status")
-    private short status;
+    private String status;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -78,7 +79,7 @@ public class Tickets implements Serializable {
         this.ticketId = ticketId;
     }
 
-    public Tickets(Integer ticketId, String numSeat, long price, short status, String paymentMethod, Date createDate) {
+    public Tickets(Integer ticketId, String numSeat, long price, String status, String paymentMethod, Date createDate) {
         this.ticketId = ticketId;
         this.numSeat = numSeat;
         this.price = price;
@@ -111,11 +112,11 @@ public class Tickets implements Serializable {
         this.price = price;
     }
 
-    public short getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(short status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

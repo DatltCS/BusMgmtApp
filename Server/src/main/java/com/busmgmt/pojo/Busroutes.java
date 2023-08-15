@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Busroutes.findAll", query = "SELECT b FROM Busroutes b"),
     @NamedQuery(name = "Busroutes.findByRouteId", query = "SELECT b FROM Busroutes b WHERE b.routeId = :routeId"),
     @NamedQuery(name = "Busroutes.findByRouteName", query = "SELECT b FROM Busroutes b WHERE b.routeName = :routeName"),
-    @NamedQuery(name = "Busroutes.findByPalaceStart", query = "SELECT b FROM Busroutes b WHERE b.palaceStart = :palaceStart"),
-    @NamedQuery(name = "Busroutes.findByPalaceStop", query = "SELECT b FROM Busroutes b WHERE b.palaceStop = :palaceStop")})
+    @NamedQuery(name = "Busroutes.findByPlaceStart", query = "SELECT b FROM Busroutes b WHERE b.placeStart = :placeStart"),
+    @NamedQuery(name = "Busroutes.findByPlaceStop", query = "SELECT b FROM Busroutes b WHERE b.placeStop = :placeStop")})
 public class Busroutes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,13 +49,13 @@ public class Busroutes implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "palaceStart")
-    private String palaceStart;
+    @Column(name = "placeStart")
+    private String placeStart;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "palaceStop")
-    private String palaceStop;
+    @Column(name = "placeStop")
+    private String placeStop;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "routeId")
     private Set<Routestatistics> routestatisticsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "routeId")
@@ -68,11 +68,11 @@ public class Busroutes implements Serializable {
         this.routeId = routeId;
     }
 
-    public Busroutes(Integer routeId, String routeName, String palaceStart, String palaceStop) {
+    public Busroutes(Integer routeId, String routeName, String placeStart, String placeStop) {
         this.routeId = routeId;
         this.routeName = routeName;
-        this.palaceStart = palaceStart;
-        this.palaceStop = palaceStop;
+        this.placeStart = placeStart;
+        this.placeStop = placeStop;
     }
 
     public Integer getRouteId() {
@@ -91,20 +91,20 @@ public class Busroutes implements Serializable {
         this.routeName = routeName;
     }
 
-    public String getPalaceStart() {
-        return palaceStart;
+    public String getPlaceStart() {
+        return placeStart;
     }
 
-    public void setPalaceStart(String palaceStart) {
-        this.palaceStart = palaceStart;
+    public void setPlaceStart(String placeStart) {
+        this.placeStart = placeStart;
     }
 
-    public String getPalaceStop() {
-        return palaceStop;
+    public String getPlaceStop() {
+        return placeStop;
     }
 
-    public void setPalaceStop(String palaceStop) {
-        this.palaceStop = palaceStop;
+    public void setPlaceStop(String placeStop) {
+        this.placeStop = placeStop;
     }
 
     @XmlTransient

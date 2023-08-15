@@ -16,8 +16,8 @@
     <body>
         <h1>Welcome to our website!!!</h1>
         <ul>
-            <c:forEach items="${users}" var="p">
-                <li>${p.userId} - ${p.username} - ${p.role}</li>
+            <c:forEach items="${bustrips}" var="p">
+                <li>${p.tripId} - ${p.tripName} - ${p.price}</li>
             </c:forEach>
         </ul>
     </body>

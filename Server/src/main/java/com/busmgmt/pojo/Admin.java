@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Admin.findByLastName", query = "SELECT a FROM Admin a WHERE a.lastName = :lastName"),
     @NamedQuery(name = "Admin.findByPhone", query = "SELECT a FROM Admin a WHERE a.phone = :phone"),
     @NamedQuery(name = "Admin.findByAddress", query = "SELECT a FROM Admin a WHERE a.address = :address"),
-    @NamedQuery(name = "Admin.findByAvata", query = "SELECT a FROM Admin a WHERE a.avata = :avata"),
+    @NamedQuery(name = "Admin.findByAvatar", query = "SELECT a FROM Admin a WHERE a.avatar = :avatar"),
     @NamedQuery(name = "Admin.findByEmail", query = "SELECT a FROM Admin a WHERE a.email = :email")})
 public class Admin implements Serializable {
 
@@ -66,8 +66,8 @@ public class Admin implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 256)
-    @Column(name = "avata")
-    private String avata;
+    @Column(name = "avatar")
+    private String avatar;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -85,13 +85,13 @@ public class Admin implements Serializable {
         this.adminId = adminId;
     }
 
-    public Admin(Integer adminId, String firstName, String lastName, String phone, String address, String avata, String email) {
+    public Admin(Integer adminId, String firstName, String lastName, String phone, String address, String avatar, String email) {
         this.adminId = adminId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.address = address;
-        this.avata = avata;
+        this.avatar = avatar;
         this.email = email;
     }
 
@@ -135,12 +135,12 @@ public class Admin implements Serializable {
         this.address = address;
     }
 
-    public String getAvata() {
-        return avata;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvata(String avata) {
-        this.avata = avata;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getEmail() {
