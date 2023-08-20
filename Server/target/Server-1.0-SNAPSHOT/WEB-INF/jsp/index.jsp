@@ -47,8 +47,22 @@
             </nav>
         </nav>
         <section class = "container">
+            <h1 class ="text-center text-infor mt-1">Bus Trips</h1>
+            <a href ="#" class="btn btn-info">Add Bus Trip</a>
+
+            <c:if test="${count > 1}">
+                <ul class="pagination mt-2">
+                    <li class="page-item"><a class="page-link" href="${action}">All</a></li>
+                    <c:forEach begin = "1" end = "${count}" var="i">
+                        <c:url value="/" var="pageUrl">
+                            <c:param name="page" value="${i}"></c:param>
+                        </c:url>
+                        <li class="page-item"><a class="page-link" href="${pageUrl}">${i}</a></li>
+                        </c:forEach>
+                </ul>
+            </c:if>
+
             <table class="table table-hover">
-                <a href ="#" class="btn btn-info">Add BusTrip</a>
                 <thead>
                     <tr>
                         <th></th>

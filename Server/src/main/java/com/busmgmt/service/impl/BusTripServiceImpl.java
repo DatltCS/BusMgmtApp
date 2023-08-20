@@ -25,5 +25,10 @@ public class BusTripServiceImpl implements BusTripService{
     public List<Bustrips> getBustrips(Map<String, String> params) {
         return this.busTripRepository.getBustrips(params);
     }
+
+    @Override
+    public Long countBusTrip() {
+        return this.busTripRepository.countBusTrip();
+    }
     
 }
