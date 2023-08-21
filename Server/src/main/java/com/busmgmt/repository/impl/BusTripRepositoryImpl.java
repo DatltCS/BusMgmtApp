@@ -54,7 +54,7 @@ public class BusTripRepositoryImpl implements BusTripRepository {
 
             String routeId = params.get("routeId");
             if (routeId != null && !routeId.isEmpty()) {
-                predicates.add(b.equal(root.get("cateforyId"), Integer.parseInt(routeId)));
+                predicates.add(b.equal(root.get("routeId"), Integer.parseInt(routeId)));
             }
 
             q.where(predicates.toArray(Predicate[]::new));
