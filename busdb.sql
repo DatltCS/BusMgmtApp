@@ -59,6 +59,7 @@ CREATE TABLE `bus` (
   `busName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `totalSeat` int NOT NULL,
   `busType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `image` varchar(256) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`licensePlateId`),
   UNIQUE KEY `id_bienso_UNIQUE` (`licensePlateId`),
   KEY `id_nha_xe_idx` (`companyId`),
@@ -72,7 +73,7 @@ CREATE TABLE `bus` (
 
 LOCK TABLES `bus` WRITE;
 /*!40000 ALTER TABLE `bus` DISABLE KEYS */;
-INSERT INTO `bus` VALUES (501,1,'Xe Phương Trang ',28,'ghế ngồi VIP'),(502,2,'Xe Kumho ',34,'giường nằm');
+INSERT INTO `bus` VALUES (501,1,'Xe Phương Trang ',28,'ghế ngồi VIP','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg'),(502,2,'Xe Kumho ',34,'giường nằm','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg');
 /*!40000 ALTER TABLE `bus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,7 +107,7 @@ CREATE TABLE `buscompanies` (
 
 LOCK TABLES `buscompanies` WRITE;
 /*!40000 ALTER TABLE `buscompanies` DISABLE KEYS */;
-INSERT INTO `buscompanies` VALUES (1,1,'Futa Buslines',30,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg','enabled','Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.','02838386852','hotro@futa.vn',1),(2,2,'Kumho Samco Buslines',15,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg','enabled','292 – Đinh Bộ Lĩnh, Phường 26, quận Bình Thạnh, TPHCM.','0903580000','lienhe@kumhosamco.com.vn',1);
+INSERT INTO `buscompanies` VALUES (1,1,'Futa Buslines',30,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg','enabled','Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.','02838386853','hotro@futa.vn',1),(2,2,'Kumho Samco Buslines',15,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg','enabled','292 – Đinh Bộ Lĩnh, Phường 26, quận Bình Thạnh, TPHCM.','0903580000','lienhe@kumhosamco.com.vn',1);
 /*!40000 ALTER TABLE `buscompanies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -393,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-22 12:49:01
+-- Dump completed on 2023-08-22 16:44:28
