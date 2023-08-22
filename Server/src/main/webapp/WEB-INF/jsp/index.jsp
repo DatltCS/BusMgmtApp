@@ -40,7 +40,7 @@
             <c:forEach items="${bus}" var="b">
                 <tr>
                     <td>
-                        <img src="${b.busName}" alt="${b.busName}" width="120dp"/> 
+                        <img src="${b.image}" alt="${b.busName}" width="120dp"/> 
                     </td>
                     <td>${b.licensePlateId}</td>
                     <td>${b.busName}</td>

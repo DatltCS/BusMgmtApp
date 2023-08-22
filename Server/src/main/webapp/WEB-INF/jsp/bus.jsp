@@ -11,6 +11,7 @@
 <h1 class="text-center text-info">Bus Management</h1>
 
 <form:form method="post" modelAttribute="bus">
+    <form:hidden path="image" />
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" id="busName" 
                     path="busName" placeholder="Enter Bus Name"/>
