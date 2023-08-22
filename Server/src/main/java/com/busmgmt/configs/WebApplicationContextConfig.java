@@ -33,14 +33,14 @@ public class WebApplicationContextConfig implements WebMvcConfigurer{
         configurer.enable();
     }
     
-    @Bean
-    public InternalResourceViewResolver getInternalResourceViewResolver(){
-        InternalResourceViewResolver r = new InternalResourceViewResolver();
-        
-        r.setViewClass(JstlView.class);
-        r.setPrefix("/WEB-INF/jsp/");
-        r.setSuffix(".jsp");
-        
-        return r;
-    }
+//    @Bean
+//    public InternalResourceViewResolver getInternalResourceViewResolver(){
+//        InternalResourceViewResolver r = new InternalResourceViewResolver();
+//        
+//        r.setViewClass(JstlView.class);
+//        r.setPrefix("/WEB-INF/jsp/");
+//        r.setSuffix(".jsp");
+//        
+//        return r;
+//    }
 }
