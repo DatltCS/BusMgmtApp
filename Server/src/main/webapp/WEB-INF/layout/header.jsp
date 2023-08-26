@@ -23,10 +23,30 @@
                     <c:url value="/" var="searchUrl">
                         <c:param name="companyId" value="${bc.companyId}"></c:param>
                     </c:url>
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="${searchUrl}">${bc.nameCompany}</a>
                     </li>
                 </c:forEach>
+                <c:choose>
+                    <c:when test="${pageContext.request.userPrincipal.name != null}">
+                        <li class="nav-item">
+
+                            <a class="nav-link text-danger" href="<c:url value="/"/>">${pageContext.request.userPrincipal.name}</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link text-danger" href="<c:url value="/logout"/>">Logout</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="<c:url value="/login"/>">Login</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
             <c:url value="/" var="action"/>
             <form class="d-flex" action="${action}">

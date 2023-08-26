@@ -4,6 +4,7 @@
  */
 package com.busmgmt.controllers;
 
+import com.busmgmt.pojo.Bus;
 import com.busmgmt.pojo.Buscompanies;
 import com.busmgmt.service.BusCompanyService;
 import com.busmgmt.service.BusService;
@@ -54,7 +55,6 @@ public class HomeController {
 //
 //        return "index";
 //    }
-
     @RequestMapping("/")
     public String index(Model model, @RequestParam Map<String, String> params) {
 
@@ -66,5 +66,7 @@ public class HomeController {
 
         return "index";
     }
+
+ 
 
 }

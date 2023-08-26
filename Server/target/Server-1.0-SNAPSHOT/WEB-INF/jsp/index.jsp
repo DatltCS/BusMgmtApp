@@ -10,8 +10,8 @@
 
 
 <section class = "container">
-    <h1 class ="text-center text-infor mt-1">Bus</h1>
-    <a href ="#" class="btn btn-info">Add Bus</a>
+    <h1 class ="text-center text-infor mt-1">Bus List</h1>
+    <a href ="<c:url value="/buses" />" class="btn btn-info">Add Bus</a>
 
     <c:if test="${count > 1}">
         <ul class="pagination mt-2">
@@ -40,17 +40,20 @@
             <c:forEach items="${bus}" var="b">
                 <tr>
                     <td>
-                        <img src="${b.busName}" alt="${b.busName}" width="120dp"/> 
+                        <img src="${b.image}" alt="${b.busName}" width="120dp"/> 
                     </td>
                     <td>${b.licensePlateId}</td>
                     <td>${b.busName}</td>
                     <td>${b.totalSeat}</td>
                     <td>
-                        <a href="#" class="btn btn-success">UPDATE</a>
-                        <button class="btn btn-danger">DELETE</button>
+                        <c:url value="/api/buses/${b.licensePlateId}" var="apiDelete"/>
+                        <a href="<c:url value="/buses/${b.licensePlateId}"/>" class="btn btn-success">UPDATE</a>
+                        <button class="btn btn-danger" onclick="deleteBus('${apiDelete}', ${b.licensePlateId})">DELETE</button>
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </section>
+
+<script src="<c:url value="/js/main.js"/>"></script>

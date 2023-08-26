@@ -14,5 +14,6 @@
     <class>com.busmgmt.pojo.Admin</class>
     <class>com.busmgmt.pojo.Routestatistics</class>
     <class>com.busmgmt.pojo.Users</class>
+    <class>com.busmgmt.controllers.APIBusController</class>
   </persistence-unit>
 </persistence>

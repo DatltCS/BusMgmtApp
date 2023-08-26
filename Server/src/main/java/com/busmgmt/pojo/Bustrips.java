@@ -4,6 +4,7 @@
  */
 package com.busmgmt.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -67,6 +68,7 @@ public class Bustrips implements Serializable {
     private Bus licensePlateId;
     @JoinColumn(name = "routeId", referencedColumnName = "routeId")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Busroutes routeId;
 
     public Bustrips() {

@@ -15,4 +15,6 @@ import java.util.Map;
 public interface BusTripRepository {
     List<Bustrips> getBustrips(Map<String, String> params);
     Long countBusTrip();
+    boolean updateBusTrip(Bustrips bt);
+    Bustrips getBusTripById(int id);
 }

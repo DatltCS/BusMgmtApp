@@ -17,10 +17,11 @@ import org.springframework.stereotype.Service;
  * @author Admin
  */
 @Service
-public class BusTripServiceImpl implements BusTripService{
+public class BusTripServiceImpl implements BusTripService {
+
     @Autowired
     private BusTripRepository busTripRepository;
-    
+
     @Override
     public List<Bustrips> getBustrips(Map<String, String> params) {
         return this.busTripRepository.getBustrips(params);
@@ -30,5 +31,15 @@ public class BusTripServiceImpl implements BusTripService{
     public Long countBusTrip() {
         return this.busTripRepository.countBusTrip();
     }
-    
+
+    @Override
+    public boolean updateBusTrip(Bustrips bt) {
+        return this.busTripRepository.updateBusTrip(bt);
+    }
+
+    @Override
+    public Bustrips getBusTripById(int id) {
+        return this.busTripRepository.getBusTripById(id);
+    }
+
 }

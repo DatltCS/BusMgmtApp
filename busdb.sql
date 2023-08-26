@@ -59,6 +59,7 @@ CREATE TABLE `bus` (
   `busName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `totalSeat` int NOT NULL,
   `busType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `image` varchar(256) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`licensePlateId`),
   UNIQUE KEY `id_bienso_UNIQUE` (`licensePlateId`),
   KEY `id_nha_xe_idx` (`companyId`),
@@ -72,7 +73,7 @@ CREATE TABLE `bus` (
 
 LOCK TABLES `bus` WRITE;
 /*!40000 ALTER TABLE `bus` DISABLE KEYS */;
-INSERT INTO `bus` VALUES (501,1,'Xe Phương Trang ',28,'ghế ngồi VIP'),(502,2,'Xe Kumho ',34,'giường nằm');
+INSERT INTO `bus` VALUES (501,1,'Xe Phương Trang ',28,'ghế ngồi VIP','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg'),(502,2,'Xe Kumho ',34,'giường nằm','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg');
 /*!40000 ALTER TABLE `bus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +90,7 @@ CREATE TABLE `buscompanies` (
   `nameCompany` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `totalBus` int NOT NULL,
   `avatar` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `status` varchar(20) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `address` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `phone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
@@ -106,7 +107,7 @@ CREATE TABLE `buscompanies` (
 
 LOCK TABLES `buscompanies` WRITE;
 /*!40000 ALTER TABLE `buscompanies` DISABLE KEYS */;
-INSERT INTO `buscompanies` VALUES (1,1,'Futa Buslines',30,'null','enabled','Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.','02838386852','hotro@futa.vn',1),(2,2,'Kumho Samco Buslines',15,'null','enabled','292 – Đinh Bộ Lĩnh, Phường 26, quận Bình Thạnh, TPHCM.','0903580000','lienhe@kumhosamco.com.vn',1);
+INSERT INTO `buscompanies` VALUES (1,1,'Futa Buslines',30,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg','enabled','Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.','02838386853','hotro@futa.vn',1),(2,2,'Kumho Samco Buslines',15,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg','enabled','292 – Đinh Bộ Lĩnh, Phường 26, quận Bình Thạnh, TPHCM.','0903580000','lienhe@kumhosamco.com.vn',1);
 /*!40000 ALTER TABLE `buscompanies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +199,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,5,'Anh','Nguyễn','0988566221','Nguyễn Kiệm, Gò Vấp, TPHCM','null','workanhnguyen@gmail.com'),(2,6,'Minh','Trần','0387456239','Nghĩa Hưng, Tân Bình, TPHCM','null','minhanh208@gmail.com');
+INSERT INTO `customers` VALUES (1,5,'Anh','Nguyễn','0988566221','Nguyễn Kiệm, Gò Vấp, TPHCM','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612377/assets/user_avatar_bwwrhq.png','workanhnguyen@gmail.com'),(2,6,'Minh','Trần','0387456239','Nghĩa Hưng, Tân Bình, TPHCM','nullhttps://res.cloudinary.com/dc9dlukr6/image/upload/v1692612377/assets/user_avatar_bwwrhq.png','minhanh208@gmail.com');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,7 +338,7 @@ CREATE TABLE `tickets` (
   `customerId` int NOT NULL,
   `numSeat` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `status` varchar(20) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `paymentMethod` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `createDate` datetime NOT NULL,
   PRIMARY KEY (`ticketId`),
@@ -393,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-14 22:43:26
+-- Dump completed on 2023-08-22 16:44:28
