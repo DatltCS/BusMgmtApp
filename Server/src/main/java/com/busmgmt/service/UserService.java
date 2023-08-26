@@ -4,12 +4,16 @@
  */
 package com.busmgmt.service;
 
+import com.busmgmt.pojo.Users;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
  * @author Admin
  */
-public interface UserService extends UserDetailsService{
-    
+public interface UserService extends UserDetailsService {
+
+    Users getUserByUsername(String username);
+
+    boolean addUser(Users users);
 }

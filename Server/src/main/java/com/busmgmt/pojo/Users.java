@@ -15,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -35,6 +36,20 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findByUserRole", query = "SELECT u FROM Users u WHERE u.userRole = :userRole"),
     @NamedQuery(name = "Users.findByAccountStatus", query = "SELECT u FROM Users u WHERE u.accountStatus = :accountStatus")})
 public class Users implements Serializable {
+
+    /**
+     * @return the confirmPassword
+     */
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    /**
+     * @param confirmPassword the confirmPassword to set
+     */
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -68,6 +83,8 @@ public class Users implements Serializable {
     private Set<Admin> adminSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<Customers> customersSet;
+    @Transient
+    private String confirmPassword;
 
     public Users() {
     }
