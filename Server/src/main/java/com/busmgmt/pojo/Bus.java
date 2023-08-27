@@ -4,6 +4,7 @@
  */
 package com.busmgmt.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -17,10 +18,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -34,21 +37,22 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Bus.findByLicensePlateId", query = "SELECT b FROM Bus b WHERE b.licensePlateId = :licensePlateId"),
     @NamedQuery(name = "Bus.findByBusName", query = "SELECT b FROM Bus b WHERE b.busName = :busName"),
     @NamedQuery(name = "Bus.findByTotalSeat", query = "SELECT b FROM Bus b WHERE b.totalSeat = :totalSeat"),
-    @NamedQuery(name = "Bus.findByBusType", query = "SELECT b FROM Bus b WHERE b.busType = :busType")})
+    @NamedQuery(name = "Bus.findByBusType", query = "SELECT b FROM Bus b WHERE b.busType = :busType"),
+    @NamedQuery(name = "Bus.findByImage", query = "SELECT b FROM Bus b WHERE b.image = :image")})
 public class Bus implements Serializable {
 
     /**
-     * @return the image
+     * @return the file
      */
-    public String getImage() {
-        return image;
+    public MultipartFile getFile() {
+        return file;
     }
 
     /**
-     * @param image the image to set
+     * @param file the file to set
      */
-    public void setImage(String image) {
-        this.image = image;
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     private static final long serialVersionUID = 1L;
@@ -80,7 +84,11 @@ public class Bus implements Serializable {
     @ManyToOne(optional = false)
     private Buscompanies companyId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "licensePlateId")
+    @JsonIgnore
     private Set<Bustrips> bustripsSet;
+    
+    @Transient
+    private MultipartFile file;
 
     public Bus() {
     }
@@ -89,12 +97,11 @@ public class Bus implements Serializable {
         this.licensePlateId = licensePlateId;
     }
 
-    public Bus(Integer licensePlateId, String busName, String image, int totalSeat, String busType) {
+    public Bus(Integer licensePlateId, String busName, int totalSeat, String busType) {
         this.licensePlateId = licensePlateId;
         this.busName = busName;
         this.totalSeat = totalSeat;
         this.busType = busType;
-        this.image = image;
     }
 
     public Integer getLicensePlateId() {
@@ -127,6 +134,14 @@ public class Bus implements Serializable {
 
     public void setBusType(String busType) {
         this.busType = busType;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Buscompanies getCompanyId() {

@@ -6,6 +6,7 @@ package com.busmgmt.repository.impl;
 
 import com.busmgmt.pojo.Bus;
 import com.busmgmt.repository.BusRepository;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -29,8 +31,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 @PropertySource("classpath:configs.properties")
-public class BusRepositoryImpl implements BusRepository{
-    
+public class BusRepositoryImpl implements BusRepository {
+
     @Autowired
     private LocalSessionFactoryBean factory;
     @Autowired
@@ -60,7 +62,7 @@ public class BusRepositoryImpl implements BusRepository{
             q.where(predicates.toArray(Predicate[]::new));
         }
 
-        q.orderBy(b.desc(root.get("licensePlateId")));
+        q.orderBy(b.asc(root.get("licensePlateId")));
 
         Query query = session.createQuery(q);
 
@@ -83,7 +85,65 @@ public class BusRepositoryImpl implements BusRepository{
     public Long countBus() {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("SELECT Count(*) FROM Bus");
-        
+
         return Long.parseLong(q.getSingleResult().toString());
     }
+
+    @Override
+    public boolean updateBus(Bus b) {
+        Session s = this.factory.getObject().getCurrentSession();
+
+        try {
+            int licensePlateId = b.getLicensePlateId();
+            int exists = isLicensePlateIdExists(licensePlateId);
+            if (exists > 0) {
+                s.update(b);
+            } else{
+                s.save(b);
+            }
+//              if (b.getLicensePlateId() != null){
+//                  s.save(b);
+//              }
+//              else {
+//                  s.update(b);
+//              }
+
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Bus getBusById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+
+        return s.get(Bus.class, id);
+    }
+
+    public int isLicensePlateIdExists(int licensePlateId) {
+        Session session = this.factory.getObject().getCurrentSession();
+        String sql = "SELECT COUNT(*) FROM Bus WHERE licensePlateId = :licensePlateId";
+        Object result = session.createNativeQuery(sql)
+                .setParameter("licensePlateId", licensePlateId)
+                .getSingleResult();
+        return ((Number) result).intValue();
+    }
+
+    @Override
+    public boolean deleteBus(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        
+        Bus b = this.getBusById(id);
+        try {
+            s.delete(b);
+            
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 }

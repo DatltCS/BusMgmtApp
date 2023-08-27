@@ -8,14 +8,14 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-08-22T13:40:26")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-08-26T23:05:27")
 @StaticMetamodel(Users.class)
 public class Users_ { 
 
     public static volatile SingularAttribute<Users, String> accountStatus;
     public static volatile SingularAttribute<Users, String> password;
-    public static volatile SingularAttribute<Users, String> role;
     public static volatile SetAttribute<Users, Customers> customersSet;
+    public static volatile SingularAttribute<Users, String> userRole;
     public static volatile SetAttribute<Users, Buscompanies> buscompaniesSet;
     public static volatile SingularAttribute<Users, Integer> userId;
     public static volatile SingularAttribute<Users, String> username;

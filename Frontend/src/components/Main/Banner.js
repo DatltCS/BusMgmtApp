@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import './Banner.css';
-import DropdownListStartPlace from "./DropdownListStartPlace";
-import DropdownListDestination from "./DropdownListDestination";
+import DropdownList from "./DropdownListStartPlace";
 import Calendar from "./Calendar";
+import { Link } from 'react-router-dom';
+
 
 const Main = () => {
+
+    const optionsStartPlace = ['Kiên Giang', 'An Giang', 'Đồng Tháp', 'Long Xuyên', 'Cần Thơ'];
+    const optionsDestination = ['Thành phố Hồ Chí Minh', 'Cần Thơ'];
+
     return (
         <section className='Main'>
             <div className="overlay-banner"></div>
@@ -16,13 +21,13 @@ const Main = () => {
                 <div className="banner">
                     <form action="#">
                         <div className="form-row">
-                            <DropdownListStartPlace />
+                            <DropdownList label="Nơi xuất phát" options={optionsStartPlace}/>
                             <img src="/flip.png" className="flip-icon" alt="flip" />
-                            <DropdownListDestination />
+                            <DropdownList label="Nơi đến" options={optionsDestination}/>
                             <Calendar/>
                         </div>
                     </form>
-                    <button className="btn-search">Tìm chuyến</button>
+                    <Link to="/order-tickets"><button className="btn-search">Tìm chuyến</button></Link>
                 </div>
             </div>
 

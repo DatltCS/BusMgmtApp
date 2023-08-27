@@ -59,7 +59,7 @@ CREATE TABLE `bus` (
   `busName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `totalSeat` int NOT NULL,
   `busType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `image` varchar(256) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `image` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`licensePlateId`),
   UNIQUE KEY `id_bienso_UNIQUE` (`licensePlateId`),
   KEY `id_nha_xe_idx` (`companyId`),
@@ -368,7 +368,7 @@ CREATE TABLE `users` (
   `userId` int NOT NULL,
   `username` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `password` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `role` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `user_role` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `accountStatus` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `Username_UNIQUE` (`username`)
@@ -394,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-22 16:44:28
+-- Dump completed on 2023-08-26 22:07:04

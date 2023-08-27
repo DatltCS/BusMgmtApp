@@ -15,4 +15,7 @@ import java.util.Map;
 public interface BusRepository {
     List<Bus> getBus(Map<String, String> params);
     Long countBus();
+    boolean updateBus(Bus b);
+    Bus getBusById(int id);
+    boolean deleteBus(int id);
 }

@@ -14,7 +14,7 @@
                        value="/WEB-INF/layout/footer.jsp" />
     </definition>
     <definition name="index" extends="baseLayout">
-        <put-attribute name="title" value="Trang chủ" />
+        <put-attribute name="title" value="Home page" />
         <put-attribute name="content" 
                        value="/WEB-INF/jsp/index.jsp" />
     </definition>
@@ -23,4 +23,15 @@
         <put-attribute name="content" 
                        value="/WEB-INF/jsp/bus.jsp" />
     </definition>
+    <!--    <definition name="products" extends="baseLayout">
+        <put-attribute name="title" value="Bus Management" />
+        <put-attribute name="content" 
+                       value="/WEB-INF/jsp/products.jsp" />
+    </definition>-->
+    <definition name="login" extends="baseLayout">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="content" 
+                       value="/WEB-INF/jsp/login.jsp" />
+    </definition>
+
 </tiles-definitions>

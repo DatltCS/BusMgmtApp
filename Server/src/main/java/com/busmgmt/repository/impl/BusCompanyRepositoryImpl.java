@@ -28,7 +28,6 @@ public class BusCompanyRepositoryImpl implements BusCompanyRepository{
     public List<Buscompanies> getBuscompanies() {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("FROM Buscompanies");
-        
         return q.getResultList();
     }
     

@@ -5,6 +5,7 @@ import Banner from "../components/Main/Banner";
 import BusRegistration from "./BusRegistration";
 import SignIn from "./SignIn";
 import Card from "../components/Main/Card";
+import OrderTickets from "./OrderTickets";
 
 function LandingPage() {
 
@@ -18,10 +19,11 @@ function LandingPage() {
         <Router>
              <Navbar handleLoginClick={handleLoginClick}/>
             <Routes>
-                <Route path="/" element={<Banner />} />
-                <Route path="/BusRegistration"  element={<BusRegistration />} />
-                <Route path="/SignIn"  element={<SignIn />} isShowLoginForm={isShowLoginForm}/>
+                <Route path="/bus-registration"  element={<BusRegistration />} />
+                <Route path="/sign-in"  element={<SignIn />} isShowLoginForm={isShowLoginForm}/>
+                <Route path="/order-tickets" element ={<OrderTickets showBusesList={true}/>}/>
             </Routes>
+            <Banner/>
             <Card/>
         </Router>
     );
