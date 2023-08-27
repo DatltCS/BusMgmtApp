@@ -36,6 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findByUserRole", query = "SELECT u FROM Users u WHERE u.userRole = :userRole"),
     @NamedQuery(name = "Users.findByAccountStatus", query = "SELECT u FROM Users u WHERE u.accountStatus = :accountStatus")})
 public class Users implements Serializable {
+    public static final String ADMIN ="ROLE_ADMIN";
+    public static final String USER = "ROLE_USER";
 
     /**
      * @return the confirmPassword

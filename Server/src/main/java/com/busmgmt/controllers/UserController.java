@@ -34,10 +34,15 @@ public class UserController {
     
     @PostMapping("/register")
     public String register(Model model, @ModelAttribute(value = "users") Users user){
+        String msg = "";
         if (user.getPassword().equals(user.getConfirmPassword())) {
             if (this.userDetailsService.addUser(user) == true)
                 return "redirect:/login";
-        }
+            else
+                msg = "Sometings went wrong!!!";
+        } else
+            msg = "Password is not match";
+        
         return "register";
     }
 }

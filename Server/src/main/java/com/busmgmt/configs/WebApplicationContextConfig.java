@@ -7,9 +7,13 @@ package com.busmgmt.configs;
 import com.busmgmt.formatters.BusCompanyFormatter;
 import com.busmgmt.formatters.BusTripFormatter;
 import com.busmgmt.pojo.Buscompanies;
+import com.busmgmt.validator.BusValidator;
+import com.busmgmt.validator.WebApplicationValidator;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -40,7 +44,8 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = {
     "com.busmgmt.controllers",
     "com.busmgmt.repository",
-    "com.busmgmt.service"
+    "com.busmgmt.service",
+    "com.busmgmt.validator"
 })
 @PropertySource("classpath:configs.properties")
 public class WebApplicationContextConfig implements WebMvcConfigurer {
@@ -118,6 +123,17 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
     @Override
     public Validator getValidator() {
         return validator();
+    }
+    
+    @Bean
+    public WebApplicationValidator busValidator() {
+        Set<Validator> springValadator = new HashSet<>();
+        springValadator.add(new BusValidator());
+        
+        WebApplicationValidator v = new WebApplicationValidator();
+        v.setSpringValidator(springValadator);
+        
+        return v;
     }
 
 }

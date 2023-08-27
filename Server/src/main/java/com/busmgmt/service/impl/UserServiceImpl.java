@@ -59,11 +59,11 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(Users users) {
         String pass = users.getPassword();
         users.setPassword(this.passwordEncoder.encode(pass));
-        users.setUserRole("ROLE_USER");
+        users.setUserRole(Users.USER);
         users.setAccountStatus("enable");
 
-//        int maxUserId = userRepository.getMaxUserId();
-        users.setUserId(7);
+        int maxUserId = userRepository.getMaxUserId();
+        users.setUserId(maxUserId + 1);
         
         return this.userRepository.addUser(users);
     }

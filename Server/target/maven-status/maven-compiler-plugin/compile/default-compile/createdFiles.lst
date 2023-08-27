@@ -6,7 +6,6 @@ com\busmgmt\controllers\APIBusController.class
 com\busmgmt\pojo\Busroutes.class
 com\busmgmt\service\impl\BusTripServiceImpl.class
 com\busmgmt\pojo\Users.class
-com\busmgmt\swagger\SwaggerConfig.class
 com\busmgmt\formatters\BusCompanyFormatter.class
 com\busmgmt\pojo\Revenuestatistics.class
 com\busmgmt\pojo\Reviews.class
@@ -44,6 +43,7 @@ com\busmgmt\pojo\Tickets_.class
 com\busmgmt\pojo\Buscompanies_.class
 com\busmgmt\repository\impl\BusRepositoryImpl.class
 com\busmgmt\pojo\Admin.class
+com\busmgmt\validator\WebApplicationValidator.class
 com\busmgmt\pojo\Bustrips_.class
 com\busmgmt\repository\BusTripRepository.class
 com\busmgmt\controllers\APIBusCompanyController.class
@@ -57,5 +57,7 @@ com\busmgmt\formatters\BusTripFormatter.class
 com\busmgmt\controllers\UserController.class
 com\busmgmt\configs\HibernateConfig.class
 com\busmgmt\repository\impl\BusTripRepositoryImpl.class
+com\busmgmt\validator\BusValidator.class
 com\busmgmt\pojo\Reviews_.class
 com\busmgmt\repository\impl\UserRepositoryImpl.class
+com\busmgmt\validator\BusCompanyNameValidator.class
