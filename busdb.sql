@@ -25,12 +25,12 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `adminId` int NOT NULL,
   `userId` int NOT NULL,
-  `firstName` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `lastName` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `phone` varchar(10) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `address` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `avata` varchar(256) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `email` varchar(256) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `firstName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `lastName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `avatar` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `email` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`adminId`),
   KEY `UserId_idx` (`userId`),
   CONSTRAINT `fk_admin_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
@@ -56,8 +56,10 @@ DROP TABLE IF EXISTS `bus`;
 CREATE TABLE `bus` (
   `licensePlateId` int NOT NULL,
   `companyId` int NOT NULL,
-  `busName` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `busName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `totalSeat` int NOT NULL,
+  `busType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `image` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`licensePlateId`),
   UNIQUE KEY `id_bienso_UNIQUE` (`licensePlateId`),
   KEY `id_nha_xe_idx` (`companyId`),
@@ -71,6 +73,7 @@ CREATE TABLE `bus` (
 
 LOCK TABLES `bus` WRITE;
 /*!40000 ALTER TABLE `bus` DISABLE KEYS */;
+INSERT INTO `bus` VALUES (501,1,'Xe Phương Trang ',28,'ghế ngồi VIP','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg'),(502,2,'Xe Kumho ',34,'giường nằm','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg');
 /*!40000 ALTER TABLE `bus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,13 +87,13 @@ DROP TABLE IF EXISTS `buscompanies`;
 CREATE TABLE `buscompanies` (
   `companyId` int NOT NULL,
   `userId` int NOT NULL,
-  `nameCompany` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `nameCompany` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `totalBus` int NOT NULL,
-  `avata` varchar(256) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `status` tinyint NOT NULL,
-  `address` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `phone` varchar(10) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `email` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `avatar` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `address` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `phone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `allowedDelivery` tinyint NOT NULL,
   PRIMARY KEY (`companyId`),
   KEY `UserId_idx` (`userId`),
@@ -104,6 +107,7 @@ CREATE TABLE `buscompanies` (
 
 LOCK TABLES `buscompanies` WRITE;
 /*!40000 ALTER TABLE `buscompanies` DISABLE KEYS */;
+INSERT INTO `buscompanies` VALUES (1,1,'Futa Buslines',30,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg','enabled','Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.','02838386853','hotro@futa.vn',1),(2,2,'Kumho Samco Buslines',15,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg','enabled','292 – Đinh Bộ Lĩnh, Phường 26, quận Bình Thạnh, TPHCM.','0903580000','lienhe@kumhosamco.com.vn',1);
 /*!40000 ALTER TABLE `buscompanies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,9 +120,9 @@ DROP TABLE IF EXISTS `busroutes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `busroutes` (
   `routeId` int NOT NULL,
-  `routeName` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `palaceStart` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `palaceStop` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `routeName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `placeStart` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `placeStop` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`routeId`),
   UNIQUE KEY `id_tuyen_UNIQUE` (`routeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
@@ -130,6 +134,7 @@ CREATE TABLE `busroutes` (
 
 LOCK TABLES `busroutes` WRITE;
 /*!40000 ALTER TABLE `busroutes` DISABLE KEYS */;
+INSERT INTO `busroutes` VALUES (1,'Cần Thơ - Hồ Chí Minh','Cần Thơ','Hồ Chí Minh'),(2,'Hà Tiên - Hồ Chí Minh','Hà Tiên ','Hồ Chí Minh'),(3,'Hà Tiên - Cần Thơ','Hà Tiên ','Cần Thơ'),(4,'Phan Thiết - Hồ Chí Minh','Phan Thiết','Hồ Chí Minh');
 /*!40000 ALTER TABLE `busroutes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,10 +146,10 @@ DROP TABLE IF EXISTS `bustrips`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bustrips` (
-  `tripId` int NOT NULL,
+  `tripId` int NOT NULL AUTO_INCREMENT,
   `routeId` int NOT NULL,
   `licensePlateId` int NOT NULL,
-  `tripName` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `tripName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `price` decimal(10,0) NOT NULL,
   `timeStart` time NOT NULL,
   `timeStop` time NOT NULL,
@@ -153,7 +158,7 @@ CREATE TABLE `bustrips` (
   KEY `LicensePlateId_idx` (`licensePlateId`),
   CONSTRAINT `licensePlateId` FOREIGN KEY (`licensePlateId`) REFERENCES `bus` (`licensePlateId`),
   CONSTRAINT `routeId` FOREIGN KEY (`routeId`) REFERENCES `busroutes` (`routeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,6 +167,7 @@ CREATE TABLE `bustrips` (
 
 LOCK TABLES `bustrips` WRITE;
 /*!40000 ALTER TABLE `bustrips` DISABLE KEYS */;
+INSERT INTO `bustrips` VALUES (1,3,501,'Hà Tiên - Cần Thơ',180,'09:00:00','11:00:00'),(2,2,502,'Hà Tiên - Hồ Chí Minh',290,'23:00:00','05:00:00');
 /*!40000 ALTER TABLE `bustrips` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,12 +181,12 @@ DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `customerId` int NOT NULL,
   `userId` int NOT NULL,
-  `firstName` varchar(30) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `lastName` varchar(10) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `phone` varchar(10) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `address` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `avata` varchar(256) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `email` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `firstName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `lastName` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `avatar` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`customerId`),
   KEY `user_idx` (`userId`),
   CONSTRAINT `user` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
@@ -193,6 +199,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` VALUES (1,5,'Anh','Nguyễn','0988566221','Nguyễn Kiệm, Gò Vấp, TPHCM','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612377/assets/user_avatar_bwwrhq.png','workanhnguyen@gmail.com'),(2,6,'Minh','Trần','0387456239','Nghĩa Hưng, Tân Bình, TPHCM','nullhttps://res.cloudinary.com/dc9dlukr6/image/upload/v1692612377/assets/user_avatar_bwwrhq.png','minhanh208@gmail.com');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,20 +211,20 @@ DROP TABLE IF EXISTS `deliveries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `deliveries` (
-  `deliveryId` int NOT NULL,
+  `deliveryId` int NOT NULL AUTO_INCREMENT,
   `customerId` int NOT NULL,
-  `description` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `senderName` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `senderPhone` varchar(10) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `senderEmail` varchar(100) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `receiverName` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `receiverPhone` varchar(10) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `receiverEmail` varchar(100) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `description` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `senderName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `senderPhone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `senderEmail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `receiverName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `receiverPhone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `receiverEmail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `sendTime` datetime NOT NULL,
   `receiveTime` datetime DEFAULT NULL,
   `createDate` datetime NOT NULL,
-  `paymentMethod` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `status` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `paymentMethod` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `status` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `price` decimal(10,0) NOT NULL,
   PRIMARY KEY (`deliveryId`),
   KEY `customerId_idx` (`customerId`),
@@ -274,7 +281,7 @@ CREATE TABLE `reviews` (
   `reviewId` int NOT NULL,
   `customerId` int NOT NULL,
   `rating` int NOT NULL,
-  `comment` varchar(300) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `comment` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`reviewId`),
   KEY `CustomerId_idx` (`customerId`),
   CONSTRAINT `fk_reviews_customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`)
@@ -327,17 +334,17 @@ DROP TABLE IF EXISTS `tickets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tickets` (
-  `ticketId` int NOT NULL,
+  `ticketId` int NOT NULL AUTO_INCREMENT,
   `customerId` int NOT NULL,
-  `numSeat` varchar(3) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `numSeat` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `status` tinyint NOT NULL,
-  `paymentMethod` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `paymentMethod` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `createDate` datetime NOT NULL,
   PRIMARY KEY (`ticketId`),
   KEY `customerId_idx` (`customerId`),
   CONSTRAINT `fk_tickets_customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,6 +353,7 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
+INSERT INTO `tickets` VALUES (1,1,'A2',180,'enabled','VNPay','2023-08-10 00:00:00'),(2,2,'C1',290,'disabled','Tiền mặt','2023-08-12 00:00:00');
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,10 +366,10 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `userId` int NOT NULL,
-  `username` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `password` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `role` varchar(45) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `accountStatus` varchar(20) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `username` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `password` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `user_role` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `accountStatus` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `Username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
@@ -373,6 +381,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'nhaxePhuongTrang','PT9876','Nhà xe','enabled'),(2,'nhaxeKumho','Kumho1234','Nhà xe','disabled'),(3,'quynhdao632','quynhdao632002','Admin','enabled'),(4,'luongdat001','luongdat1234','Admin','enabled'),(5,'vananh002','vananh002','Khách hàng','enabled'),(6,'minhanh003','minhanh003','Khách hàng','enabled'),(8,'luongdat','$2a$10$.B.2.eTpDFbnLClyGjnaNufCMaIDbwzE87EgVBZ6IcX48Ztl5UNEC','ROLE_USER','enable'),(9,'hello','$2a$10$IyhwYJziP4iXD.r1Sj8t4OM1DsTU0VMcBJwzQt.IcK93BjPOMradS','ROLE_USER','enable');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -385,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-12 13:28:07
+-- Dump completed on 2023-08-27 14:53:10
