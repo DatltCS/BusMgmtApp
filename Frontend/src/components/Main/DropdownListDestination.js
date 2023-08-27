@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, createContext } from 'react';
 import './DropdownList.css';
+import useLocalStorage from '../../context/localStorage';
 
-function DropdownListDestination() {
+
+
+function DropdownListDestination({ label, options, storageKey }) {
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [value, setValue] = useLocalStorage(storageKey, '');
 
-  const optionsDestination = ['Thành phố Hồ Chí Minh', 'Cần Thơ'];
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
+    setValue(option);
   };
 
   let menuRef = useRef();
@@ -28,35 +32,47 @@ function DropdownListDestination() {
   }, []);
 
   return (
-    <div className="custom-dropdown-container" ref={menuRef}>
-      <div className="custom-dropdown">
-        <label class = "start-place">Nơi đến</label>
-        <div
-          className={`custom-dropdown-toggle ${open ? 'active' : 'inactive'}`}
-          id="dropdown-basic"
-          onClick={() => setOpen(!open)}
-        >
-          {selectedOption || 'Nơi đến'}
-        </div>
-
-        {open && (
-          <div className="custom-dropdown-menu">
-            {optionsDestination.map((option, index) => (
-              <div
-                key={index}
-                className="custom-dropdown-item"
-                onClick={() => {
-                  handleOptionSelect(option);
-                  setOpen(false);
-                }}
-              >
-                {option}
-              </div>
-            ))}
+  
+      <div className="custom-dropdown-container" ref={menuRef}>
+        <div className="custom-dropdown">
+          <label className="start-place">{label}</label>
+          <div
+            className={`custom-dropdown-toggle ${open ? 'active' : 'inactive'}`}
+            id="dropdown-basic"
+            onClick={() => setOpen(!open)}
+          >
+            <input
+              type="text"
+              value={value} 
+              onChange={(event) => {
+                const newValue = event.target.value;
+                handleOptionSelect(newValue);
+                setValue(newValue);
+              }}
+              placeholder={label}
+              style={{ border: 'none' }}
+            />
           </div>
-        )}
+
+          {open && (
+            <div className="custom-dropdown-menu">
+              {options.map((option, index) => (
+                <div
+                  key={index}
+                  className="custom-dropdown-item"
+                  onClick={() => {
+                    handleOptionSelect(option);
+                    setOpen(false);
+                  }}
+                >
+                  {option}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+
   );
 }
 

@@ -21,8 +21,8 @@ function Navbar({ handleLoginClick }) {
       <nav className="nav-menu">
         <ul>
           <li><a href="#">Quản lý đơn hàng</a></li>
-          <li><Link to="/BusRegistration">Mở bán vé trên CheapTicket</Link></li>
-          <li><Link to="/SignIn"><button className="login-button" onClick={handleClick}>Đăng nhập</button>
+          <li><Link to="/bus-registration">Mở bán vé trên CheapTicket</Link></li>
+          <li><Link to="/sign-in"><button className="login-button" onClick={handleClick}>Đăng nhập</button>
           </Link></li>
         </ul>
       </nav>
