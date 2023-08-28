@@ -30,7 +30,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
-    private AtomicInteger maxUserId = new AtomicInteger(6);
+    private AtomicInteger maxUserId = new AtomicInteger(12);
 
     @Override
     public Users getUserByUsername(String username) {

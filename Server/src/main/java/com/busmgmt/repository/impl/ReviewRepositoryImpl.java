@@ -1,0 +1,51 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.busmgmt.repository.impl;
+
+import com.busmgmt.pojo.Reviews;
+import com.busmgmt.repository.ReviewRepository;
+import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ *
+ * @author Admin
+ */
+@Repository
+@Transactional
+public class ReviewRepositoryImpl implements ReviewRepository {
+
+    @Autowired
+    private LocalSessionFactoryBean factory;
+
+    @Override
+    public List<Reviews> getReivewsByTripId(int tripId, int page) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Reviews> query = b.createQuery(Reviews.class);
+        
+        Root root = query.from(Reviews.class);
+        
+        query = query.where(b.equal(root.get("tripId"),tripId));
+        query = query.orderBy(b.desc(root.get("id")));
+        
+        Query q = session.createQuery(query);
+        
+        int max = 10;
+        q.setMaxResults(max);
+        q.setFirstResult((page - 1) * max);
+        
+        return q.getResultList();
+    }
+
+}

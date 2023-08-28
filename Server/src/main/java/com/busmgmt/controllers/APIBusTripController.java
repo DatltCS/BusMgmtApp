@@ -6,6 +6,7 @@ package com.busmgmt.controllers;
 
 import com.busmgmt.pojo.Bustrips;
 import com.busmgmt.service.BusTripService;
+import com.busmgmt.service.ReviewService;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -36,11 +37,16 @@ public class APIBusTripController {
 
     @Autowired
     private BusTripService busTripService;
+    @Autowired
+    private ReviewService reviewService;
 
     @GetMapping("/bustrips")
     public ResponseEntity<List<Bustrips>> list(@RequestParam Map<String, String> patams) {
         return new ResponseEntity<>(this.busTripService.getBustrips(patams), HttpStatus.OK);
     }
+    
+    
+    
     
 //    @GetMapping("/bustrips/{id}")
 //    public ResponseEntity<Optional<Bustrips>> getBustripById(@PathVariable (value = "id") int id) {
