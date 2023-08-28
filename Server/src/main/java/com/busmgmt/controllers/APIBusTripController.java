@@ -37,15 +37,12 @@ public class APIBusTripController {
 
     @Autowired
     private BusTripService busTripService;
-    @Autowired
-    private ReviewService reviewService;
+
 
     @GetMapping("/bustrips")
     public ResponseEntity<List<Bustrips>> list(@RequestParam Map<String, String> patams) {
         return new ResponseEntity<>(this.busTripService.getBustrips(patams), HttpStatus.OK);
     }
-    
-    
     
     
 //    @GetMapping("/bustrips/{id}")

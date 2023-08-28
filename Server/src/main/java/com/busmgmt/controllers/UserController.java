@@ -39,9 +39,9 @@ public class UserController {
             if (this.userDetailsService.addUser(user) == true)
                 return "redirect:/login";
             else
-                msg = "Sometings went wrong!!!";
+                System.out.println("Sometings went wrong!!!");
         } else
-            msg = "Password is not match";
+            System.out.println("Password not match!!!");
         
         return "register";
     }

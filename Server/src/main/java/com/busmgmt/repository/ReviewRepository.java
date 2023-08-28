@@ -12,5 +12,5 @@ import java.util.List;
  * @author Admin
  */
 public interface ReviewRepository {
-    List<Reviews> getReivewsByTripId(int tripId, int page);
+    List<Reviews> getReivewsByTripId(int tripId);
 }

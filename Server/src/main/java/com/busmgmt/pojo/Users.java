@@ -4,6 +4,7 @@
  */
 package com.busmgmt.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -82,10 +83,13 @@ public class Users implements Serializable {
     @Column(name = "accountStatus")
     private String accountStatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
     private Set<Buscompanies> buscompaniesSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
     private Set<Admin> adminSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
     private Set<Customers> customersSet;
     @Transient
     private String confirmPassword;

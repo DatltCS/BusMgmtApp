@@ -4,6 +4,7 @@
  */
 package com.busmgmt.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -68,12 +69,15 @@ public class Customers implements Serializable {
     @Column(name = "email")
     private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Set<Tickets> ticketsSet;
+    @JsonIgnore
+    private Set<Tickets> ticketsSet; 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    @JsonIgnore
     private Set<Reviews> reviewsSet;
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     @ManyToOne(optional = false)
     private Users userId;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private Set<Deliveries> deliveriesSet;
 

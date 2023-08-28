@@ -29,7 +29,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     private LocalSessionFactoryBean factory;
 
     @Override
-    public List<Reviews> getReivewsByTripId(int tripId, int page) {
+    public List<Reviews> getReivewsByTripId(int tripId) {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
         CriteriaQuery<Reviews> query = b.createQuery(Reviews.class);
@@ -37,13 +37,9 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         Root root = query.from(Reviews.class);
         
         query = query.where(b.equal(root.get("tripId"),tripId));
-        query = query.orderBy(b.desc(root.get("id")));
+        query = query.orderBy(b.desc(root.get("reviewId")));
         
         Query q = session.createQuery(query);
-        
-        int max = 10;
-        q.setMaxResults(max);
-        q.setFirstResult((page - 1) * max);
         
         return q.getResultList();
     }

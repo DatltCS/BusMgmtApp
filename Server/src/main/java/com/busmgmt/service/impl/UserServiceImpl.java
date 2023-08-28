@@ -5,7 +5,7 @@
 package com.busmgmt.service.impl;
 
 import com.busmgmt.pojo.Users;
-import com.busmgmt.pojo.Users_;
+//import com.busmgmt.pojo.Users_;
 import com.busmgmt.repository.UserRepository;
 import com.busmgmt.service.UserService;
 import com.mysql.cj.xdevapi.Statement;
@@ -61,9 +61,9 @@ public class UserServiceImpl implements UserService {
         users.setPassword(this.passwordEncoder.encode(pass));
         users.setUserRole(Users.USER);
         users.setAccountStatus("enable");
-
-        int maxUserId = userRepository.getMaxUserId();
-        users.setUserId(maxUserId + 1);
+//
+//        int maxUserId = userRepository.getMaxUserId();
+//        users.setUserId(maxUserId + 1);
         
         return this.userRepository.addUser(users);
     }

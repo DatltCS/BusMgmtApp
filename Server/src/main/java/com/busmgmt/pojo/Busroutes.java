@@ -4,6 +4,7 @@
  */
 package com.busmgmt.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -59,8 +60,10 @@ public class Busroutes implements Serializable {
     @Column(name = "placeStop")
     private String placeStop;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "routeId")
+    @JsonIgnore
     private Set<Routestatistics> routestatisticsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "routeId")
+    @JsonIgnore
     private Set<Bustrips> bustripsSet;
 
     public Busroutes() {

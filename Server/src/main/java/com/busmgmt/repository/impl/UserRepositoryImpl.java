@@ -30,7 +30,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
-    private AtomicInteger maxUserId = new AtomicInteger(12);
+//    private AtomicInteger maxUserId = new AtomicInteger(12);
 
     @Override
     public Users getUserByUsername(String username) {
@@ -44,8 +44,8 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean addUser(Users users) {
         Session s = this.factory.getObject().getCurrentSession();
-        int newUserId = maxUserId.incrementAndGet();
-        users.setUserId(newUserId + 1);
+//        int newUserId = maxUserId.incrementAndGet();
+//        users.setUserId(newUserId + 1);
         try {
             s.save(users);
 
@@ -56,9 +56,9 @@ public class UserRepositoryImpl implements UserRepository {
         return false;
     }
 
-    @Override
-    public int getMaxUserId() {
-        return maxUserId.get();
-    }
+//    @Override
+//    public int getMaxUserId() {
+//        return maxUserId.get();
+//    }
 
 }

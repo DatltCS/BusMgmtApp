@@ -7,7 +7,6 @@ D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Reviews.j
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\BusTripRepository.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\impl\UserServiceImpl.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\validator\WebApplicationValidator.java
-D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\validator\ReviewServiceImpl.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\BusService.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIBusController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\server\JAXRSConfiguration.java
@@ -33,6 +32,7 @@ D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\imp
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\ReceiptRepository.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\UserService.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIBusTripController.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIReviewController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\BusRepository.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Revenuestatistics.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\impl\BusRepositoryImpl.java
@@ -43,6 +43,7 @@ D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\impl\B
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Deliveries.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\configs\WebApplicationContextConfig.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\BusCompanyService.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\impl\ReviewServiceImpl.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\configs\TilesConfig.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Bustrips.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\BusCompanyRepository.java
