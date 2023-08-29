@@ -5,7 +5,9 @@
 package com.busmgmt.service;
 
 import com.busmgmt.pojo.Users;
+import java.util.Map;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -14,6 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface UserService extends UserDetailsService {
 
     Users getUserByUsername(String username);
-
-    boolean addUser(Users users);
+    boolean authUser(String username, String password);
+    Users addUser(Map<String, String> params);
 }
