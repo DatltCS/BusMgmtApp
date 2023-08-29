@@ -20,10 +20,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -44,6 +46,20 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Buscompanies.findByEmail", query = "SELECT b FROM Buscompanies b WHERE b.email = :email"),
     @NamedQuery(name = "Buscompanies.findByAllowedDelivery", query = "SELECT b FROM Buscompanies b WHERE b.allowedDelivery = :allowedDelivery")})
 public class Buscompanies implements Serializable {
+
+//    /**
+//     * @return the file
+//     */
+//    public MultipartFile getFile() {
+//        return file;
+//    }
+//
+//    /**
+//     * @param file the file to set
+//     */
+//    public void setFile(MultipartFile file) {
+//        this.file = file;
+//    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -101,6 +117,9 @@ public class Buscompanies implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     @JsonIgnore
     private Set<Revenuestatistics> revenuestatisticsSet;
+
+//    @Transient
+//    private MultipartFile file;
 
     public Buscompanies() {
     }
@@ -243,5 +262,5 @@ public class Buscompanies implements Serializable {
     public String toString() {
         return "com.busmgmt.pojo.Buscompanies[ companyId=" + companyId + " ]";
     }
-    
+
 }

@@ -16,6 +16,7 @@
         <div>
             <a href="<c:url value="/buses" />" class="btn btn-danger">Add Bus</a>
         </div>
+        
     </sec:authorize>
 
     <c:if test="${count > 1}">

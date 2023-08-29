@@ -7,7 +7,13 @@ package com.busmgmt.service.impl;
 import com.busmgmt.pojo.Buscompanies;
 import com.busmgmt.repository.BusCompanyRepository;
 import com.busmgmt.service.BusCompanyService;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +22,29 @@ import org.springframework.stereotype.Service;
  * @author Admin
  */
 @Service
-public class BusCompanyServiceImpl implements BusCompanyService{
+public class BusCompanyServiceImpl implements BusCompanyService {
+
     @Autowired
     private BusCompanyRepository busCompanyRepository;
-    
-    
+    @Autowired
+    private Cloudinary cloudinary;
+
     @Override
     public List<Buscompanies> getBuscompanies() {
         return this.busCompanyRepository.getBuscompanies();
     }
-    
+
+//    @Override
+//    public boolean addBuscompanies(Buscompanies buscompanies) {
+//        if (!buscompanies.getFile().isEmpty()) {
+//            try {
+//                Map res = this.cloudinary.uploader().upload(buscompanies.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+//                buscompanies.setAvatar(res.get("secure_url").toString());
+//            } catch (IOException ex) {
+//                Logger.getLogger(BusServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//        return this.busCompanyRepository.addBuscompanies(buscompanies);
+//    }
+
 }

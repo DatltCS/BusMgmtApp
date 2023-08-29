@@ -49,6 +49,7 @@ com\busmgmt\pojo\Bustrips_.class
 com\busmgmt\repository\BusTripRepository.class
 com\busmgmt\controllers\APIBusCompanyController.class
 com\busmgmt\pojo\Bustrips.class
+com\busmgmt\controllers\APIUserController.class
 com\busmgmt\service\impl\UserServiceImpl.class
 com\busmgmt\configs\SecurityWebApplicationInitializer.class
 com\busmgmt\service\BusTripService.class

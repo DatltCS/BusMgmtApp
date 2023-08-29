@@ -8,6 +8,7 @@ import com.busmgmt.pojo.Buscompanies;
 import com.busmgmt.repository.BusCompanyRepository;
 import java.util.List;
 import javax.persistence.Query;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -31,5 +32,18 @@ public class BusCompanyRepositoryImpl implements BusCompanyRepository{
         
         return q.getResultList();
     }
-    
+
+//    @Override
+//    public boolean addBuscompanies(Buscompanies buscompanies) {
+//        Session s = this.factory.getObject().getCurrentSession();
+//        try {
+//            s.save(buscompanies);
+//
+//            return true;
+//        } catch (HibernateException ex) {
+//            System.err.println(ex.getMessage());
+//        }
+//        return false;
+//    }
+//    
 }
