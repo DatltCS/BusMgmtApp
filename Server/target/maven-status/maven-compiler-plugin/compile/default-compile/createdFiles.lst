@@ -17,7 +17,9 @@ com\busmgmt\pojo\Buscompanies.class
 com\busmgmt\server\resources\JavaEE8Resource.class
 com\busmgmt\pojo\Bus.class
 com\busmgmt\configs\DispatcherServletInitializer.class
+com\busmgmt\filters\CustomAccessDeniedHandler.class
 com\busmgmt\service\UserService.class
+com\busmgmt\filters\RestAuthenticationEntryPoint.class
 com\busmgmt\pojo\Users_.class
 com\busmgmt\controllers\BusController.class
 com\busmgmt\pojo\Tickets.class
@@ -58,6 +60,9 @@ com\busmgmt\controllers\UserController.class
 com\busmgmt\configs\HibernateConfig.class
 com\busmgmt\repository\impl\BusTripRepositoryImpl.class
 com\busmgmt\validator\BusValidator.class
+com\busmgmt\filters\JwtAuthenticationTokenFilter.class
+com\busmgmt\configs\JwtSecurityConfig.class
 com\busmgmt\pojo\Reviews_.class
 com\busmgmt\repository\impl\UserRepositoryImpl.class
+com\busmgmt\components\JwtService.class
 com\busmgmt\validator\BusCompanyNameValidator.class

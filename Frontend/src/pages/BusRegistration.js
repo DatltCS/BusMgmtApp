@@ -1,11 +1,11 @@
 import React from "react";
 import "./BusRegistration.css";
 
-function BusRegistration({ isShowLogin }) {
+function BusRegistration() {
     return (
         <>
             <div className="overlay">
-                <div className={`${!isShowLogin ? "active" : ""}show `}>
+                <div >
                     <main class="main-form">
                         <div class="sign-up-form">
                             <section class="wrapper-sign-up">

@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useState, useContext} from 'react'
 import './SignIn.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import Navbar from '../components/Header/Navbar';
+import { MyUserContext } from "../App";
+import Apis, { authApi, endpoints } from "../config/Apis";
+import cookie from "react-cookies";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 // const defaultState = {
 //     name: null,
@@ -12,71 +16,66 @@ import Navbar from '../components/Header/Navbar';
 //     emailError: null,
 //     passwordError: null
 // }
-const SignIn = ({isShowLogin}) => {
-    // constructor() {
-    //     super();
-    //     this.state = defaultState;
-    //     this.handleInputChange = this.handleInputChange.bind(this);
-    // }
-    // handleInputChange(event) {
-    //     const target = event.target;
-    //     var value = target.value;
-    //     const name = target.name;
-    //     this.setState({
-    //         [name]: value
-    //     });
-    // }
-    // validate() {
-    //     let nameError = "";
-    //     let emailError = "";
-    //     let passwordError = "";
-    //     if (!this.state.name) {
-    //         nameError = "Name field is required";
-    //     }
-    //     const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    //     if (!this.state.email || reg.test(this.state.email) === false) {
-    //         emailError = "Email Field is Invalid ";
-    //     }
-    //     if (!this.state.password) {
-    //         passwordError = "Password field is required";
-    //     }
-    //     if (emailError || nameError || passwordError) {
-    //         this.setState({ nameError, emailError, passwordError });
-    //         return false;
-    //     }
-    //     return true;
-    // }
-    // submit() {
-    //     if (this.validate()) {
-    //         console.warn(this.state);
-    //         this.setState(defaultState);
-    //     }
-    // }
+const SignIn = () => {
+    const [user, dispatch] = useContext(MyUserContext);
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
+    
+    const login = (evt) => {
+        evt.preventDefault();
+
+        const process = async () => {
+            try {
+                let res = await Apis.post(endpoints['login'], {
+                    "username": username,
+                    "password": password
+                });
+                cookie.save("token", res.data);
+                
+                let {data} = await authApi().get(endpoints['current-user']);
+                cookie.save("user", data);
+
+                dispatch({
+                    "type": "login",
+                    "payload": data
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        process();
+    }
+
+    if (user !== null)
+        return <Navigate to="/" />
    
         return (
             <>
-            <div className="overlay">
-                <div className={`${!isShowLogin ? "active" : ""}show `}>
+
+                <div>
                 <main class="main-form">
                     <div class="sign-in-form">
                         <section class="wrapper">
+                        <h3 class ="X">X</h3>
                             <div class="heading">
+                                
                                 <h1 class="text text-large">Đăng nhập</h1>
                                 <p class="text text-normal">Chưa có tài khoản? <span><a href="#" class="text text-links">Tạo tài khoản</a></span>
                                 </p>
                             </div>
                             <form name="signin" class="form">
                                 <div class="input-control">
-                                    <label for="email" class="input-label" hidden>Email </label>
-                                    <input type="email" name="email" id="email" class="input-field" placeholder="Email" />
+                                    <label for="ten" class="input-label" hidden>Tên đăng nhập</label>
+                                    <input type="text" name="ten" id="ten" class="input-field" value={username} onChange={e => setUsername(e.target.value)} placeholder="Tên đăng nhập" />
                                 </div>
                                 <div class="input-control">
                                     <label for="password" class="input-label" hidden>Mật khẩu</label>
-                                    <input type="password" name="password" id="password" class="input-field" placeholder="Mật khẩu" />
+                                    <input type="password" name="password" id="password" class="input-field" value={password} onChange={e => setPassword(e.target.value)} placeholder="Mật khẩu" />
                                 </div>
                                 <div class="input-control">
                                     <a href="#" class="text text-links">Quên mật khẩu</a>
-                                    <input type="submit" name="submit" class="input-submit" value="Sign In" disabled />
+                                    <input type="submit" name="submit" class="input-submit" value="Đăng nhập" onSubmit={login} />
                                 </div>
                             </form>
                             <div class="striped">
@@ -96,7 +95,6 @@ const SignIn = ({isShowLogin}) => {
                     </div>
                 </main>
                 </div>
-            </div>
             </>
         )
     

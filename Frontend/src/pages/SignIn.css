@@ -128,6 +128,7 @@ img {
 		color: var(--color-black);
 		background: var(--color-white);
 		box-shadow: var(--shadow-large);
+		justify-content: flex-end;
 
 		.form {
 			width: 100%;

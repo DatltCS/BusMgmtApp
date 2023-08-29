@@ -3,14 +3,16 @@ import './Banner.css';
 import DropdownList from "./DropdownListStartPlace";
 import Calendar from "./Calendar";
 import { Link } from 'react-router-dom';
+import Card from "./Card";
 
 
-const Main = () => {
+const Banner = () => {
 
     const optionsStartPlace = ['Kiên Giang', 'An Giang', 'Đồng Tháp', 'Long Xuyên', 'Cần Thơ'];
     const optionsDestination = ['Thành phố Hồ Chí Minh', 'Cần Thơ'];
 
     return (
+    <>
         <section className='Main'>
             <div className="overlay-banner"></div>
             <div className="backgroundImage" style={{ backgroundImage: "url('/background.jpg')" }}></div>
@@ -32,8 +34,9 @@ const Main = () => {
             </div>
 
         </section>
-
+        <Card/>
+        </>
     );
 }
 
-export default Main;
+export default Banner;
