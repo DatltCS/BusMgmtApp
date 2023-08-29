@@ -4,16 +4,14 @@
  */
 package com.busmgmt.service;
 
-import com.busmgmt.pojo.Users;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.busmgmt.pojo.Reviews;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public interface UserService extends UserDetailsService {
-
-    Users getUserByUsername(String username);
-
-    boolean addUser(Users users);
+public interface ReviewService {
+    List<Reviews> getReivewsByTripId(int tripId);
+    
 }

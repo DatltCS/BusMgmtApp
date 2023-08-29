@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\HomeController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\server\resources\JavaEE8Resource.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\impl\BusCompanyServiceImpl.java
@@ -7,11 +6,11 @@ D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\imp
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Reviews.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\BusTripRepository.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\impl\UserServiceImpl.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\validator\WebApplicationValidator.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\BusService.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIBusController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\server\JAXRSConfiguration.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Tickets.java
-D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\swagger\SwaggerConfig.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\UserRepository.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Cart.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\BusController.java
@@ -24,61 +23,35 @@ D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\imp
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\formatters\BusTripFormatter.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\configs\SecurityWebApplicationInitializer.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\configs\SpringSecurityConfig.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\validator\BusValidator.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIUserController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\formatters\BusCompanyFormatter.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\ReviewRepository.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIReceiptController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Routestatistics.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\impl\BusTripRepositoryImpl.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\ReceiptRepository.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\UserService.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIBusTripController.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIReviewController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\BusRepository.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Revenuestatistics.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\impl\BusRepositoryImpl.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\validator\BusCompanyNameValidator.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\configs\DispatcherServletInitializer.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Busroutes.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\impl\BusTripServiceImpl.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Deliveries.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\configs\WebApplicationContextConfig.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\BusCompanyService.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\impl\ReviewServiceImpl.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\configs\TilesConfig.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Bustrips.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\BusCompanyRepository.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\ReviewService.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIBusCompanyController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Admin.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\configs\HibernateConfig.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\impl\BusCompanyRepositoryImpl.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Bus.java
-=======
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Customers.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\service\impl\BusTripServiceImpl.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\controllers\BusController.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\repository\BusCompanyRepository.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Tickets.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\service\impl\BusServiceImpl.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\configs\HibernateConfig.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\service\BusCompanyService.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\configs\WebApplicationContextConfig.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\repository\BusRepository.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Reviews.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\repository\impl\BusRepositoryImpl.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\repository\BusTripRepository.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Users.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\service\BusService.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Admin.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Bustrips.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\controllers\HomeController.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Deliveries.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\server\JAXRSConfiguration.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Routestatistics.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Buscompanies.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Revenuestatistics.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\repository\impl\BusCompanyRepositoryImpl.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\configs\TilesConfig.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\server\resources\JavaEE8Resource.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\service\BusTripService.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\configs\DispatcherServletInitializer.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Busroutes.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\repository\impl\BusTripRepositoryImpl.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\service\impl\BusCompanyServiceImpl.java
-D:\Project LTJAVA\BusMgmtApp\Server\src\main\java\com\busmgmt\pojo\Bus.java
->>>>>>> be3458d405526b82a5d82d467d61aa24bfa672a3
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\impl\ReviewRepositoryImpl.java

@@ -4,14 +4,13 @@
  */
 package com.busmgmt.repository;
 
-import com.busmgmt.pojo.Buscompanies;
+import com.busmgmt.pojo.Reviews;
 import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public interface BusCompanyRepository {
-    List<Buscompanies> getBuscompanies();
-//    boolean addBuscompanies(Buscompanies buscompanies);
+public interface ReviewRepository {
+    List<Reviews> getReivewsByTripId(int tripId);
 }

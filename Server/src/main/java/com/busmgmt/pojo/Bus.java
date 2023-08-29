@@ -42,7 +42,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class Bus implements Serializable {
 
     /**
-<<<<<<< HEAD
      * @return the file
      */
     public MultipartFile getFile() {
@@ -54,19 +53,6 @@ public class Bus implements Serializable {
      */
     public void setFile(MultipartFile file) {
         this.file = file;
-=======
-     * @return the image
-     */
-    public String getImage() {
-        return image;
-    }
-
-    /**
-     * @param image the image to set
-     */
-    public void setImage(String image) {
-        this.image = image;
->>>>>>> be3458d405526b82a5d82d467d61aa24bfa672a3
     }
 
     private static final long serialVersionUID = 1L;
@@ -87,14 +73,11 @@ public class Bus implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
-    @Column(name = "image")
-    public String image;
+    @Column(name = "busType")
+    private String busType;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 256)
-    @Column(name = "busType")
-    private String busType;
-    @Size(max = 256)
     @Column(name = "image")
     private String image;
     @JoinColumn(name = "companyId", referencedColumnName = "companyId")
@@ -103,7 +86,7 @@ public class Bus implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "licensePlateId")
     @JsonIgnore
     private Set<Bustrips> bustripsSet;
-    
+
     @Transient
     private MultipartFile file;
 
@@ -114,7 +97,7 @@ public class Bus implements Serializable {
         this.licensePlateId = licensePlateId;
     }
 
-    public Bus(Integer licensePlateId, String busName, String image, int totalSeat, String busType) {
+    public Bus(Integer licensePlateId, String busName, int totalSeat, String busType, String image) {
         this.licensePlateId = licensePlateId;
         this.busName = busName;
         this.totalSeat = totalSeat;
