@@ -4,6 +4,7 @@
  */
 package com.busmgmt.configs;
 
+<<<<<<< HEAD
 import com.busmgmt.formatters.BusCompanyFormatter;
 import com.busmgmt.formatters.BusTripFormatter;
 import com.busmgmt.pojo.Buscompanies;
@@ -19,6 +20,15 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.format.FormatterRegistry;
+=======
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+>>>>>>> be3458d405526b82a5d82d467d61aa24bfa672a3
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -42,17 +52,22 @@ import org.springframework.web.servlet.view.JstlView;
     "com.busmgmt.repository",
     "com.busmgmt.service"
 })
+<<<<<<< HEAD
 @PropertySource("classpath:configs.properties")
 public class WebApplicationContextConfig implements WebMvcConfigurer {
 
     @Autowired
     private Environment env;
+=======
+public class WebApplicationContextConfig implements WebMvcConfigurer {
+>>>>>>> be3458d405526b82a5d82d467d61aa24bfa672a3
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
 
+<<<<<<< HEAD
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new BusCompanyFormatter());
@@ -64,6 +79,10 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/js/**").addResourceLocations("WEB-INF/resource/js/");
     }
 
+=======
+    @Autowired
+    private Environment env;
+>>>>>>> be3458d405526b82a5d82d467d61aa24bfa672a3
 //    @Bean
 //    public InternalResourceViewResolver getInternalResourceViewResolver(){
 //        InternalResourceViewResolver r = new InternalResourceViewResolver();
@@ -74,6 +93,10 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
 //        
 //        return r;
 //    }
+<<<<<<< HEAD
+=======
+
+>>>>>>> be3458d405526b82a5d82d467d61aa24bfa672a3
     @Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
@@ -84,6 +107,7 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
                         "secure", true));
         return cloudinary;
     }
+<<<<<<< HEAD
 
     @Bean
     public SimpleDateFormat simpleDateFormat() {
@@ -120,4 +144,6 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         return validator();
     }
 
+=======
+>>>>>>> be3458d405526b82a5d82d467d61aa24bfa672a3
 }
