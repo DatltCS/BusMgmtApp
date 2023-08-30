@@ -52,29 +52,29 @@ public class APIUserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/login/")
-    @CrossOrigin
-    public ResponseEntity<String> login(@RequestBody Users user) {
-        if (this.userService.authUser(user.getUsername(), user.getPassword()) == true) {
-            String token = this.jwtService.generateTokenLogin(user.getUsername());
-
-            return new ResponseEntity<>(token, HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
-    }
-
-    @PostMapping(path = "/register/")
-    @CrossOrigin
-    public ResponseEntity<Users> addUser(@RequestParam Map<String, String> params) {
-        Users user = this.userService.addUser(params);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-    }
-
-    @GetMapping(path = "/current-user/", produces = MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin
-    public ResponseEntity<Users> details(Principal user) {
-        Users u = this.userService.getUserByUsername(user.getName());
-        return new ResponseEntity<>(u, HttpStatus.OK);
-    }
+//    @PostMapping("/login/")
+//    @CrossOrigin
+//    public ResponseEntity<String> login(@RequestBody Users user) {
+//        if (this.userService.authUser(user.getUsername(), user.getPassword()) == true) {
+//            String token = this.jwtService.generateTokenLogin(user.getUsername());
+//
+//            return new ResponseEntity<>(token, HttpStatus.OK);
+//        }
+//
+//        return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
+//    }
+    
+//    @PostMapping(path = "/users/")
+//    @CrossOrigin
+//    public ResponseEntity<Users> addUserClient(@RequestParam Map<String, String> params) {
+//        Users user = this.userService.addUserClient(params);
+//        return new ResponseEntity<>(user, HttpStatus.CREATED);
+//    }
+    
+//    @GetMapping(path = "/current-user/", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @CrossOrigin
+//    public ResponseEntity<Users> details(Principal user) {
+//        Users u = this.userService.getUserByUsername(user.getName());
+//        return new ResponseEntity<>(u, HttpStatus.OK);
+//    }
 }

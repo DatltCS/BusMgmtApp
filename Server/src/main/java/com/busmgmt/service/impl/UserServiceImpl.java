@@ -8,9 +8,13 @@ import com.busmgmt.pojo.Users;
 //import com.busmgmt.pojo.Users_;
 import com.busmgmt.repository.UserRepository;
 import com.busmgmt.service.UserService;
+import com.cloudinary.utils.ObjectUtils;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -53,20 +58,33 @@ public class UserServiceImpl implements UserService {
     public boolean authUser(String username, String password) {
         return this.userRepository.authUser(username, password);
     }
-
+    
     @Override
-    public Users addUser(Map<String, String> params) {
-        Users u = new Users();
-
-        u.setUsername(params.get("username"));
-        u.setPassword(this.passwordEncoder.encode(params.get("password")));
-        u.setUserRole("ROLE_USER");
+    public boolean addUser(Users users) {
+        String pass = users.getPassword();
+        users.setPassword(this.passwordEncoder.encode(pass));
+        users.setUserRole(Users.USER);
+        users.setAccountStatus("enable");
+//
+//        int maxUserId = userRepository.getMaxUserId();
+//        users.setUserId(maxUserId + 1);
         
-        
-        this.userRepository.addUser(u);
-        return u;
+        return this.userRepository.addUser(users);
     }
 
+//    @Override
+//    public Users addUserClient(Map<String, String> params) {
+//        Users u = new Users();
+//
+//        u.setUsername(params.get("username"));
+//        u.setPassword(this.passwordEncoder.encode(params.get("password")));
+//        u.setUserRole("ROLE_USER");
+//        u.setAccountStatus("enable");
+//
+//        
+//        this.userRepository.addUser(u);
+//        return u;
+//    }
 
 
 }

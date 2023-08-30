@@ -14,8 +14,10 @@ public interface UserRepository {
 
     Users getUserByUsername(String username);
 
-    Users addUser(Users user);
+    boolean addUser(Users user);
 
     boolean authUser(String username, String password);
+    
+//     Users addUserClient(Users user);
 //    int getMaxUserId();
 }
