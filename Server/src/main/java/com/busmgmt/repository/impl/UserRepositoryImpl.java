@@ -6,17 +6,12 @@ package com.busmgmt.repository.impl;
 
 import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.UserRepository;
-import java.sql.Connection;
-import java.util.concurrent.atomic.AtomicInteger;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +25,9 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
-    private AtomicInteger maxUserId = new AtomicInteger(6);
+    @Autowired
+    private BCryptPasswordEncoder passEncoder;
+//    private AtomicInteger maxUserId = new AtomicInteger(12);
 
     @Override
     public Users getUserByUsername(String username) {
@@ -40,12 +37,20 @@ public class UserRepositoryImpl implements UserRepository {
 
         return (Users) q.getSingleResult();
     }
+    
+    @Override
+    public boolean authUser(String username, String password) {
+        Users  u = this.getUserByUsername(username);
+        return this.passEncoder.matches(password, u.getPassword());
+    }
+    
+
 
     @Override
     public boolean addUser(Users users) {
         Session s = this.factory.getObject().getCurrentSession();
-        int newUserId = maxUserId.incrementAndGet();
-        users.setUserId(newUserId + 1);
+//        int newUserId = maxUserId.incrementAndGet();
+//        users.setUserId(newUserId + 1);
         try {
             s.save(users);
 
@@ -56,9 +61,9 @@ public class UserRepositoryImpl implements UserRepository {
         return false;
     }
 
-    @Override
-    public int getMaxUserId() {
-        return maxUserId.get();
-    }
+//    @Override
+//    public int getMaxUserId() {
+//        return maxUserId.get();
+//    }
 
 }

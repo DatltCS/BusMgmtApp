@@ -75,7 +75,9 @@ public class Bus implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "busType")
     private String busType;
-    @Size(max = 256)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 256)
     @Column(name = "image")
     private String image;
     @JoinColumn(name = "companyId", referencedColumnName = "companyId")
@@ -84,7 +86,7 @@ public class Bus implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "licensePlateId")
     @JsonIgnore
     private Set<Bustrips> bustripsSet;
-    
+
     @Transient
     private MultipartFile file;
 
@@ -95,11 +97,12 @@ public class Bus implements Serializable {
         this.licensePlateId = licensePlateId;
     }
 
-    public Bus(Integer licensePlateId, String busName, int totalSeat, String busType) {
+    public Bus(Integer licensePlateId, String busName, int totalSeat, String busType, String image) {
         this.licensePlateId = licensePlateId;
         this.busName = busName;
         this.totalSeat = totalSeat;
         this.busType = busType;
+        this.image = image;
     }
 
     public Integer getLicensePlateId() {

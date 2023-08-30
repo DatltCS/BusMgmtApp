@@ -11,7 +11,11 @@ import com.busmgmt.pojo.Users;
  * @author Admin
  */
 public interface UserRepository {
+
     Users getUserByUsername(String username);
+
     boolean addUser(Users users);
-    int getMaxUserId();
+
+    boolean authUser(String username, String password);
+//    int getMaxUserId();
 }

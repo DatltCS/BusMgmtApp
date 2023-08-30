@@ -7,11 +7,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 <section class = "container">
     <h1 class ="text-center text-infor mt-1">Bus List</h1>
-    <a href ="<c:url value="/buses" />" class="btn btn-info">Add Bus</a>
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <div>
+            <a href="<c:url value="/buses" />" class="btn btn-danger">Add Bus</a>
+        </div>
+        
+    </sec:authorize>
 
     <c:if test="${count > 1}">
         <ul class="pagination mt-2">
@@ -45,11 +51,14 @@
                     <td>${b.licensePlateId}</td>
                     <td>${b.busName}</td>
                     <td>${b.totalSeat}</td>
-                    <td>
-                        <c:url value="/api/buses/${b.licensePlateId}" var="apiDelete"/>
-                        <a href="<c:url value="/buses/${b.licensePlateId}"/>" class="btn btn-success">UPDATE</a>
-                        <button class="btn btn-danger" onclick="deleteBus('${apiDelete}', ${b.licensePlateId})">DELETE</button>
-                    </td>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <td>
+                            <c:url value="/api/buses/${b.licensePlateId}" var="apiDelete"/>
+                            <a href="<c:url value="/buses/${b.licensePlateId}"/>" class="btn btn-success">UPDATE</a>
+                            <button class="btn btn-danger" onclick="deleteBus('${apiDelete}', ${b.licensePlateId})">DELETE</button>
+                        </td>
+                    </sec:authorize>
+
                 </tr>
             </c:forEach>
         </tbody>

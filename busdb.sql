@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin` (
-  `adminId` int NOT NULL,
+  `adminId` int NOT NULL AUTO_INCREMENT,
   `userId` int NOT NULL,
   `firstName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `lastName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `avatar` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `email` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`adminId`),
-  KEY `UserId_idx` (`userId`),
+  KEY `fk_admin_userId_idx` (`userId`),
   CONSTRAINT `fk_admin_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -62,7 +62,7 @@ CREATE TABLE `bus` (
   `image` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`licensePlateId`),
   UNIQUE KEY `id_bienso_UNIQUE` (`licensePlateId`),
-  KEY `id_nha_xe_idx` (`companyId`),
+  KEY `companyId_idx` (`companyId`),
   CONSTRAINT `companyId` FOREIGN KEY (`companyId`) REFERENCES `buscompanies` (`companyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -85,7 +85,7 @@ DROP TABLE IF EXISTS `buscompanies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `buscompanies` (
-  `companyId` int NOT NULL,
+  `companyId` int NOT NULL AUTO_INCREMENT,
   `userId` int NOT NULL,
   `nameCompany` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `totalBus` int NOT NULL,
@@ -96,9 +96,9 @@ CREATE TABLE `buscompanies` (
   `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `allowedDelivery` tinyint NOT NULL,
   PRIMARY KEY (`companyId`),
-  KEY `UserId_idx` (`userId`),
+  KEY `userId_idx` (`userId`),
   CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs COMMENT='	';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs COMMENT='	';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,7 @@ CREATE TABLE `buscompanies` (
 
 LOCK TABLES `buscompanies` WRITE;
 /*!40000 ALTER TABLE `buscompanies` DISABLE KEYS */;
-INSERT INTO `buscompanies` VALUES (1,1,'Futa Buslines',30,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg','enabled','Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.','02838386853','hotro@futa.vn',1),(2,2,'Kumho Samco Buslines',15,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg','enabled','292 – Đinh Bộ Lĩnh, Phường 26, quận Bình Thạnh, TPHCM.','0903580000','lienhe@kumhosamco.com.vn',1);
+INSERT INTO `buscompanies` VALUES (1,8,'Futa Buslines',30,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg','enabled','Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.','02838386853','hotro@futa.vn',1),(2,9,'Kumho Samco Buslines',15,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg','enabled','292 – Đinh Bộ Lĩnh, Phường 26, quận Bình Thạnh, TPHCM.','0903580000','lienhe@kumhosamco.com.vn',1);
 /*!40000 ALTER TABLE `buscompanies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,13 +119,13 @@ DROP TABLE IF EXISTS `busroutes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `busroutes` (
-  `routeId` int NOT NULL,
+  `routeId` int NOT NULL AUTO_INCREMENT,
   `routeName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `placeStart` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `placeStop` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`routeId`),
   UNIQUE KEY `id_tuyen_UNIQUE` (`routeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,8 +154,8 @@ CREATE TABLE `bustrips` (
   `timeStart` time NOT NULL,
   `timeStop` time NOT NULL,
   PRIMARY KEY (`tripId`),
-  KEY `RouteId_idx` (`routeId`),
-  KEY `LicensePlateId_idx` (`licensePlateId`),
+  KEY `licensePlateId_idx` (`licensePlateId`),
+  KEY `routeId_idx` (`routeId`),
   CONSTRAINT `licensePlateId` FOREIGN KEY (`licensePlateId`) REFERENCES `bus` (`licensePlateId`),
   CONSTRAINT `routeId` FOREIGN KEY (`routeId`) REFERENCES `busroutes` (`routeId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
@@ -179,18 +179,18 @@ DROP TABLE IF EXISTS `customers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customers` (
-  `customerId` int NOT NULL,
+  `customerId` int NOT NULL AUTO_INCREMENT,
   `userId` int NOT NULL,
-  `firstName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `lastName` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `avatar` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `firstName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs DEFAULT NULL,
+  `lastName` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs DEFAULT NULL,
+  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs DEFAULT NULL,
+  `address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs DEFAULT NULL,
+  `avatar` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs DEFAULT NULL,
+  `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs DEFAULT NULL,
   PRIMARY KEY (`customerId`),
   KEY `user_idx` (`userId`),
   CONSTRAINT `user` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,14 +249,14 @@ DROP TABLE IF EXISTS `revenuestatistics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `revenuestatistics` (
-  `revenueStatisticId` int NOT NULL,
+  `revenueStatisticId` int NOT NULL AUTO_INCREMENT,
   `companyId` int NOT NULL,
   `month` date DEFAULT NULL,
   `quarter` int DEFAULT NULL,
   `year` year DEFAULT NULL,
   `revenue` decimal(16,0) DEFAULT NULL,
   PRIMARY KEY (`revenueStatisticId`),
-  KEY `companyId_idx` (`companyId`),
+  KEY `companyIds_idx` (`companyId`),
   CONSTRAINT `companyIds` FOREIGN KEY (`companyId`) REFERENCES `buscompanies` (`companyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -278,14 +278,18 @@ DROP TABLE IF EXISTS `reviews`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
-  `reviewId` int NOT NULL,
+  `reviewId` int NOT NULL AUTO_INCREMENT,
   `customerId` int NOT NULL,
+  `tripId` int NOT NULL,
   `rating` int NOT NULL,
   `comment` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  `createdDate` date NOT NULL,
   PRIMARY KEY (`reviewId`),
-  KEY `CustomerId_idx` (`customerId`),
-  CONSTRAINT `fk_reviews_customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+  KEY `fk_reviews_customerId_idx` (`customerId`),
+  KEY `fk_reviews_tripId_idx` (`tripId`),
+  CONSTRAINT `fk_reviews_customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
+  CONSTRAINT `fk_reviews_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -305,14 +309,14 @@ DROP TABLE IF EXISTS `routestatistics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `routestatistics` (
-  `routeStatisticsId` int NOT NULL,
+  `routeStatisticsId` int NOT NULL AUTO_INCREMENT,
   `routeId` int NOT NULL,
   `month` date DEFAULT NULL,
   `quarter` int DEFAULT NULL,
   `year` year DEFAULT NULL,
   `frequency` int DEFAULT NULL,
   PRIMARY KEY (`routeStatisticsId`),
-  KEY `routeId_idx` (`routeId`),
+  KEY `routeIds_idx` (`routeId`),
   CONSTRAINT `routeIds` FOREIGN KEY (`routeId`) REFERENCES `busroutes` (`routeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -342,7 +346,7 @@ CREATE TABLE `tickets` (
   `paymentMethod` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `createDate` datetime NOT NULL,
   PRIMARY KEY (`ticketId`),
-  KEY `customerId_idx` (`customerId`),
+  KEY `fk_tickets_customerId_idx` (`customerId`),
   CONSTRAINT `fk_tickets_customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -365,14 +369,14 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `userId` int NOT NULL,
+  `userId` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `password` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `user_role` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `accountStatus` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `Username_UNIQUE` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -381,7 +385,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'nhaxePhuongTrang','PT9876','Nhà xe','enabled'),(2,'nhaxeKumho','Kumho1234','Nhà xe','disabled'),(3,'quynhdao632','quynhdao632002','Admin','enabled'),(4,'luongdat001','luongdat1234','Admin','enabled'),(5,'vananh002','vananh002','Khách hàng','enabled'),(6,'minhanh003','minhanh003','Khách hàng','enabled'),(8,'luongdat','$2a$10$.B.2.eTpDFbnLClyGjnaNufCMaIDbwzE87EgVBZ6IcX48Ztl5UNEC','ROLE_USER','enable'),(9,'hello','$2a$10$IyhwYJziP4iXD.r1Sj8t4OM1DsTU0VMcBJwzQt.IcK93BjPOMradS','ROLE_USER','enable');
+INSERT INTO `users` VALUES (1,'nhaxePhuongTrang','PT9876','Nhà xe','enabled'),(2,'nhaxeKumho','Kumho1234','Nhà xe','disabled'),(3,'quynhdao632','quynhdao632002','Admin','enabled'),(4,'luongdat001','luongdat1234','Admin','enabled'),(5,'vananh002','vananh002','Khách hàng','enabled'),(6,'minhanh003','minhanh003','Khách hàng','enabled'),(8,'luongdat','$2a$10$.B.2.eTpDFbnLClyGjnaNufCMaIDbwzE87EgVBZ6IcX48Ztl5UNEC','ROLE_ADMIN','enable'),(9,'hello','$2a$10$IyhwYJziP4iXD.r1Sj8t4OM1DsTU0VMcBJwzQt.IcK93BjPOMradS','ROLE_BUSCOMPANY','enable'),(11,'luongtandat','$2a$10$WemmUemeqOo9DcyWvTULNeBlougstzdfCkpP0.EDt.O5IMUcFQ7aS','ROLE_ADMIN','enable'),(12,'datluong','$2a$10$ODREIsU/IrKTL2WyFhoCQuHAz5SMiQ/c81dtzo6nqWs09gGDM.Md.','ROLE_USER','enable'),(14,'1234','$2a$10$HAOQeNLWcxnVVK9YD03xK.wJMa3LsRj4wsDSiOsHbAHWlGebpsO1K','ROLE_USER','enable');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -394,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-27 14:53:10
+-- Dump completed on 2023-08-28 19:22:14

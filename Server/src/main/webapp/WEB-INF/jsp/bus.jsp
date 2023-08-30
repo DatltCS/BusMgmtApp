@@ -10,6 +10,7 @@
 
 <h1 class="text-center text-info">Bus Management</h1>
 
+<<<<<<< HEAD
 <c:url value="/buses" var="action" />
 <form:form method="post" action="${action}" modelAttribute="bus" enctype="multipart/form-data">
     <form:errors path="*" element="div" cssClass="alert alert-danger"/>
@@ -19,6 +20,10 @@
                     path="licensePlateId" placeholder="Enter License PlateId"/>
         <label for="licensePlateId">License Plate</label>
     </div>
+=======
+<form:form method="post" modelAttribute="bus">
+    <form:hidden path="image" />
+>>>>>>> be3458d405526b82a5d82d467d61aa24bfa672a3
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" id="busName" 
                     path="busName" placeholder="Enter Bus Name"/>

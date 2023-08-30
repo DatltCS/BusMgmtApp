@@ -7,20 +7,26 @@ package com.busmgmt.pojo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -40,8 +46,8 @@ public class Bustrips implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "tripId")
     private Integer tripId;
     @Basic(optional = false)
@@ -63,6 +69,9 @@ public class Bustrips implements Serializable {
     @Column(name = "timeStop")
     @Temporal(TemporalType.TIME)
     private Date timeStop;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
+    @JsonIgnore
+    private Set<Reviews> reviewsSet;
     @JoinColumn(name = "licensePlateId", referencedColumnName = "licensePlateId")
     @ManyToOne(optional = false)
     private Bus licensePlateId;
@@ -124,6 +133,15 @@ public class Bustrips implements Serializable {
 
     public void setTimeStop(Date timeStop) {
         this.timeStop = timeStop;
+    }
+
+    @XmlTransient
+    public Set<Reviews> getReviewsSet() {
+        return reviewsSet;
+    }
+
+    public void setReviewsSet(Set<Reviews> reviewsSet) {
+        this.reviewsSet = reviewsSet;
     }
 
     public Bus getLicensePlateId() {

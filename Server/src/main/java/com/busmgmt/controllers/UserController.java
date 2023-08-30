@@ -7,6 +7,7 @@ package com.busmgmt.controllers;
 import com.busmgmt.pojo.Users;
 import com.busmgmt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     @Autowired
     private UserService userDetailsService;
+    
+    
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -39,10 +42,22 @@ public class UserController {
             if (this.userDetailsService.addUser(user) == true)
                 return "redirect:/login";
             else
-                msg = "Sometings went wrong!!!";
+                System.out.println("Sometings went wrong!!!");
         } else
-            msg = "Password is not match";
+            System.out.println("Password not match!!!");
         
         return "register";
     }
+    
+    
+//    public void sendEmail(String from, String to, String subject, String content) {
+//        SimpleMailMessage mailMessage = new SimpleMailMessage();
+//        
+//        mailMessage.setFrom(from);
+//        mailMessage.setTo(to);
+//        mailMessage.setSubject(subject);
+//        mailMessage.setText(content);
+//        
+//        mailSender.send(mailMessage);
+//    }
 }
