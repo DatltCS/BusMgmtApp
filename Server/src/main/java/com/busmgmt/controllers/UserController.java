@@ -29,25 +29,25 @@ public class UserController {
         return "login";
     }
     
-    @GetMapping("/register")
-    public String registerView(Model model){
-        model.addAttribute("users", new Users());
-        return "register";
-    }
-    
-    @PostMapping("/register")
-    public String register(Model model, @ModelAttribute(value = "users") Users user){
-        String msg = "";
-        if (user.getPassword().equals(user.getConfirmPassword())) {
-            if (this.userDetailsService.addUser(user) == true)
-                return "redirect:/login";
-            else
-                System.out.println("Sometings went wrong!!!");
-        } else
-            System.out.println("Password not match!!!");
-        
-        return "register";
-    }
+//    @GetMapping("/register")
+//    public String registerView(Model model){
+//        model.addAttribute("users", new Users());
+//        return "register";
+//    }
+//    
+//    @PostMapping("/register")
+//    public String register(Model model, @ModelAttribute(value = "users") Users user){
+//        String msg = "";
+//        if (user.getPassword().equals(user.getConfirmPassword())) {
+//            if (this.userDetailsService.addUser(user) == true)
+//                return "redirect:/login";
+//            else
+//                System.out.println("Sometings went wrong!!!");
+//        } else
+//            System.out.println("Password not match!!!");
+//        
+//        return "register";
+//    }
     
     
 //    public void sendEmail(String from, String to, String subject, String content) {

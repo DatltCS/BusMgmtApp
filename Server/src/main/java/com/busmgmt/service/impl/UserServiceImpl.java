@@ -8,17 +8,9 @@ import com.busmgmt.pojo.Users;
 //import com.busmgmt.pojo.Users_;
 import com.busmgmt.repository.UserRepository;
 import com.busmgmt.service.UserService;
-import com.mysql.cj.xdevapi.Statement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import javax.sql.DataSource;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 /**
  *
@@ -62,16 +55,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addUser(Users users) {
-        String pass = users.getPassword();
-        users.setPassword(this.passwordEncoder.encode(pass));
-        users.setUserRole(Users.USER);
-        users.setAccountStatus("enable");
-//
-//        int maxUserId = userRepository.getMaxUserId();
-//        users.setUserId(maxUserId + 1);
+    public Users addUser(Map<String, String> params) {
+        Users u = new Users();
+
+        u.setUsername(params.get("username"));
+        u.setPassword(this.passwordEncoder.encode(params.get("password")));
+        u.setUserRole("ROLE_USER");
         
-        return this.userRepository.addUser(users);
+        
+        this.userRepository.addUser(u);
+        return u;
     }
 
 

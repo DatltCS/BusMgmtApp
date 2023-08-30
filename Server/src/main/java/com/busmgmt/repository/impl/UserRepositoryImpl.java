@@ -6,7 +6,6 @@ package com.busmgmt.repository.impl;
 
 import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.UserRepository;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,18 +46,11 @@ public class UserRepositoryImpl implements UserRepository {
 
 
     @Override
-    public boolean addUser(Users users) {
+    public Users addUser(Users u) {
         Session s = this.factory.getObject().getCurrentSession();
-//        int newUserId = maxUserId.incrementAndGet();
-//        users.setUserId(newUserId + 1);
-        try {
-            s.save(users);
-
-            return true;
-        } catch (HibernateException ex) {
-            System.err.println(ex.getMessage());
-        }
-        return false;
+        s.save(u);
+        
+        return u;
     }
 
 //    @Override
