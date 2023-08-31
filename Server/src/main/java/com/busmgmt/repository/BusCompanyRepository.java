@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface BusCompanyRepository {
     List<Buscompanies> getBuscompanies();
-//    boolean addBuscompanies(Buscompanies buscompanies);
+    boolean addBuscompanies(Buscompanies buscompanies);
 }

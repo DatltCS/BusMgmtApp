@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Users implements Serializable {
     public static final String ADMIN ="ROLE_ADMIN";
     public static final String USER = "ROLE_USER";
+    public static final String BUSCOMPANY = "ROLE_BUSCOMPANY";
 
     /**
      * @return the confirmPassword

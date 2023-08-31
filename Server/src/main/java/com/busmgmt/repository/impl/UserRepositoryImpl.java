@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,8 @@ public class UserRepositoryImpl implements UserRepository {
     @Autowired
     private LocalSessionFactoryBean factory;
 //    private AtomicInteger maxUserId = new AtomicInteger(12);
+    @Autowired
+    private BCryptPasswordEncoder passEncoder;
 
     @Override
     public Users getUserByUsername(String username) {
@@ -60,5 +63,26 @@ public class UserRepositoryImpl implements UserRepository {
 //    public int getMaxUserId() {
 //        return maxUserId.get();
 //    }
+    @Override
+    public boolean authUser(String username, String password) {
+        Users u = this.getUserByUsername(username);
+        
+        return this.passEncoder.matches(password, u.getPassword());
+    }
+
+    @Override
+    public Users addUsers(Users users) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.save(users);
+        
+        try {
+            s.save(users);
+
+            return users;
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+    }
 
 }

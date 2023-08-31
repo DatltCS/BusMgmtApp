@@ -33,17 +33,17 @@ public class BusCompanyRepositoryImpl implements BusCompanyRepository{
         return q.getResultList();
     }
 
-//    @Override
-//    public boolean addBuscompanies(Buscompanies buscompanies) {
-//        Session s = this.factory.getObject().getCurrentSession();
-//        try {
-//            s.save(buscompanies);
-//
-//            return true;
-//        } catch (HibernateException ex) {
-//            System.err.println(ex.getMessage());
-//        }
-//        return false;
-//    }
-//    
+    @Override
+    public boolean addBuscompanies(Buscompanies buscompanies) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.save(buscompanies);
+
+            return true;
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+    
 }

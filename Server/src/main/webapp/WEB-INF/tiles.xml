@@ -23,11 +23,11 @@
         <put-attribute name="content" 
                        value="/WEB-INF/jsp/bus.jsp" />
     </definition>
-<!--    <definition name="buscompany" extends="baseLayout">
+    <definition name="buscompany" extends="baseLayout">
         <put-attribute name="title" value="Bus Company Management" />
         <put-attribute name="content" 
                        value="/WEB-INF/jsp/buscompany.jsp" />
-    </definition>-->
+    </definition>
     <!--    <definition name="products" extends="baseLayout">
         <put-attribute name="title" value="Bus Management" />
         <put-attribute name="content" 

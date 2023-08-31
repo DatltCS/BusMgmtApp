@@ -14,9 +14,11 @@
     <h1 class ="text-center text-infor mt-1">Bus List</h1>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
         <div>
-            <a href="<c:url value="/buses" />" class="btn btn-danger">Add Bus</a>
+            <a href="<c:url value="/buses" />" class="btn btn-danger mt-1">Add Bus</a>
         </div>
-        
+        <div>
+            <a href="<c:url value="/buscompanies" />" class="btn btn-danger mt-1">Add Bus Company</a>
+        </div>
     </sec:authorize>
 
     <c:if test="${count > 1}">
