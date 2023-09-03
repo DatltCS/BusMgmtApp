@@ -40,8 +40,8 @@ public class APIBusTripController {
 
 
     @GetMapping("/bustrips")
-    public ResponseEntity<List<Bustrips>> list(@RequestParam Map<String, String> patams) {
-        return new ResponseEntity<>(this.busTripService.getBustrips(patams), HttpStatus.OK);
+    public ResponseEntity<List<Bustrips>> list(@RequestParam Map<String, String> params) {
+        return new ResponseEntity<>(this.busTripService.getBustrips(params), HttpStatus.OK);
     }
     
     

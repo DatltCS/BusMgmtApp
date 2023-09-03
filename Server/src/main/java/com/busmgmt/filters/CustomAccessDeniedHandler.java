@@ -12,7 +12,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
  *
- * @author huu-thanhduong
+ * @author admin
  */
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 

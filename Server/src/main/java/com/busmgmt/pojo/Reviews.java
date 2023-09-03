@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,22 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reviews.findAll", query = "SELECT r FROM Reviews r"),
     @NamedQuery(name = "Reviews.findByReviewId", query = "SELECT r FROM Reviews r WHERE r.reviewId = :reviewId"),
     @NamedQuery(name = "Reviews.findByRating", query = "SELECT r FROM Reviews r WHERE r.rating = :rating"),
-    @NamedQuery(name = "Reviews.findByComment", query = "SELECT r FROM Reviews r WHERE r.comment = :comment")})
+    @NamedQuery(name = "Reviews.findByComment", query = "SELECT r FROM Reviews r WHERE r.comment = :comment"),
+    @NamedQuery(name = "Reviews.findByCreatedDate", query = "SELECT r FROM Reviews r WHERE r.createdDate = :createdDate")})
 public class Reviews implements Serializable {
-
-    /**
-     * @return the createdDate
-     */
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    /**
-     * @param createdDate the createdDate to set
-     */
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -59,20 +47,23 @@ public class Reviews implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "rating")
-    private Integer rating;
+    private int rating;
+    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 300)
     @Column(name = "comment")
     private String comment;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "createdDate")
+    @Temporal(TemporalType.DATE)
+    private Date createdDate;
     @JoinColumn(name = "tripId", referencedColumnName = "tripId")
     @ManyToOne(optional = false)
     private Bustrips tripId;
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     @ManyToOne(optional = false)
     private Customers customerId;
-    @Column(name = "createdDate")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date createdDate;
 
     public Reviews() {
     }
@@ -81,10 +72,11 @@ public class Reviews implements Serializable {
         this.reviewId = reviewId;
     }
 
-    public Reviews(Integer reviewId, int rating, String comment) {
+    public Reviews(Integer reviewId, int rating, String comment, Date createdDate) {
         this.reviewId = reviewId;
         this.rating = rating;
         this.comment = comment;
+        this.createdDate = createdDate;
     }
 
     public Integer getReviewId() {
@@ -95,11 +87,11 @@ public class Reviews implements Serializable {
         this.reviewId = reviewId;
     }
 
-    public Integer getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -109,6 +101,14 @@ public class Reviews implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public Bustrips getTripId() {

@@ -26,7 +26,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 
 /**
  *
- * @author huu-thanhduong
+ * @author admin
  */
 public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 

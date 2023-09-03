@@ -70,7 +70,7 @@ public class Customers implements Serializable {
     private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     @JsonIgnore
-    private Set<Tickets> ticketsSet; 
+    private Set<Tickets> ticketsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     @JsonIgnore
     private Set<Reviews> reviewsSet;
