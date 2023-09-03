@@ -77,7 +77,7 @@ public class Bus implements Serializable {
     private String busType;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 256)
+    @Size(min = 0, max = 256)
     @Column(name = "image")
     private String image;
     @JoinColumn(name = "companyId", referencedColumnName = "companyId")

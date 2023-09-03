@@ -12,6 +12,7 @@ D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\service\BusSer
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\APIBusController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\server\JAXRSConfiguration.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Tickets.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\formatters\UserFormatter.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\UserRepository.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Cart.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\BusController.java

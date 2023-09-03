@@ -5,12 +5,14 @@
 package com.busmgmt.repository;
 
 import com.busmgmt.pojo.Users;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
 public interface UserRepository {
+    List<Users> getUsers();
     Users getUserByUsername(String username);
     boolean addUser(Users users);
 //    int getMaxUserId();

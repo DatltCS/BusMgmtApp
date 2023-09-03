@@ -53,6 +53,7 @@ com\busmgmt\controllers\APIBusCompanyController.class
 com\busmgmt\pojo\Bustrips.class
 com\busmgmt\controllers\APIUserController.class
 com\busmgmt\service\impl\UserServiceImpl.class
+com\busmgmt\formatters\UserFormatter.class
 com\busmgmt\configs\SecurityWebApplicationInitializer.class
 com\busmgmt\service\BusTripService.class
 com\busmgmt\service\ReviewService.class

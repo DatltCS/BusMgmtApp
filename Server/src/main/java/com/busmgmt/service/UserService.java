@@ -5,6 +5,7 @@
 package com.busmgmt.service;
 
 import com.busmgmt.pojo.Users;
+import java.util.List;
 import java.util.Map;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Admin
  */
 public interface UserService extends UserDetailsService {
+    List<Users> getUsers();
 
     Users getUserByUsername(String username);
 

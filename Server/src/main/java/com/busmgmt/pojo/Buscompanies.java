@@ -70,26 +70,25 @@ public class Buscompanies implements Serializable {
     private Integer companyId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 45, message = "{buscompanies.nameCompany.nameErr}")
     @Column(name = "nameCompany")
     private String nameCompany;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "{buscompanies.totalBus.totalErr}")
     @Column(name = "totalBus")
     private int totalBus;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 256)
+    @Size(min = 0, max = 256)
     @Column(name = "avatar")
     private String avatar;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 20, message = "{buscompanies.status.statusErr}")
     @Column(name = "status")
     private String status;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 256)
+    @Size(min = 1, max = 256, message = "{buscompanies.address.addressErr}")
     @Column(name = "address")
     private String address;
     @Pattern(regexp = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message = "Invalid phone/fax format, should be as 0xx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
@@ -98,14 +97,14 @@ public class Buscompanies implements Serializable {
     @Size(min = 1, max = 11)
     @Column(name = "phone")
     private String phone;
-     @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "{buscompanies.allowedDelivery.deliveryErr}")
     @Column(name = "allowedDelivery")
     private short allowedDelivery;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
@@ -113,7 +112,6 @@ public class Buscompanies implements Serializable {
     private Set<Bus> busSet;
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     @ManyToOne(optional = false)
-    @JsonIgnore
     private Users userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     @JsonIgnore

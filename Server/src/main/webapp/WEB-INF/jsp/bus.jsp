@@ -37,7 +37,7 @@
     <div class="form-floating mb-3 mt-3">
         <form:input type="file" class="form-control" id="file" 
                     path="file"/>
-        <label for="busType">Image Bus</label>
+        <label for="file">Image Bus</label>
     </div>
 
     <div class="form-floating">

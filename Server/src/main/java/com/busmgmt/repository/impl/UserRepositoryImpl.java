@@ -7,6 +7,7 @@ package com.busmgmt.repository.impl;
 import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.UserRepository;
 import java.sql.Connection;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -66,7 +67,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean authUser(String username, String password) {
         Users u = this.getUserByUsername(username);
-        
+
         return this.passEncoder.matches(password, u.getPassword());
     }
 
@@ -74,7 +75,7 @@ public class UserRepositoryImpl implements UserRepository {
     public Users addUsers(Users users) {
         Session s = this.factory.getObject().getCurrentSession();
         s.save(users);
-        
+
         try {
             s.save(users);
 
@@ -83,6 +84,14 @@ public class UserRepositoryImpl implements UserRepository {
             System.err.println(ex.getMessage());
         }
         return null;
+    }
+
+    @Override
+    public List<Users> getUsers() {
+        Session s = this.factory.getObject().getCurrentSession();
+        javax.persistence.Query q = s.createQuery("FROM Users");
+
+        return q.getResultList();
     }
 
 }

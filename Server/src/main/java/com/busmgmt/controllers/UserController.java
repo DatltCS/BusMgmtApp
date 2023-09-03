@@ -20,36 +20,43 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class UserController {
+
     @Autowired
     private UserService userDetailsService;
-    
-    
+
+//    @GetMapping("/users")
+//    public String list(Model model) {
+//        model.addAttribute("user", new Users());
+//        return "user";
+//    }
+
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-    
+
     @GetMapping("/register")
-    public String registerView(Model model){
+    public String registerView(Model model) {
         model.addAttribute("users", new Users());
         return "register";
     }
-    
+
     @PostMapping("/register")
-    public String register(Model model, @ModelAttribute(value = "users") Users user){
+    public String register(Model model, @ModelAttribute(value = "users") Users user) {
         String msg = "";
         if (user.getPassword().equals(user.getConfirmPassword())) {
-            if (this.userDetailsService.addUser(user) == true)
+            if (this.userDetailsService.addUser(user) == true) {
                 return "redirect:/login";
-            else
+            } else {
                 System.out.println("Sometings went wrong!!!");
-        } else
+            }
+        } else {
             System.out.println("Password not match!!!");
-        
+        }
+
         return "register";
     }
-    
-    
+
 //    public void sendEmail(String from, String to, String subject, String content) {
 //        SimpleMailMessage mailMessage = new SimpleMailMessage();
 //        

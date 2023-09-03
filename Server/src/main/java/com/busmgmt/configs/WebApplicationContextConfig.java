@@ -6,6 +6,7 @@ package com.busmgmt.configs;
 
 import com.busmgmt.formatters.BusCompanyFormatter;
 import com.busmgmt.formatters.BusTripFormatter;
+import com.busmgmt.formatters.UserFormatter;
 import com.busmgmt.pojo.Buscompanies;
 import com.busmgmt.validator.BusValidator;
 import com.busmgmt.validator.WebApplicationValidator;
@@ -66,6 +67,7 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new BusCompanyFormatter());
         registry.addFormatter(new BusTripFormatter());
+        registry.addFormatter(new UserFormatter());
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.UserRepository;
 import com.busmgmt.service.UserService;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,11 @@ public class UserServiceImpl implements UserService {
 
         this.userRepository.addUser(u);
         return u;
+    }
+
+    @Override
+    public List<Users> getUsers() {
+        return this.userRepository.getUsers();
     }
 
 }
