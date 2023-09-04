@@ -11,6 +11,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,7 @@ public class APIBusController {
         this.busSerivce.deleteBus(licensePlateId);
     }
     
+    @CrossOrigin
     @GetMapping("/buses")
     public ResponseEntity<List<Bus>> list(@RequestParam Map<String, String> patams) {
         return new ResponseEntity<>(this.busSerivce.getBus(patams), HttpStatus.OK);

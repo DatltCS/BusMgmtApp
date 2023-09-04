@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -47,19 +48,19 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Buscompanies.findByAllowedDelivery", query = "SELECT b FROM Buscompanies b WHERE b.allowedDelivery = :allowedDelivery")})
 public class Buscompanies implements Serializable {
 
-//    /**
-//     * @return the file
-//     */
-//    public MultipartFile getFile() {
-//        return file;
-//    }
-//
-//    /**
-//     * @param file the file to set
-//     */
-//    public void setFile(MultipartFile file) {
-//        this.file = file;
-//    }
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -91,13 +92,13 @@ public class Buscompanies implements Serializable {
     @Size(min = 1, max = 256)
     @Column(name = "address")
     private String address;
-    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
+    @Pattern(regexp = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message = "Invalid phone/fax format, should be as 0xx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 11)
     @Column(name = "phone")
     private String phone;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+     @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -118,8 +119,8 @@ public class Buscompanies implements Serializable {
     @JsonIgnore
     private Set<Revenuestatistics> revenuestatisticsSet;
 
-//    @Transient
-//    private MultipartFile file;
+    @Transient
+    private MultipartFile file;
 
     public Buscompanies() {
     }

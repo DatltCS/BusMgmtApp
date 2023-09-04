@@ -5,16 +5,12 @@
 package com.busmgmt.filters;
 
 import java.io.IOException;
-import java.nio.file.AccessDeniedException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-/**
- *
- * @author huu-thanhduong
- */
+
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
@@ -22,5 +18,5 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.getWriter().write("Access Denied!");
     }
-    
+
 }
