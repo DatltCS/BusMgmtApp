@@ -5,30 +5,23 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import { MyUserContext } from "../App";
 import Apis, { authApi, endpoints } from "../config/Apis";
 import cookie from "react-cookies";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate,useSearchParams  } from "react-router-dom";
 
-
-// const defaultState = {
-//     name: null,
-//     email: null,
-//     password: null,
-//     nameError: null,
-//     emailError: null,
-//     passwordError: null
-// }
 const SignIn = () => {
     const [user, dispatch] = useContext(MyUserContext);
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
-    
+    const [q] = useSearchParams();
+
     const login = (evt) => {
         evt.preventDefault();
-
+        
+      
         const process = async () => {
             try {
                 let res = await Apis.post(endpoints['login'], {
                     "username": username,
-                    "password": password
+                    "password": password,
                 });
                 cookie.save("token", res.data);
                 
@@ -47,17 +40,18 @@ const SignIn = () => {
         process();
     }
 
-    if (user !== null)
-        return <Navigate to="/" />
+    if (user !== null) {
+        let next = q.get("next") || "/";
+        return <Navigate to={next} />
+    }
    
         return (
             <>
 
                 <div>
-                <main class="main-form">
+                <main class="main-form" onSubmit={login}>
                     <div class="sign-in-form">
                         <section class="wrapper">
-                        <h3 class ="X">X</h3>
                             <div class="heading">
                                 
                                 <h1 class="text text-large">Đăng nhập</h1>
@@ -75,7 +69,7 @@ const SignIn = () => {
                                 </div>
                                 <div class="input-control">
                                     <a href="#" class="text text-links">Quên mật khẩu</a>
-                                    <input type="submit" name="submit" class="input-submit" value="Đăng nhập" onSubmit={login} />
+                                    <input type="submit" name="submit" class="input-submit" value="Đăng nhập"  />
                                 </div>
                             </form>
                             <div class="striped">

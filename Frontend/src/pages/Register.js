@@ -1,8 +1,9 @@
-import { useRef, useState} from "react";
+import React, { useState} from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Apis, { endpoints } from "../config/Apis";
 import MySpinner from "../components/Main/MySpinner";
+
 
 const Register = () => {
     const [user, setUser] = useState({
@@ -46,8 +47,7 @@ const Register = () => {
             return {...current, [field]: evt.target.value}
         })
     }
-
-    return <>
+    return ( <>
         <h1 className="text-center text-info mt-2">ĐĂNG KÝ NGƯỜI DÙNG</h1>
 
         {err === null?"":<Alert variant="danger">{err}</Alert>}
@@ -73,6 +73,7 @@ const Register = () => {
             </Form.Group>
         </Form>
     </>
+    )
 }
 
 export default Register;

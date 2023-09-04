@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, createContext } from 'react';
 import './DropdownList.css';
-import useLocalStorage from '../../context/localStorage';
+import useLocalStorage from '../../../context/localStorage';
 
 
-function DropdownListStartPlace({ label, options, storageKey }) {
+
+function DropdownListDestination({ label, options, storageKey }) {
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [value, setValue] = useLocalStorage(storageKey, '');
@@ -75,4 +76,4 @@ function DropdownListStartPlace({ label, options, storageKey }) {
   );
 }
 
-export default DropdownListStartPlace;
+export default DropdownListDestination;

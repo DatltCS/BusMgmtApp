@@ -3,19 +3,17 @@ import { useSearchParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import "./OrderTickets.css"
 import Apis, { endpoints } from "../config/Apis";
-import DropdownListStartPlace from "../components/Main/DropdownListStartPlace";
+import DropdownListStartPlace from "../components/Main/Client/DropdownListStartPlace";
 import { Alert, Button, Card, Col, Row } from "react-bootstrap";
-import Calendar from "../components/Main/Calendar";
+import Calendar from "../components/Main/Client/Calendar";
 import { Link } from 'react-router-dom';
-import "../components/Main/Banner.css";
-import BookingForm from "../components/Main/BookingForm";
+// import "../components/Main/Banner.css";
+import BookingForm from "../components/Main/Client/BookingForm";
 import MySpinner from "../components/Main/MySpinner";
 
 
 
-function OrderTickets({ showBusesList }) {
-    const optionsStartPlace = ['Kiên Giang', 'An Giang', 'Đồng Tháp', 'Long Xuyên', 'Cần Thơ'];
-    const optionsDestination = ['Thành phố Hồ Chí Minh', 'Cần Thơ'];
+function OrderTickets() {
 
     const [isFormVisible, setIsFormVisible] = useState(false);
 
@@ -76,7 +74,7 @@ function OrderTickets({ showBusesList }) {
 
     if (buses === null || bustrips === null)
         return <MySpinner />
-    // if (buses=== null) 
+    // // if (buses=== null) 
     //     return <BusRegistration />
 
 
@@ -89,27 +87,10 @@ function OrderTickets({ showBusesList }) {
     return (
 
         <>
-            {/*          
-            {buses.map(b => {
-                return ( */}
-            <div className="mainContent container">
-                <div className="banner">
-                    <form action="#">
-                        <div className="form-row">
-                            <DropdownListStartPlace label="Nơi xuất phát" options={optionsStartPlace} storageKey="startPlace" />
-                            <img src="/flip.png" className="flip-icon" alt="flip" />
-                            <DropdownListStartPlace label="Nơi đến" options={optionsDestination} storageKey="destination" />
-                            <Calendar />
-                        </div>
-                    </form>
-                    <Link to="/order-tickets"><button className="btn-search">Tìm chuyến</button></Link>
-                </div>
-            </div>
-            <div className={`${!showBusesList ? "active" : ""} show`}>
                 <Col>
 
-                    {buses.map(p => {
-                        return <div className="bus-list">
+                    {bustrips.map(p => {
+                        return <div className="bus-list" >
                             <div className="bus-item">
                                 <div className="icon"><img src="/clock.png" /></div>
                                 <text className="label">{p.timeStart}</text>
@@ -120,16 +101,21 @@ function OrderTickets({ showBusesList }) {
                                     <div className="bus-line">{p.tripName}</div>
                                 </div>
                             </div>
+
                             <div className="bus-item">
                                 <div className="icon"><img src="/seats.png" /></div>
-                                <div className="label">
-                                    <div className="bus-line">{p.totalSeat} chỗ trống</div>
-                                    <div className="bus-info">Xe {p.busType}</div>
+                                
+                                    
+                                     <div className="label" key={p.tripId}>
+                                        <div className="bus-line"> {p.licensePlateId.totalSeat} chỗ trống</div>
+                                        <div className="bus-info">Xe {p.licensePlateId.busType}</div>
 
-                                </div>
+                                    </div>
+                             
                             </div>
+
                             <div className="bus-item">
-                                <div className="big-text">{p.price}</div>
+                                <div className="big-text">{p.price}.000</div>
                             </div>
                             <div className="bus-item">
                                 <button className="center-button" onClick={handleBookButtonClick}>Chọn chỗ</button>
@@ -145,7 +131,7 @@ function OrderTickets({ showBusesList }) {
                         <BookingForm />
                     )}
                 </div>
-            </div>
+            
             );
         </>
 
