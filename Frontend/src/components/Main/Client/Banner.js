@@ -16,10 +16,10 @@ const Banner = () => {
         // You can perform other actions here when the button is clicked.
     };
 
-    const search = (evt) => {
-        evt.preventDefault();
-        nav(`/?kw=${kw}`)
-    }
+    // const search = (evt) => {
+    //     evt.preventDefault();
+    //     nav(`/?kw=${kw}`)
+    // }
 
     const optionsStartPlace = ['Kiên Giang', 'An Giang', 'Đồng Tháp', 'Long Xuyên', 'Cần Thơ'];
     const optionsDestination = ['Thành phố Hồ Chí Minh', 'Cần Thơ'];
@@ -33,14 +33,12 @@ const Banner = () => {
                 <div className="cardDiv grid">
                     <span className="textDiv">Tìm kiếm chuyến đi</span>
                 </div>
-                <div className="banner" onSubmit={search}>
+                <div className="banner">
                     <form action="#">
                         <div className="form-row">
-                            <DropdownList label="Nơi xuất phát" options={optionsStartPlace} value={kw}
-                    onChange={e => setKw(e.target.value)}/>
+                            <DropdownList label="Nơi xuất phát" options={optionsStartPlace} />
                             <img src="/flip.png" className="flip-icon" alt="flip" />
-                            <DropdownList label="Nơi đến" options={optionsDestination} value={kw}
-                    onChange={e => setKw(e.target.value)} />
+                            <DropdownList label="Nơi đến" options={optionsDestination}  />
                             <Calendar/>
                         </div>
                     </form>

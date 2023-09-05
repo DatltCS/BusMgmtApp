@@ -14,11 +14,11 @@ const Sidebar = ({ isOpen, toggle }) => (
       <span color="info" onClick={toggle} style={{ color: "#fff" }}>
         &times;
       </span>
-      <h3>Bootstrap Sidebar</h3>
+      <h3>Phần mềm quản lý nhà xe</h3>
     </div>
     <div className="side-menu">
       <Nav vertical className="list-unstyled pb-3">
-        <p>Dummy Heading</p>
+        <p>Dashboard</p>
         <SubMenu title="Trang chủ" icon={faHome} items={submenus[0]} />
         <NavItem>
           <NavLink tag={Link} to={"/about"}>
@@ -57,8 +57,8 @@ const submenus = [
       target: "bus-order-ticket",
     },
     {
-      title: "Home 2",
-      target: "Home-2",
+      title: "Quản lý đơn hàng",
+      target: "bus-orders",
     },
     {
       itle: "Home 3",

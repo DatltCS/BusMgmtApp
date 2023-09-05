@@ -71,14 +71,19 @@ public class Bustrips implements Serializable {
     private Date timeStop;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
     @JsonIgnore
+    private Set<Tickets> ticketsSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
+    @JsonIgnore
     private Set<Reviews> reviewsSet;
     @JoinColumn(name = "licensePlateId", referencedColumnName = "licensePlateId")
     @ManyToOne(optional = false)
     private Bus licensePlateId;
     @JoinColumn(name = "routeId", referencedColumnName = "routeId")
     @ManyToOne(optional = false)
-    @JsonIgnore
     private Busroutes routeId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
+    @JsonIgnore
+    private Set<Deliveries> deliveriesSet;
 
     public Bustrips() {
     }
@@ -136,6 +141,15 @@ public class Bustrips implements Serializable {
     }
 
     @XmlTransient
+    public Set<Tickets> getTicketsSet() {
+        return ticketsSet;
+    }
+
+    public void setTicketsSet(Set<Tickets> ticketsSet) {
+        this.ticketsSet = ticketsSet;
+    }
+
+    @XmlTransient
     public Set<Reviews> getReviewsSet() {
         return reviewsSet;
     }
@@ -158,6 +172,15 @@ public class Bustrips implements Serializable {
 
     public void setRouteId(Busroutes routeId) {
         this.routeId = routeId;
+    }
+
+    @XmlTransient
+    public Set<Deliveries> getDeliveriesSet() {
+        return deliveriesSet;
+    }
+
+    public void setDeliveriesSet(Set<Deliveries> deliveriesSet) {
+        this.deliveriesSet = deliveriesSet;
     }
 
     @Override

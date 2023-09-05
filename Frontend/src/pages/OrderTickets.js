@@ -121,18 +121,20 @@ function OrderTickets() {
                                 <button className="center-button" onClick={handleBookButtonClick}>Chọn chỗ</button>
 
                             </div>
-
+                           
                         </div>
+                        
                     })}
+                     <div className="booking-form">
+                        {isFormVisible && (
+                            <BookingForm />
+                        )}
+                    </div>
+            
                 </Col>
 
-                <div className="booking-form">
-                    {isFormVisible && (
-                        <BookingForm />
-                    )}
-                </div>
+                
             
-            );
         </>
 
     );

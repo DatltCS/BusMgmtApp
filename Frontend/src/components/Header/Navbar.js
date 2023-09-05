@@ -19,17 +19,18 @@ function Navbar() {
   return (
     <header className="custom-header">
       <div className="logo">
-        <Link to="/home" className="logo-link">
+      {
+           user !== null && user.userRole === 'ROLE_BUSCOMPANY' ? <> <li><a href="#">Quản lý đơn hàng</a></li></> : <>
+           <Link to="/home" className="logo-link">
           <img src="/bus-stop.png" alt="Logo" />
           <span className="logo-text">CheapTicket</span>
         </Link>
+           </>
+        }
       </div>
       <nav className="nav-menu">
         <ul>
-
-        {
-           user !== null && user.userRole === 'ROLE_NHAXE' ? <> <li><a href="#">Quản lý đơn hàng</a></li></> : <></>
-        }
+        
 
           {user === null ? <>
             <li><Link to="/bus-registration">Đăng ký mở bán vé trên CheapTicket</Link></li>

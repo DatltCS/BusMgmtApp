@@ -8,7 +8,7 @@ const SERVER = "http://localhost:8080";
 export const endpoints = {
     "buses": `${SERVER_CONTEXT}/api/buses/`,
     "login":`${SERVER_CONTEXT}/api/login/`,
-    "register":`${SERVER_CONTEXT}/api/users/`,
+    "register":`${SERVER_CONTEXT}/api/register/`,
     "bustrips":`${SERVER_CONTEXT}/api/bustrips/`,
     "current-user": `${SERVER_CONTEXT}/api/current-user/`,
 }

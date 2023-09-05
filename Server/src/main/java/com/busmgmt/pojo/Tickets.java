@@ -70,6 +70,9 @@ public class Tickets implements Serializable {
     @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
+    @JoinColumn(name = "tripId", referencedColumnName = "tripId")
+    @ManyToOne(optional = false)
+    private Bustrips tripId;
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     @ManyToOne(optional = false)
     private Customers customerId;
@@ -136,6 +139,14 @@ public class Tickets implements Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public Bustrips getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(Bustrips tripId) {
+        this.tripId = tripId;
     }
 
     public Customers getCustomerId() {

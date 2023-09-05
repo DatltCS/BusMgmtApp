@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Container } from "reactstrap";
 import { Routes, Route } from "react-router-dom";
 import TicketManagement from "./TicketManagement";
+import OrdersManagement from "./OrdersManagement";
 
 
 const Content = ({ sidebarIsOpen, toggleSidebar }) => (
@@ -17,7 +18,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
       <Route path="/faq" component={() => "FAQ"} />
       <Route path="/contact" component={() => "Contact"} />
       <Route path="/bus-order-ticket" element={<TicketManagement/>} />
-      <Route  path="/Home-2" component={() => "Home-2"} />
+      <Route  path="/bus-orders" element={<OrdersManagement/>}  />
       <Route path="/Home-3" component={() => "Home-3"} />
       <Route path="/Page-1" component={() => "Page-1"} />
       <Route path="/Page-2" component={() => "Page-2"} />

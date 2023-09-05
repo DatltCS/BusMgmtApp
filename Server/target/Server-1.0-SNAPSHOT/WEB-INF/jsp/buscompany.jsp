@@ -25,7 +25,7 @@
     <div class="form-floating mb-3 mt-3">
         <form:input type="file" class="form-control" id="file" 
                     path="file"/>
-        <label for="busType">Avatar</label>
+        <label for="file">Avatar</label>
     </div>
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" id="address" 
@@ -47,6 +47,11 @@
                     path="allowedDelivery" placeholder="Enter Allowed Delivery"/>
         <label for="allowedDelivery">Allowed Delivery</label>
     </div>
+            <div class="form-floating mb-3 mt-3">
+        <form:input type="text" class="form-control" id="status" 
+                    path="Status" placeholder="Enter Status"/>
+        <label for="status">Status</label>
+    </div>
     <div class="form-floating">
         <form:select class="form-select" id="users" name="users"
                      path="userId">
@@ -64,7 +69,7 @@
 
         </form:select>
 
-        <label for="user" class="form-label">List of Username</label>
+        <label for="users" class="form-label">List of Username</label>
     </div>
 
     <div class="form-floating mb-3 mt-3">

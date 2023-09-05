@@ -34,9 +34,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Deliveries.findAll", query = "SELECT d FROM Deliveries d"),
     @NamedQuery(name = "Deliveries.findByDeliveryId", query = "SELECT d FROM Deliveries d WHERE d.deliveryId = :deliveryId"),
     @NamedQuery(name = "Deliveries.findByDescription", query = "SELECT d FROM Deliveries d WHERE d.description = :description"),
-    @NamedQuery(name = "Deliveries.findBySenderName", query = "SELECT d FROM Deliveries d WHERE d.senderName = :senderName"),
-    @NamedQuery(name = "Deliveries.findBySenderPhone", query = "SELECT d FROM Deliveries d WHERE d.senderPhone = :senderPhone"),
-    @NamedQuery(name = "Deliveries.findBySenderEmail", query = "SELECT d FROM Deliveries d WHERE d.senderEmail = :senderEmail"),
     @NamedQuery(name = "Deliveries.findByReceiverName", query = "SELECT d FROM Deliveries d WHERE d.receiverName = :receiverName"),
     @NamedQuery(name = "Deliveries.findByReceiverPhone", query = "SELECT d FROM Deliveries d WHERE d.receiverPhone = :receiverPhone"),
     @NamedQuery(name = "Deliveries.findByReceiverEmail", query = "SELECT d FROM Deliveries d WHERE d.receiverEmail = :receiverEmail"),
@@ -59,21 +56,6 @@ public class Deliveries implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "description")
     private String description;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "senderName")
-    private String senderName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "senderPhone")
-    private String senderPhone;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "senderEmail")
-    private String senderEmail;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -116,6 +98,9 @@ public class Deliveries implements Serializable {
     @NotNull
     @Column(name = "price")
     private long price;
+    @JoinColumn(name = "tripId", referencedColumnName = "tripId")
+    @ManyToOne(optional = false)
+    private Bustrips tripId;
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     @ManyToOne(optional = false)
     private Customers customerId;
@@ -127,12 +112,9 @@ public class Deliveries implements Serializable {
         this.deliveryId = deliveryId;
     }
 
-    public Deliveries(Integer deliveryId, String description, String senderName, String senderPhone, String senderEmail, String receiverName, String receiverPhone, String receiverEmail, Date sendTime, Date createDate, String paymentMethod, String status, long price) {
+    public Deliveries(Integer deliveryId, String description, String receiverName, String receiverPhone, String receiverEmail, Date sendTime, Date createDate, String paymentMethod, String status, long price) {
         this.deliveryId = deliveryId;
         this.description = description;
-        this.senderName = senderName;
-        this.senderPhone = senderPhone;
-        this.senderEmail = senderEmail;
         this.receiverName = receiverName;
         this.receiverPhone = receiverPhone;
         this.receiverEmail = receiverEmail;
@@ -157,30 +139,6 @@ public class Deliveries implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getSenderName() {
-        return senderName;
-    }
-
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
-    }
-
-    public String getSenderPhone() {
-        return senderPhone;
-    }
-
-    public void setSenderPhone(String senderPhone) {
-        this.senderPhone = senderPhone;
-    }
-
-    public String getSenderEmail() {
-        return senderEmail;
-    }
-
-    public void setSenderEmail(String senderEmail) {
-        this.senderEmail = senderEmail;
     }
 
     public String getReceiverName() {
@@ -253,6 +211,14 @@ public class Deliveries implements Serializable {
 
     public void setPrice(long price) {
         this.price = price;
+    }
+
+    public Bustrips getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(Bustrips tripId) {
+        this.tripId = tripId;
     }
 
     public Customers getCustomerId() {

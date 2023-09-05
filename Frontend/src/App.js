@@ -29,7 +29,7 @@ const App = () => {
         <Navbar />
 
         <Routes>
-          {user !== null && user.userRole === 'ROLE_NHAXE' ? <Route path="*" element={<div className="App wrapper">
+          {user !== null && user.userRole === 'ROLE_BUSCOMPANY' ? <Route path="*" element={<div className="App wrapper">
             <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
             <SidebarContent toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
           </div>} /> : <Route path="/" element={<Banner />} />}

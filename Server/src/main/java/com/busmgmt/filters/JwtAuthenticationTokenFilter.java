@@ -24,7 +24,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
-
+/**
+ *
+ * @author admin
+ */
 public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
     private final static String TOKEN_HEADER = "authorization";

@@ -9,6 +9,7 @@ import com.busmgmt.pojo.Buscompanies;
 import com.busmgmt.service.BusCompanyService;
 import com.busmgmt.service.BusService;
 import com.busmgmt.service.BusTripService;
+import com.busmgmt.service.UserService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -37,11 +38,14 @@ public class HomeController {
     @Autowired
     private BusCompanyService busCompanyService;
     @Autowired
+    private UserService userService;
+    @Autowired
     private Environment env;
 
     @ModelAttribute
     public void commonAttribute(Model model) {
         model.addAttribute("buscompanies", this.busCompanyService.getBuscompanies());
+        model.addAttribute("users",this.userService.getUsers());
     }
 
 //    @RequestMapping("/")

@@ -6,6 +6,7 @@ package com.busmgmt.configs;
 
 import com.busmgmt.formatters.BusCompanyFormatter;
 import com.busmgmt.formatters.BusTripFormatter;
+import com.busmgmt.formatters.UserFormatter;
 import com.busmgmt.pojo.Buscompanies;
 import com.busmgmt.validator.BusValidator;
 import com.busmgmt.validator.WebApplicationValidator;
@@ -24,8 +25,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.format.FormatterRegistry;
-//import org.springframework.mail.javamail.JavaMailSender;
-//import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.Validator;
@@ -66,6 +67,7 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new BusCompanyFormatter());
         registry.addFormatter(new BusTripFormatter());
+        registry.addFormatter(new UserFormatter());
     }
 
     @Override
@@ -140,24 +142,24 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         return v;
     }
     
-//    @Bean
-//    public JavaMailSender getMailSender() {
-//        JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();
-//        
-//        mailSenderImpl.setHost("smtp.gmail.com");
-//        mailSenderImpl.setPort(587);
-//        mailSenderImpl.setUsername("Your-gamil-id");
-//        mailSenderImpl.setPassword("Your-gmail-password");
-//        
-//        Properties javaMailProperties = new Properties();
-//        javaMailProperties.put("mail.smtp.starttls.enable","true");
-//        javaMailProperties.put("mail.smtp.auth","true");
-//        javaMailProperties.put("mail.transport.protocol","smtp");
-//        javaMailProperties.put("mail.debug","true");
-//        
-//        mailSenderImpl.setJavaMailProperties(javaMailProperties);
-//        return mailSenderImpl;
-//        
-//    }
+    @Bean
+    public JavaMailSender getMailSender() {
+        JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();
+        
+        mailSenderImpl.setHost("smtp.gmail.com");
+        mailSenderImpl.setPort(587);
+        mailSenderImpl.setUsername("Your-gamil-id");
+        mailSenderImpl.setPassword("Your-gmail-password");
+        
+        Properties javaMailProperties = new Properties();
+        javaMailProperties.put("mail.smtp.starttls.enable","true");
+        javaMailProperties.put("mail.smtp.auth","true");
+        javaMailProperties.put("mail.transport.protocol","smtp");
+        javaMailProperties.put("mail.debug","true");
+        
+        mailSenderImpl.setJavaMailProperties(javaMailProperties);
+        return mailSenderImpl;
+        
+    }
 
 }

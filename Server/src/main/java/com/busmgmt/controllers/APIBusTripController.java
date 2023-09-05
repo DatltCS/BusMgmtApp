@@ -39,10 +39,10 @@ public class APIBusTripController {
     @Autowired
     private BusTripService busTripService;
 
-    @CrossOrigin
+    @CrossOrigin 
     @GetMapping("/bustrips")
-    public ResponseEntity<List<Bustrips>> list(@RequestParam Map<String, String> patams) {
-        return new ResponseEntity<>(this.busTripService.getBustrips(patams), HttpStatus.OK);
+    public ResponseEntity<List<Bustrips>> list(@RequestParam Map<String, String> params) {
+        return new ResponseEntity<>(this.busTripService.getBustrips(params), HttpStatus.OK);
     }
     
     
@@ -57,6 +57,7 @@ public class APIBusTripController {
 //    return ResponseEntity.ok(bustrips);
 //    }
     
+    @CrossOrigin 
     @PostMapping("/bustrips")
     public ResponseEntity<Boolean> updateBustrip(@RequestBody Bustrips bustrips) throws Exception{
         return new ResponseEntity<>(busTripService.updateBusTrip(bustrips), HttpStatus.CREATED);

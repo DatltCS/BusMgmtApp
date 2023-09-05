@@ -8,6 +8,7 @@ import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.UserRepository;
 import com.busmgmt.service.UserService;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users addUsers(Map<String, String> params) {
+    public Users addUsers(Map<String, String> params, MultipartFile avatar) {
         Users u = new Users();
         u.setUsername(params.get("username"));
         u.setPassword(this.passwordEncoder.encode(params.get("password")));
@@ -78,6 +79,11 @@ public class UserServiceImpl implements UserService {
 
         this.userRepository.addUser(u);
         return u;
+    }
+
+    @Override
+    public List<Users> getUsers() {
+        return this.userRepository.getUsers();
     }
 
 }
