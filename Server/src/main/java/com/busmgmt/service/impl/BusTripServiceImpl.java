@@ -4,6 +4,8 @@
  */
 package com.busmgmt.service.impl;
 
+import com.busmgmt.pojo.Bus;
+import com.busmgmt.pojo.Busroutes;
 import com.busmgmt.pojo.Bustrips;
 import com.busmgmt.repository.BusTripRepository;
 import com.busmgmt.service.BusTripService;
@@ -40,6 +42,14 @@ public class BusTripServiceImpl implements BusTripService {
     @Override
     public Bustrips getBusTripById(int id) {
         return this.busTripRepository.getBusTripById(id);
+    }
+
+    @Override
+    public Bustrips addBustrip(Bustrips bt) {
+        Bus b = bt.getLicensePlateId();
+        Busroutes br = bt.getRouteId();
+        
+        return this.busTripRepository.addBustrip(bt,br.getRouteId(), b.getLicensePlateId());
     }
 
 }

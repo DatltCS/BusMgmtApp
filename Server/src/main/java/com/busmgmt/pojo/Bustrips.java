@@ -62,12 +62,12 @@ public class Bustrips implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "timeStart")
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date timeStart;
     @Basic(optional = false)
     @NotNull
     @Column(name = "timeStop")
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date timeStop;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
     @JsonIgnore

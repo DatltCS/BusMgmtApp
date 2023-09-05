@@ -13,10 +13,12 @@ import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +42,7 @@ public class APIBusTripController {
 
 
     @GetMapping("/bustrips")
+    @CrossOrigin
     public ResponseEntity<List<Bustrips>> list(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(this.busTripService.getBustrips(params), HttpStatus.OK);
     }
@@ -56,11 +59,11 @@ public class APIBusTripController {
 //    return ResponseEntity.ok(bustrips);
 //    }
     
-    @PostMapping("/bustrips")
-    public ResponseEntity<Boolean> updateBustrip(@RequestBody Bustrips bustrips) throws Exception{
-        return new ResponseEntity<>(busTripService.updateBusTrip(bustrips), HttpStatus.CREATED);
-//boolean updated = busTripService.updateBusTrip(bustrips);
-//    return new ResponseEntity<>(updated, HttpStatus.CREATED);
+    @PostMapping(path = "/bustrips/", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @CrossOrigin
+    public ResponseEntity<Bustrips> addBustrip(@RequestBody Bustrips bustrips) throws Exception{
+        Bustrips bt = this.busTripService.addBustrip(bustrips);
+        return new ResponseEntity<>(bt, HttpStatus.CREATED);
     }
 
 }

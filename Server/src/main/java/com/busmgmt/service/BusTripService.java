@@ -17,4 +17,6 @@ public interface BusTripService {
     Long countBusTrip();
     boolean updateBusTrip(Bustrips bt);
     Bustrips getBusTripById(int id);
+    
+    Bustrips addBustrip(Bustrips bt);
 }

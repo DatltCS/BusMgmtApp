@@ -5,6 +5,7 @@
 package com.busmgmt.service.impl;
 
 import com.busmgmt.pojo.Bus;
+import com.busmgmt.pojo.Buscompanies;
 import com.busmgmt.repository.BusRepository;
 import com.busmgmt.service.BusService;
 import com.cloudinary.Cloudinary;
@@ -15,7 +16,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -64,5 +68,17 @@ public class BusServiceImpl implements BusService {
     @Override
     public boolean deleteBus(int id) {
         return this.busRepository.deleteBus(id);
+    }
+
+    @Override
+    public Bus addBus(Bus b) {
+        Buscompanies bc = b.getCompanyId();
+        return this.busRepository.addBus(b,bc.getCompanyId());
+    }
+
+    @Override
+    public Bus updateBuses(Bus b) {
+        Buscompanies bc = b.getCompanyId();
+        return this.busRepository.updateBuses(b,bc.getCompanyId());
     }
 }
