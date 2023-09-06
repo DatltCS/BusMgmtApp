@@ -1,9 +1,14 @@
+
 class Seat {
-    constructor(seatId, seatColor, seatImage, isBooked = false) {
-      this.seatId = seatId;
-      this.seatColor = seatColor;
-      this.seatImage = seatImage;
-      this.isBooked = isBooked;
-    }
+  constructor(seatId, floor,isBooked, isChoosing) {
+    this.seatId = seatId;
+    this.seatImage = '/book-seat.png';
+    this.seatImageChoosing = '/picking-seat.png';
+    this.seatImageBooked = '/sold-seat.png';
+    this.floor = floor;
+    this.isBooked = isBooked;
+    this.isChoosing = isChoosing
   }
-  
+}
+
+export default Seat;
