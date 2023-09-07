@@ -40,11 +40,13 @@ public class APIBusController {
     
     @DeleteMapping("/buses/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @CrossOrigin
     public void delete(@PathVariable (value = "id") int licensePlateId) {
         this.busSerivce.deleteBus(licensePlateId);
     }
     
     @GetMapping("/buses")
+    @CrossOrigin
     public ResponseEntity<List<Bus>> list(@RequestParam Map<String, String> patams) {
         return new ResponseEntity<>(this.busSerivce.getBus(patams), HttpStatus.OK);
     }
@@ -62,4 +64,5 @@ public class APIBusController {
         Bus b = this.busSerivce.updateBuses(bus);
         return new ResponseEntity<>(b,HttpStatus.OK);
     }
+    
 }

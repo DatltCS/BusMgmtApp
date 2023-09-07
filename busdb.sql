@@ -125,7 +125,7 @@ CREATE TABLE `busroutes` (
   `placeStop` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`routeId`),
   UNIQUE KEY `id_tuyen_UNIQUE` (`routeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `busroutes` (
 
 LOCK TABLES `busroutes` WRITE;
 /*!40000 ALTER TABLE `busroutes` DISABLE KEYS */;
-INSERT INTO `busroutes` VALUES (1,'Cần Thơ - Hồ Chí Minh','Cần Thơ','Hồ Chí Minh'),(2,'Hà Tiên - Hồ Chí Minh','Hà Tiên ','Hồ Chí Minh'),(3,'Hà Tiên - Cần Thơ','Hà Tiên ','Cần Thơ'),(4,'Phan Thiết - Hồ Chí Minh','Phan Thiết','Hồ Chí Minh');
+INSERT INTO `busroutes` VALUES (1,'Cần Thơ - Hồ Chí Minh','Cần Thơ','Nha Trang'),(2,'Hà Tiên - Hồ Chí Minh','Hà Tiên ','Hồ Chí Minh'),(4,'Phan Thiết - Hồ Chí Minh','Phan Thiết','Hồ Chí Minh'),(5,'Cần Thơ - Phan Thiết','Cần Thơ','Hồ Chí Minh');
 /*!40000 ALTER TABLE `busroutes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +167,7 @@ CREATE TABLE `bustrips` (
 
 LOCK TABLES `bustrips` WRITE;
 /*!40000 ALTER TABLE `bustrips` DISABLE KEYS */;
-INSERT INTO `bustrips` VALUES (1,3,501,'Hà Tiên - Cần Thơ',180,'2023-09-05 09:00:00','2023-09-05 11:00:00'),(2,2,502,'Hà Tiên - Hồ Chí Minh',290,'2023-09-05 23:00:00','2023-09-05 05:00:00'),(3,2,502,'Hà Tiên - Cần Thơ',180,'2023-09-05 09:00:00','2023-09-05 11:00:00');
+INSERT INTO `bustrips` VALUES (2,2,502,'Hà Tiên - Hồ Chí Minh',290,'2023-09-05 23:00:00','2023-09-05 05:00:00');
 /*!40000 ALTER TABLE `bustrips` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +212,7 @@ DROP TABLE IF EXISTS `deliveries`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `deliveries` (
   `deliveryId` int NOT NULL AUTO_INCREMENT,
-  `customerId` int NOT NULL,
+  `orderId` int NOT NULL,
   `tripId` int NOT NULL,
   `description` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `receiverName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
@@ -225,9 +225,9 @@ CREATE TABLE `deliveries` (
   `status` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `price` decimal(10,0) NOT NULL,
   PRIMARY KEY (`deliveryId`),
-  KEY `customerId_idx` (`customerId`),
   KEY `fk_delivery_tripId_idx` (`tripId`),
-  CONSTRAINT `customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
+  KEY `fk_delivery_orderId_idx` (`orderId`),
+  CONSTRAINT `fk_delivery_orderId` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`),
   CONSTRAINT `fk_delivery_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -239,6 +239,34 @@ CREATE TABLE `deliveries` (
 LOCK TABLES `deliveries` WRITE;
 /*!40000 ALTER TABLE `deliveries` DISABLE KEYS */;
 /*!40000 ALTER TABLE `deliveries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `orderId` int NOT NULL AUTO_INCREMENT,
+  `createDate` datetime NOT NULL,
+  `amount` decimal(16,0) DEFAULT NULL,
+  `customerId` int DEFAULT NULL,
+  PRIMARY KEY (`orderId`),
+  KEY `fk_orders_customer_idx` (`customerId`),
+  CONSTRAINT `fk_orders_customer` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'2023-12-23 08:00:00',150,1),(2,'2023-12-23 08:00:00',200,1);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -283,7 +311,7 @@ CREATE TABLE `reviews` (
   `tripId` int NOT NULL,
   `rating` int NOT NULL,
   `comment` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `createdDate` date NOT NULL,
+  `createdDate` date DEFAULT NULL,
   PRIMARY KEY (`reviewId`),
   KEY `fk_reviews_customerId_idx` (`customerId`),
   KEY `fk_reviews_tripId_idx` (`tripId`),
@@ -298,7 +326,6 @@ CREATE TABLE `reviews` (
 
 LOCK TABLES `reviews` WRITE;
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
-INSERT INTO `reviews` VALUES (1,1,1,5,'Tuyệt vời','2023-08-25'),(2,1,1,4,'Cũng tạm','2023-08-26');
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,7 +367,7 @@ DROP TABLE IF EXISTS `tickets`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tickets` (
   `ticketId` int NOT NULL AUTO_INCREMENT,
-  `customerId` int NOT NULL,
+  `orderId` int NOT NULL,
   `tripId` int NOT NULL,
   `numSeat` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `price` decimal(10,0) NOT NULL,
@@ -348,11 +375,11 @@ CREATE TABLE `tickets` (
   `paymentMethod` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `createDate` datetime NOT NULL,
   PRIMARY KEY (`ticketId`),
-  KEY `fk_tickets_customerId_idx` (`customerId`),
   KEY `fk_tickets_tripId_idx` (`tripId`),
-  CONSTRAINT `fk_tickets_customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
+  KEY `fk_tickets_order_idx` (`orderId`),
+  CONSTRAINT `fk_tickets_order` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`),
   CONSTRAINT `fk_tickets_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -361,7 +388,7 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-INSERT INTO `tickets` VALUES (1,1,1,'A03',250000,'payed','offline','2022-09-03 08:00:00'),(2,1,1,'A04',250000,'payed','offline','2022-09-03 08:00:00');
+INSERT INTO `tickets` VALUES (1,1,2,'A03',120,'payed','offline','2023-08-01 08:00:00'),(3,1,2,'A03',120,'payed','offline','2023-08-01 08:00:00'),(4,1,2,'A03',120,'payed','offline','2023-08-01 08:00:00');
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,4 +430,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-05 14:25:00
+-- Dump completed on 2023-09-07 18:25:29

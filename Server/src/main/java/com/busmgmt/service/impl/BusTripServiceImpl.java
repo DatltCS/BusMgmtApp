@@ -52,4 +52,17 @@ public class BusTripServiceImpl implements BusTripService {
         return this.busTripRepository.addBustrip(bt,br.getRouteId(), b.getLicensePlateId());
     }
 
+    @Override
+    public boolean deleteBustrip(int id) {
+        return this.busTripRepository.deleteBustrip(id);
+    }
+
+    @Override
+    public Bustrips updateBustrips(Bustrips bt) {
+        Bus b = bt.getLicensePlateId();
+        Busroutes br = bt.getRouteId();
+        
+        return this.busTripRepository.updateBustrips(bt,br.getRouteId(), b.getLicensePlateId());
+    }
+
 }

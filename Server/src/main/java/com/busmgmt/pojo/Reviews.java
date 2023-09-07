@@ -72,7 +72,7 @@ public class Reviews implements Serializable {
         this.reviewId = reviewId;
     }
 
-    public Reviews(Integer reviewId, int rating, String comment, Date createdDate) {
+    public Reviews(Integer reviewId, int rating, String comment) {
         this.reviewId = reviewId;
         this.rating = rating;
         this.comment = comment;
