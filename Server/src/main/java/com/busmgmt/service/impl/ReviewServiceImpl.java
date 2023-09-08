@@ -8,6 +8,7 @@ import com.busmgmt.pojo.Bustrips;
 import com.busmgmt.validator.*;
 import com.busmgmt.pojo.Reviews;
 import com.busmgmt.pojo.Users;
+import com.busmgmt.repository.BusTripRepository;
 import com.busmgmt.repository.ReviewRepository;
 import com.busmgmt.repository.UserRepository;
 import com.busmgmt.service.ReviewService;

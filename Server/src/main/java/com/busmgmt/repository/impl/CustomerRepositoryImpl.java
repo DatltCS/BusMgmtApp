@@ -5,19 +5,28 @@
 package com.busmgmt.repository.impl;
 
 import com.busmgmt.pojo.Customers;
+import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.CustomerRepository;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Admin
  */
-public class CustomerRepositoryImpl implements CustomerRepository{
+@Repository
+@Transactional
+@PropertySource("classpath:configs.properties")
+public class CustomerRepositoryImpl implements CustomerRepository {
+
     @Autowired
     private LocalSessionFactoryBean factory;
 
@@ -38,7 +47,11 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 
     @Override
     public Customers addCustomer(Customers c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Session s = this.factory.getObject().getCurrentSession();
+        s.save(c);
+        s.flush();
+        return c;
+
     }
-    
+
 }
