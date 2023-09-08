@@ -38,6 +38,7 @@ com\busmgmt\pojo\Customers.class
 com\busmgmt\configs\TilesConfig.class
 com\busmgmt\configs\SpringSecurityConfig.class
 com\busmgmt\pojo\Cart.class
+com\busmgmt\repository\CustomerRepository.class
 com\busmgmt\controllers\APIReceiptController.class
 com\busmgmt\repository\impl\BusCompanyRepositoryImpl.class
 com\busmgmt\service\impl\ReviewServiceImpl.class
@@ -56,6 +57,7 @@ com\busmgmt\pojo\Admin.class
 com\busmgmt\validator\WebApplicationValidator.class
 com\busmgmt\pojo\Bustrips_.class
 com\busmgmt\repository\BusTripRepository.class
+com\busmgmt\repository\impl\CustomerRepositoryImpl.class
 com\busmgmt\controllers\APIBusCompanyController.class
 com\busmgmt\pojo\Bustrips.class
 com\busmgmt\controllers\APIUserController.class
@@ -65,6 +67,7 @@ com\busmgmt\repository\BusRouteRepository.class
 com\busmgmt\controllers\APITicketController.class
 com\busmgmt\configs\SecurityWebApplicationInitializer.class
 com\busmgmt\controllers\APIBusRouteController.class
+com\busmgmt\pojo\Busseat.class
 com\busmgmt\service\BusTripService.class
 com\busmgmt\service\ReviewService.class
 com\busmgmt\controllers\HomeController.class
@@ -78,6 +81,7 @@ com\busmgmt\configs\HibernateConfig.class
 com\busmgmt\repository\impl\BusRouteRepositoryImpl.class
 com\busmgmt\repository\impl\BusTripRepositoryImpl.class
 com\busmgmt\service\impl\BusRouteServiceImpl.class
+com\busmgmt\pojo\Busseat_.class
 com\busmgmt\validator\BusValidator.class
 com\busmgmt\filters\JwtAuthenticationTokenFilter.class
 com\busmgmt\configs\JwtSecurityConfig.class

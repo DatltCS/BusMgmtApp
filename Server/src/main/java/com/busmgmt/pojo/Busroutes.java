@@ -61,10 +61,10 @@ public class Busroutes implements Serializable {
     private String placeStop;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "routeId")
     @JsonIgnore
-    private Set<Routestatistics> routestatisticsSet;
+    private Set<Bustrips> bustripsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "routeId")
     @JsonIgnore
-    private Set<Bustrips> bustripsSet;
+    private Set<Routestatistics> routestatisticsSet;
 
     public Busroutes() {
     }
@@ -113,21 +113,21 @@ public class Busroutes implements Serializable {
     }
 
     @XmlTransient
-    public Set<Routestatistics> getRoutestatisticsSet() {
-        return routestatisticsSet;
-    }
-
-    public void setRoutestatisticsSet(Set<Routestatistics> routestatisticsSet) {
-        this.routestatisticsSet = routestatisticsSet;
-    }
-
-    @XmlTransient
     public Set<Bustrips> getBustripsSet() {
         return bustripsSet;
     }
 
     public void setBustripsSet(Set<Bustrips> bustripsSet) {
         this.bustripsSet = bustripsSet;
+    }
+
+    @XmlTransient
+    public Set<Routestatistics> getRoutestatisticsSet() {
+        return routestatisticsSet;
+    }
+
+    public void setRoutestatisticsSet(Set<Routestatistics> routestatisticsSet) {
+        this.routestatisticsSet = routestatisticsSet;
     }
 
     @Override

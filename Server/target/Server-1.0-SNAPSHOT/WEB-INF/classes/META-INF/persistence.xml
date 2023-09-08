@@ -16,5 +16,6 @@
     <class>com.busmgmt.pojo.Users</class>
     <class>com.busmgmt.controllers.APIBusController</class>
     <class>com.busmgmt.pojo.Orders</class>
+    <class>com.busmgmt.pojo.Busseat</class>
   </persistence-unit>
 </persistence>
