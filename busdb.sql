@@ -139,6 +139,32 @@ INSERT INTO `busroutes` VALUES (1,'Cần Thơ - Hồ Chí Minh','Cần Thơ','Nh
 UNLOCK TABLES;
 
 --
+-- Table structure for table `busseat`
+--
+
+DROP TABLE IF EXISTS `busseat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `busseat` (
+  `seatId` int NOT NULL AUTO_INCREMENT,
+  `licensePlateId` int NOT NULL,
+  `numSeat` varchar(3) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  PRIMARY KEY (`seatId`),
+  KEY `fk_busseat_bus_idx` (`licensePlateId`),
+  CONSTRAINT `fk_busseat_bus` FOREIGN KEY (`licensePlateId`) REFERENCES `bus` (`licensePlateId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `busseat`
+--
+
+LOCK TABLES `busseat` WRITE;
+/*!40000 ALTER TABLE `busseat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `busseat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `bustrips`
 --
 
@@ -229,7 +255,7 @@ CREATE TABLE `deliveries` (
   KEY `fk_delivery_orderId_idx` (`orderId`),
   CONSTRAINT `fk_delivery_orderId` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`),
   CONSTRAINT `fk_delivery_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,6 +264,7 @@ CREATE TABLE `deliveries` (
 
 LOCK TABLES `deliveries` WRITE;
 /*!40000 ALTER TABLE `deliveries` DISABLE KEYS */;
+INSERT INTO `deliveries` VALUES (2,1,2,'dddd','a','0','w@gmail.com','2023-05-01 08:00:00','2023-05-01 09:00:00','2023-05-01 08:00:00','offline','waitting',250000);
 /*!40000 ALTER TABLE `deliveries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,16 +334,16 @@ DROP TABLE IF EXISTS `reviews`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
   `reviewId` int NOT NULL AUTO_INCREMENT,
-  `customerId` int NOT NULL,
+  `userId` int NOT NULL,
   `tripId` int NOT NULL,
   `rating` int NOT NULL,
   `comment` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `createdDate` date DEFAULT NULL,
   PRIMARY KEY (`reviewId`),
-  KEY `fk_reviews_customerId_idx` (`customerId`),
   KEY `fk_reviews_tripId_idx` (`tripId`),
-  CONSTRAINT `fk_reviews_customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
-  CONSTRAINT `fk_reviews_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`)
+  KEY `fk_reviews_userId_idx` (`userId`),
+  CONSTRAINT `fk_reviews_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`),
+  CONSTRAINT `fk_reviews_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -388,7 +415,6 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-INSERT INTO `tickets` VALUES (1,1,2,'A03',120,'payed','offline','2023-08-01 08:00:00'),(3,1,2,'A03',120,'payed','offline','2023-08-01 08:00:00'),(4,1,2,'A03',120,'payed','offline','2023-08-01 08:00:00');
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,4 +456,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-07 18:25:29
+-- Dump completed on 2023-09-08 17:45:33

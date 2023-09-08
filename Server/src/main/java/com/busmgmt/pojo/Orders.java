@@ -4,7 +4,6 @@
  */
 package com.busmgmt.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -55,10 +54,8 @@ public class Orders implements Serializable {
     @Column(name = "amount")
     private Long amount;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
-    @JsonIgnore
     private Set<Tickets> ticketsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
-    @JsonIgnore
     private Set<Deliveries> deliveriesSet;
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     @ManyToOne
