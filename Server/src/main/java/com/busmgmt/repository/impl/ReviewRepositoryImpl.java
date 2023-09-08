@@ -4,12 +4,16 @@
  */
 package com.busmgmt.repository.impl;
 
+import com.busmgmt.pojo.Bustrips;
+import com.busmgmt.pojo.Customers;
 import com.busmgmt.pojo.Reviews;
+import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.ReviewRepository;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +46,27 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         Query q = session.createQuery(query);
         
         return q.getResultList();
+    }
+
+    @Override
+    public Reviews addReview(Reviews r, int tripId) {
+        Session session = this.factory.getObject().getCurrentSession();
+        try {
+            if (tripId != 0) {
+                Bustrips bt = session.get(Bustrips.class,tripId);
+//                Users u = session.get(Users.class,userId);
+                if (bt != null) {
+//                    r.setUserId(u);
+                    r.setTripId(bt);
+                    session.save(r);
+                    return r;
+                }
+            }
+            return null;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
 }
