@@ -6,6 +6,7 @@ import { MyUserContext } from "../App";
 import Apis, { authApi, endpoints } from "../config/Apis";
 import cookie from "react-cookies";
 import { Navigate, useNavigate,useSearchParams  } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
 const SignIn = () => {
     const [user, dispatch] = useContext(MyUserContext);
@@ -77,14 +78,7 @@ const SignIn = () => {
                                 <span class="striped-text">Hoặc</span>
                                 <span class="striped-line"></span>
                             </div>
-                            <div class="method">
-                                <div class="method-control">
-                                    <a href="SignInGoogle" class="method-action">
-                                        <i class="ion ion-logo-google"></i>
-                                        <span>Đăng nhập bằng Google</span>
-                                    </a>
-                                </div>
-                            </div>
+                            <Button variant="outline-primary">Hoặc đăng nhập bằng Google</Button>{' '}
                         </section>
                     </div>
                 </main>

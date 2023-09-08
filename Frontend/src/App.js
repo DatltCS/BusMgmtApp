@@ -11,6 +11,7 @@ import MyUserReducer from "../src/config/MyUserReducer";
 import Register from './pages/Register';
 import SideBar from '../src/components/Main/Bus/Sidebar';
 import SidebarContent from '../src/components/Main/Bus/SidebarContent';
+import BusTripsDetails from '../src/components/Main/Bus/BusTripsDetails';
 
 
 
@@ -35,9 +36,9 @@ const App = () => {
           </div>} /> : <Route path="/" element={<Banner />} />}
           <Route path="/home" element={<Banner />} />
           <Route path="/bus-registration" element={<BusRegistration />} />
-          {/* <Route path="/order-tickets" element={<OrderTickets showBusesList={true} />} /> */}
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/bustrips/:tripId" element={<BusTripsDetails />} />
         </Routes>
 
       </BrowserRouter>

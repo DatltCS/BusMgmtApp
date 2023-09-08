@@ -70,16 +70,13 @@ public class Customers implements Serializable {
     private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     @JsonIgnore
-    private Set<Tickets> ticketsSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    @JsonIgnore
     private Set<Reviews> reviewsSet;
+    @OneToMany(mappedBy = "customerId")
+    @JsonIgnore
+    private Set<Orders> ordersSet;
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     @ManyToOne(optional = false)
     private Users userId;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Set<Deliveries> deliveriesSet;
 
     public Customers() {
     }
@@ -155,15 +152,6 @@ public class Customers implements Serializable {
     }
 
     @XmlTransient
-    public Set<Tickets> getTicketsSet() {
-        return ticketsSet;
-    }
-
-    public void setTicketsSet(Set<Tickets> ticketsSet) {
-        this.ticketsSet = ticketsSet;
-    }
-
-    @XmlTransient
     public Set<Reviews> getReviewsSet() {
         return reviewsSet;
     }
@@ -172,21 +160,21 @@ public class Customers implements Serializable {
         this.reviewsSet = reviewsSet;
     }
 
+    @XmlTransient
+    public Set<Orders> getOrdersSet() {
+        return ordersSet;
+    }
+
+    public void setOrdersSet(Set<Orders> ordersSet) {
+        this.ordersSet = ordersSet;
+    }
+
     public Users getUserId() {
         return userId;
     }
 
     public void setUserId(Users userId) {
         this.userId = userId;
-    }
-
-    @XmlTransient
-    public Set<Deliveries> getDeliveriesSet() {
-        return deliveriesSet;
-    }
-
-    public void setDeliveriesSet(Set<Deliveries> deliveriesSet) {
-        this.deliveriesSet = deliveriesSet;
     }
 
     @Override

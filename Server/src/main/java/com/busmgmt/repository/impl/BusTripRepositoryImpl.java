@@ -4,6 +4,8 @@
  */
 package com.busmgmt.repository.impl;
 
+import com.busmgmt.pojo.Bus;
+import com.busmgmt.pojo.Busroutes;
 import com.busmgmt.pojo.Bustrips;
 import com.busmgmt.repository.BusTripRepository;
 import java.util.ArrayList;
@@ -128,5 +130,64 @@ public class BusTripRepositoryImpl implements BusTripRepository {
         Session s = this.factory.getObject().getCurrentSession();
 
         return s.get(Bustrips.class, id);
+    }
+
+    @Override
+    public Bustrips addBustrip(Bustrips bt, int routeId, int licensePlateId) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (routeId != 0 && licensePlateId != 0) {
+                Busroutes br = s.get(Busroutes.class,routeId);
+                Bus b = s.get(Bus.class, licensePlateId);
+                if (br != null && b != null) {
+                    bt.setLicensePlateId(b);
+                    bt.setRouteId(br);
+                    s.save(bt);
+                    s.flush();
+                    return bt;
+                }
+            }
+            return null;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public boolean deleteBustrip(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        
+        Bustrips bt = this.getBusTripById(id);
+        try {
+            s.delete(bt);
+            
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Bustrips updateBustrips(Bustrips bt, int routeId, int licensePlateId) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (routeId != 0 && licensePlateId != 0) {
+                Busroutes br = s.get(Busroutes.class,routeId);
+                Bus b = s.get(Bus.class, licensePlateId);
+                if (br != null && b != null) {
+                    bt.setLicensePlateId(b);
+                    bt.setRouteId(br);
+                    s.update(bt);
+                    s.flush();
+                    return bt;
+                }
+            }
+            return null;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }

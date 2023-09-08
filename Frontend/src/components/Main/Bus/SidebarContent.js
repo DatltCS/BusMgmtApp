@@ -4,6 +4,7 @@ import { Container } from "reactstrap";
 import { Routes, Route } from "react-router-dom";
 import TicketManagement from "./TicketManagement";
 import OrdersManagement from "./OrdersManagement";
+import ClientBookTicketForm from "./ClientBookTicketForm";
 
 
 const Content = ({ sidebarIsOpen, toggleSidebar }) => (
@@ -26,6 +27,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
       <Route path="/page-2" component={() => "page-2"} />
       <Route  path="/page-3" component={() => "page-3"} />
       <Route path="/page-4" component={() => "page-4"} />
+      <Route path="/book-ticket-client" element={<ClientBookTicketForm/>} />
     </Routes>
   </Container>
 );

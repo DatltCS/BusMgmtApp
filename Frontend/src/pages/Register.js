@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useRef} from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Apis, { endpoints } from "../config/Apis";
@@ -14,7 +14,7 @@ const Register = () => {
     const [err, setErr] = useState(null);
     const [loading, setLoading] = useState(false);
     const nav = useNavigate();
-    //const nav = useNavigate();
+    const avatar = useRef();
 
     const register = (evt) => {
         evt.preventDefault();
@@ -25,11 +25,11 @@ const Register = () => {
             for (let field in user)
                 if (field !== "confirmPass")
                     form.append(field, user[field]);
-
+            form.append("avatar", avatar.current.files[0]);
             setLoading(true)
             let res = await Apis.post(endpoints['register'], form);
             if (res.status === 201) {
-                nav("/login");
+                nav("/sign-in");
             } else
             setErr("Hệ thống bị lỗi!");
         }
@@ -65,6 +65,10 @@ const Register = () => {
             <Form.Group className="mb-3">
                 <Form.Label>Xác nhận mật khẩu</Form.Label>
                 <Form.Control value={user.confirmPass} onChange={(e) => change(e, "confirmPass")} type="password" placeholder="Xác nhận mật khẩu" required />
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Ảnh đại diện</Form.Label>
+                <Form.Control type="file" ref={avatar}  />
             </Form.Group>
 
             <Form.Group className="mb-3">

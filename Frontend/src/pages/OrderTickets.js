@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import "./OrderTickets.css"
 import Apis, { endpoints } from "../config/Apis";
@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 // import "../components/Main/Banner.css";
 import BookingForm from "../components/Main/Client/BookingForm";
 import MySpinner from "../components/Main/MySpinner";
+import Comment from "../components/Main/Client/Comment";
+
 
 
 
@@ -23,6 +25,7 @@ function OrderTickets() {
 
     const [buses, setBuses] = useState(null);
     const [bustrips, setBusTrips] = useState(null);
+
     const [q] = useSearchParams();
 
     useEffect(() => {
@@ -45,7 +48,6 @@ function OrderTickets() {
                 console.error(ex);
             }
         }
-
         const loadBusTrips = async () => {
             try {
 
@@ -76,24 +78,26 @@ function OrderTickets() {
         return <MySpinner />
     // // if (buses=== null) 
     //     return <BusRegistration />
-
-
+    if (buses.length === 0 || bustrips.length === 0)
+        return <Alert variant="info" className="mt-1">Không có chuyến đi nào!</Alert>
 
     // const getData = (data) => {
     //     console.log("Coming from Banner.js", data);
     // }
 
-
     return (
 
         <>
-                <Col>
+            <Col>
 
-                    {bustrips.map(p => {
-                        return <div className="bus-list" >
+                {bustrips.map(p => {
+                     let url = `/bustrips/${p.tripId}`;
+                    return <div className="bus">
+                        <div className="bus-list" >
                             <div className="bus-item">
                                 <div className="icon"><img src="/clock.png" /></div>
                                 <text className="label">{p.timeStart}</text>
+
                             </div>
                             <div className="bus-item">
                                 <div className="icon"><img src="/bus.png" /></div>
@@ -104,14 +108,14 @@ function OrderTickets() {
 
                             <div className="bus-item">
                                 <div className="icon"><img src="/seats.png" /></div>
-                                
-                                    
-                                     <div className="label" key={p.tripId}>
-                                        <div className="bus-line"> {p.licensePlateId.totalSeat} chỗ trống</div>
-                                        <div className="bus-info">Xe {p.licensePlateId.busType}</div>
 
-                                    </div>
-                             
+
+                                <div className="label" key={p.tripId}>
+                                    <div className="bus-line"> {p.licensePlateId.totalSeat} chỗ trống</div>
+                                    <div className="bus-info">Xe {p.licensePlateId.busType}</div>
+
+                                </div>
+
                             </div>
 
                             <div className="bus-item">
@@ -121,20 +125,24 @@ function OrderTickets() {
                                 <button className="center-button" onClick={handleBookButtonClick}>Chọn chỗ</button>
 
                             </div>
-                           
+
+                            <Link to={url} className="btn btn-info" style={{marginTop: "22px"}} variant="primary">Xem chi tiết</Link>
+
                         </div>
                         
-                    })}
-                     <div className="booking-form">
-                        {isFormVisible && (
-                            <BookingForm />
-                        )}
-                    </div>
-            
-                </Col>
 
-                
-            
+                    </div>
+                })}
+                <div className="booking-form">
+                    {isFormVisible && (
+                        <BookingForm />
+                    )}
+                </div>
+
+            </Col>
+
+
+
         </>
 
     );

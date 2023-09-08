@@ -4,6 +4,7 @@
  */
 package com.busmgmt.repository.impl;
 
+import com.busmgmt.pojo.Customers;
 import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.UserRepository;
 import java.sql.Connection;
@@ -74,7 +75,6 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Users addUsers(Users users) {
         Session s = this.factory.getObject().getCurrentSession();
-        s.save(users);
 
         try {
             s.save(users);
@@ -92,6 +92,14 @@ public class UserRepositoryImpl implements UserRepository {
         javax.persistence.Query q = s.createQuery("FROM Users");
 
         return q.getResultList();
+    }
+    
+    @Override
+    public Customers getCustomerByName(String name) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("FROM Users WHERE firstName=:fn");
+        q.setParameter("fn",name);
+        return (Customers) q.getSingleResult();
     }
 
 }

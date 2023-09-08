@@ -5,6 +5,7 @@
 package com.busmgmt.repository.impl;
 
 import com.busmgmt.pojo.Bus;
+import com.busmgmt.pojo.Buscompanies;
 import com.busmgmt.repository.BusRepository;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -143,6 +144,46 @@ public class BusRepositoryImpl implements BusRepository {
         } catch (HibernateException ex) {
             ex.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public Bus addBus(Bus b, int busCompanyId) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (busCompanyId != 0) {
+                Buscompanies bc = s.get(Buscompanies.class,busCompanyId);
+                if (bc != null) {
+                    b.setCompanyId(bc);
+                    s.save(b);
+                    s.flush();
+                    return b;
+                }
+            }
+            return null;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Bus updateBuses(Bus b, int busCompanyId) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            if (busCompanyId != 0 && b.getLicensePlateId() != null) {
+                Buscompanies bc = s.get(Buscompanies.class,busCompanyId);
+                if (bc != null) {
+                    b.setCompanyId(bc);
+                    s.update(b);
+                    s.flush();
+                    return b;
+                }
+            }
+            return null;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
 

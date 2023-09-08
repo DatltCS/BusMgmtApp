@@ -1,36 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import Apis, { endpoints } from "../../../config/Apis";
 import MySpinner from "../MySpinner";
+import { useSearchParams, Link } from "react-router-dom";
 
 function BusOrderTicket() {
 
     const [bustrips, setBusTrips] = useState(null);
-
-    const loadBusTrips = async () => {
-        try {
-            const res = await Apis.get(endpoints['bustrips']);
-            setBusTrips(res.data);
-        } catch (error) {
-            console.error("Error loading bus trips:", error);
-        }
-    };
-
-    const loadBuses = async () => {
-        try {
-            const res = await Apis.get(endpoints['buses']);
-            setBusTrips(res.data);
-        } catch (error) {
-            console.error("Error loading bus trips:", error);
-        }
-    };
+    
+    const [buses, setBuses] = useState(null);
+    const [q] = useSearchParams();
 
     useEffect(() => {
+        const loadBuses = async () => {
+            try {
+                let e = endpoints['buses'];
+
+                let licensePlateId = q.get("licensePlateId");
+                if (licensePlateId !== null)
+                    e = `${e}?licensePlateId=${licensePlateId}`;
+                
+                let res = await Apis.get(e);
+                setBuses(res.data);
+            } catch (ex) {
+                console.error(ex);
+            }
+        }
+        const loadBusTrips = async () => {
+            try {
+
+                let e = endpoints['bustrips'];
+
+                let tripId = q.get("tripId");
+                if (tripId !== null)
+                    e = `${e}?tripId=${tripId}`;
+                
+                let res = await Apis.get(e);
+                // Set the bus trips data using setBusTrips function
+                setBusTrips(res.data);
+            } catch (ex) {
+                console.error(ex);
+            }
+        };
+
         loadBusTrips();
         loadBuses();
-    }, []);
+    }, [q]);
 
-    if (bustrips === null)
+    if (bustrips === null || buses === null)
         return <MySpinner />;
     return (
         <>
@@ -45,9 +62,9 @@ function BusOrderTicket() {
                                 <Card.Title>Chuyến {p.tripName}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">Giờ chạy: {p.timeStart}</Card.Subtitle>
                                 <Card.Subtitle className="mb-2 text-muted">Giờ dự kiến kết thúc: {p.timeStop}</Card.Subtitle>
-                                <Card.Text>Số ghế: </Card.Text>
+                                <Card.Text>Số ghế: {p.licensePlateId.totalSeat} </Card.Text>
                                 <Card.Text>Giá: {p.price}.000 </Card.Text>
-                                <Button variant="primary">Đặt vé</Button>
+                                <Link to="/book-ticket-client"><Button variant="primary">Đặt vé</Button></Link>
                                 <Card.Link href="#">Another Link</Card.Link>
                             </Card.Body>
                         </Card>

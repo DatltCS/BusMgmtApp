@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface ReviewService {
     List<Reviews> getReivewsByTripId(int tripId);
-    
+    Reviews addComment(Reviews c);
 }

@@ -39,6 +39,20 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findByUserRole", query = "SELECT u FROM Users u WHERE u.userRole = :userRole"),
     @NamedQuery(name = "Users.findByAccountStatus", query = "SELECT u FROM Users u WHERE u.accountStatus = :accountStatus")})
 public class Users implements Serializable {
+
+    /**
+     * @return the avatar
+     */
+    public String getAvatar() {
+        return avatar;
+    }
+
+    /**
+     * @param avatar the avatar to set
+     */
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
     public static final String ADMIN ="ROLE_ADMIN";
     public static final String USER = "ROLE_USER";
     public static final String BUSCOMPANY = "ROLE_BUSCOMPANY";
@@ -83,6 +97,9 @@ public class Users implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "accountStatus")
     private String accountStatus;
+    @Size(max = 256)
+    @Column(name = "avatar")
+    private String avatar;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
     private Set<Buscompanies> buscompaniesSet;

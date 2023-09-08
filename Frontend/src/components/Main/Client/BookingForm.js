@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./BookingForm.css";
-import Seat from "D:/QuynhPeach/BusMgmtApp/Frontend/src/context/Seat.js";
+import Seat from "D:/Project LTJAVA/BusMgmtApp/Frontend/src/context/Seat.js";
 
 function BookingForm() {
   const [firstFloorSeats, setFirstFloorSeats] = useState([]);
   const [secondFloorSeats, setSecondFloorSeats] = useState([]);
- 
+  const [selectedSeatId, setSelectedSeatId] = useState('');
+  const [selectedSeatPrice, setSelectedSeatPrice] = useState(0);
   const [isChoosing, isSeatClicked] = useState(false);
 
   useEffect(() => {
@@ -39,8 +40,13 @@ function BookingForm() {
     seat.isChoosing = !isChoosing;
     isSeatClicked(!isChoosing);
     console.log('2' + seat.isChoosing);
+
+    // Update the selected seat information
+    setSelectedSeatId(`${seat.floor}`);
+    setSelectedSeatPrice(seat.price);
     
   };
+
 
   return (
     <>
@@ -166,9 +172,9 @@ function BookingForm() {
         </div>
         <div id="customerInfo">
           <div className="seat-information">
-            <label className="ghe-chon">Ghế đã chọn: </label>
+            <label className="ghe-chon">Ghế đã chọn: {selectedSeatId} </label>
            
-            <label className="ghe-chon">Tổng tiền</label>
+            <label className="tong-tien">Tổng tiền</label>
             <label>0đ</label>
           </div>
           <form id="infoForm">

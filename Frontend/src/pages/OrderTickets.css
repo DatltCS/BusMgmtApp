@@ -1,12 +1,14 @@
  .bus-list {
-  margin:auto;
+    margin:auto;
     background-color: #ffffff;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: flex-start; /* Align items at the top */
-    height: 100px;
-    width: 60%;
+    height: fit-content;
+    width: fit-content;
     border-radius: 8px;
+    flex-wrap: wrap;
+    padding: 10px 30px;
   }
   
   .bus-item {
@@ -64,3 +66,4 @@
   .center-button:hover {
     background-color: #2980b9;
   }
+

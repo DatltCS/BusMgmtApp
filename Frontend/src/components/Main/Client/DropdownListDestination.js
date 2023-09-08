@@ -1,19 +1,23 @@
-import React, { useState, useEffect, useRef, createContext } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './DropdownList.css';
-import useLocalStorage from '../../../context/localStorage';
 
 
 
-function DropdownListDestination({ label, options, storageKey }) {
+function DropdownListDestination({ label, options}) {
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [value, setValue] = useLocalStorage(storageKey, '');
-
+  const [kw, setKw] = useState("");
+  const nav = useNavigate();
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
-    setValue(option);
   };
+
+  const search = (evt) => {
+    evt.preventDefault();
+    nav(`/?kw=${selectedOption}`)
+  } 
 
   let menuRef = useRef();
 
@@ -33,7 +37,7 @@ function DropdownListDestination({ label, options, storageKey }) {
 
   return (
   
-      <div className="custom-dropdown-container" ref={menuRef}>
+      <div className="custom-dropdown-container" ref={menuRef} onSubmit={search}>
         <div className="custom-dropdown">
           <label className="start-place">{label}</label>
           <div
@@ -43,13 +47,13 @@ function DropdownListDestination({ label, options, storageKey }) {
           >
             <input
               type="text"
-              value={value} 
+              value={selectedOption} 
               onChange={(event) => {
                 const newValue = event.target.value;
                 handleOptionSelect(newValue);
-                setValue(newValue);
+
               }}
-              placeholder={label}
+              placeholder={label} name="kw"
               style={{ border: 'none' }}
             />
           </div>

@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,18 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         Query q = session.createQuery(query);
         
         return q.getResultList();
+    }
+    
+    @Override
+    public Reviews addComment(Reviews c) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.save(c);
+            return c;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
 }

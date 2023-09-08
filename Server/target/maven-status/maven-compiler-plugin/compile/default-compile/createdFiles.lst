@@ -4,6 +4,7 @@ com\busmgmt\pojo\Customers_.class
 com\busmgmt\pojo\Deliveries_.class
 com\busmgmt\controllers\APIBusController.class
 com\busmgmt\pojo\Busroutes.class
+com\busmgmt\pojo\Orders_.class
 com\busmgmt\service\impl\BusTripServiceImpl.class
 com\busmgmt\pojo\Users.class
 com\busmgmt\formatters\BusCompanyFormatter.class
