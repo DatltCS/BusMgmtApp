@@ -4,6 +4,7 @@
  */
 package com.busmgmt.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -19,9 +20,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -43,49 +48,95 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Buscompanies.findByAllowedDelivery", query = "SELECT b FROM Buscompanies b WHERE b.allowedDelivery = :allowedDelivery")})
 public class Buscompanies implements Serializable {
 
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "companyId")
     private Integer companyId;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45, message = "{buscompanies.nameCompany.nameErr}")
     @Column(name = "nameCompany")
     private String nameCompany;
+    @Basic(optional = false)
+    @NotNull(message = "{buscompanies.totalBus.totalErr}")
     @Column(name = "totalBus")
-    private Integer totalBus;
-    @Size(max = 256)
+    private int totalBus;
+    @Basic(optional = false)
+    @Size(min = 0, max = 256)
     @Column(name = "avatar")
     private String avatar;
-    @Size(max = 20)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20, message = "{buscompanies.status.statusErr}")
     @Column(name = "status")
     private String status;
-    @Size(max = 256)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 256, message = "{buscompanies.address.addressErr}")
     @Column(name = "address")
     private String address;
-    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
-    @Size(max = 11)
+    @Pattern(regexp = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message = "Invalid phone/fax format, should be as 0xx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 11)
     @Column(name = "phone")
     private String phone;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 45)
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "email")
     private String email;
+    @Basic(optional = false)
+    @NotNull(message = "{buscompanies.allowedDelivery.deliveryErr}")
     @Column(name = "allowedDelivery")
-    private Short allowedDelivery;
+    private short allowedDelivery;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
+    @JsonIgnore
     private Set<Bus> busSet;
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     @ManyToOne(optional = false)
     private Users userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
+    @JsonIgnore
     private Set<Revenuestatistics> revenuestatisticsSet;
+
+    @Transient
+    private MultipartFile file;
 
     public Buscompanies() {
     }
 
     public Buscompanies(Integer companyId) {
         this.companyId = companyId;
+    }
+
+    public Buscompanies(Integer companyId, String nameCompany, int totalBus, String avatar, String status, String address, String phone, String email, short allowedDelivery) {
+        this.companyId = companyId;
+        this.nameCompany = nameCompany;
+        this.totalBus = totalBus;
+        this.avatar = avatar;
+        this.status = status;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.allowedDelivery = allowedDelivery;
     }
 
     public Integer getCompanyId() {
@@ -104,11 +155,11 @@ public class Buscompanies implements Serializable {
         this.nameCompany = nameCompany;
     }
 
-    public Integer getTotalBus() {
+    public int getTotalBus() {
         return totalBus;
     }
 
-    public void setTotalBus(Integer totalBus) {
+    public void setTotalBus(int totalBus) {
         this.totalBus = totalBus;
     }
 
@@ -152,11 +203,11 @@ public class Buscompanies implements Serializable {
         this.email = email;
     }
 
-    public Short getAllowedDelivery() {
+    public short getAllowedDelivery() {
         return allowedDelivery;
     }
 
-    public void setAllowedDelivery(Short allowedDelivery) {
+    public void setAllowedDelivery(short allowedDelivery) {
         this.allowedDelivery = allowedDelivery;
     }
 
@@ -210,5 +261,5 @@ public class Buscompanies implements Serializable {
     public String toString() {
         return "com.busmgmt.pojo.Buscompanies[ companyId=" + companyId + " ]";
     }
-    
+
 }

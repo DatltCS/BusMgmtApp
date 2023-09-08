@@ -38,6 +38,20 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reviews.findByCreatedDate", query = "SELECT r FROM Reviews r WHERE r.createdDate = :createdDate")})
 public class Reviews implements Serializable {
 
+    /**
+     * @return the userId
+     */
+    public Users getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(Users userId) {
+        this.userId = userId;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,6 +67,8 @@ public class Reviews implements Serializable {
     @Size(min = 1, max = 300)
     @Column(name = "comment")
     private String comment;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "createdDate")
     @Temporal(TemporalType.DATE)
     private Date createdDate;
@@ -74,6 +90,7 @@ public class Reviews implements Serializable {
         this.reviewId = reviewId;
         this.rating = rating;
         this.comment = comment;
+        this.createdDate = createdDate;
     }
 
     public Integer getReviewId() {
@@ -116,13 +133,13 @@ public class Reviews implements Serializable {
         this.tripId = tripId;
     }
 
-    public Users getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Users userId) {
-        this.userId = userId;
-    }
+//    public Customers getCustomerId() {
+//        return customerId;
+//    }
+//
+//    public void setCustomerId(Customers customerId) {
+//        this.customerId = customerId;
+//    }
 
     @Override
     public int hashCode() {

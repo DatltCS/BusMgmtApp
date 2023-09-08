@@ -4,6 +4,7 @@
  */
 package com.busmgmt.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -69,7 +70,11 @@ public class Bustrips implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeStop;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
+    @JsonIgnore
     private Set<Tickets> ticketsSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
+    @JsonIgnore
+    private Set<Reviews> reviewsSet;
     @JoinColumn(name = "licensePlateId", referencedColumnName = "licensePlateId")
     @ManyToOne(optional = false)
     private Bus licensePlateId;
@@ -77,9 +82,8 @@ public class Bustrips implements Serializable {
     @ManyToOne(optional = false)
     private Busroutes routeId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
+    @JsonIgnore
     private Set<Deliveries> deliveriesSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
-    private Set<Reviews> reviewsSet;
 
     public Bustrips() {
     }
@@ -145,6 +149,15 @@ public class Bustrips implements Serializable {
         this.ticketsSet = ticketsSet;
     }
 
+    @XmlTransient
+    public Set<Reviews> getReviewsSet() {
+        return reviewsSet;
+    }
+
+    public void setReviewsSet(Set<Reviews> reviewsSet) {
+        this.reviewsSet = reviewsSet;
+    }
+
     public Bus getLicensePlateId() {
         return licensePlateId;
     }
@@ -168,15 +181,6 @@ public class Bustrips implements Serializable {
 
     public void setDeliveriesSet(Set<Deliveries> deliveriesSet) {
         this.deliveriesSet = deliveriesSet;
-    }
-
-    @XmlTransient
-    public Set<Reviews> getReviewsSet() {
-        return reviewsSet;
-    }
-
-    public void setReviewsSet(Set<Reviews> reviewsSet) {
-        this.reviewsSet = reviewsSet;
     }
 
     @Override

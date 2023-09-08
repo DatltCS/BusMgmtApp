@@ -4,10 +4,16 @@
  */
 package com.busmgmt.pojo;
 
+import lombok.Data;
+
 /**
  *
  * @author Admin
  */
+@Data
 public class Cart {
-    
+    private int id;
+    private String name;
+    private Long price;
+    private int quantity;
 }
