@@ -43,7 +43,7 @@ public class StatisticRepositoryImpl implements StatisticRepository{
     private SimpleDateFormat f;
 
     @Override
-    public List<Object[]> countTripByRoute() {
+    public List<Object[]> statsTripByRoute() {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
         CriteriaQuery<Object[]> q = b.createQuery(Object[].class);

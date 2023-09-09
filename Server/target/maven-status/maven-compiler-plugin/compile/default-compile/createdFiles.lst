@@ -1,4 +1,3 @@
-com\busmgmt\repository\impl\ReceiptRepositoryImpl.class
 com\busmgmt\pojo\Customers_.class
 com\busmgmt\service\TicketService.class
 com\busmgmt\pojo\Orders_.class
@@ -10,6 +9,7 @@ com\busmgmt\service\impl\BusCompanyServiceImpl.class
 com\busmgmt\pojo\Buscompanies.class
 com\busmgmt\server\resources\JavaEE8Resource.class
 com\busmgmt\pojo\Bus.class
+com\busmgmt\service\impl\ReceiptServiceImpl.class
 com\busmgmt\pojo\Users_.class
 com\busmgmt\controllers\BusController.class
 com\busmgmt\service\BusCompanyService.class
@@ -27,6 +27,7 @@ com\busmgmt\controllers\APIBusTripController.class
 com\busmgmt\pojo\Tickets_.class
 com\busmgmt\pojo\Buscompanies_.class
 com\busmgmt\repository\impl\BusRepositoryImpl.class
+com\busmgmt\service\impl\DeliveryServiceImpl.class
 com\busmgmt\pojo\Admin.class
 com\busmgmt\validator\WebApplicationValidator.class
 com\busmgmt\repository\impl\CustomerRepositoryImpl.class
@@ -43,6 +44,7 @@ com\busmgmt\configs\JwtSecurityConfig.class
 com\busmgmt\pojo\Reviews_.class
 com\busmgmt\repository\impl\UserRepositoryImpl.class
 com\busmgmt\repository\impl\ReviewRepositoryImpl.class
+com\busmgmt\service\DeliveryService.class
 com\busmgmt\service\BusService.class
 com\busmgmt\pojo\Deliveries_.class
 com\busmgmt\controllers\APIBusController.class
@@ -60,6 +62,7 @@ com\busmgmt\filters\CustomAccessDeniedHandler.class
 com\busmgmt\service\UserService.class
 com\busmgmt\filters\RestAuthenticationEntryPoint.class
 com\busmgmt\pojo\Tickets.class
+com\busmgmt\repository\impl\DeliveryRepositoryImpl.class
 com\busmgmt\configs\WebApplicationContextConfig.class
 com\busmgmt\repository\impl\TicketRepositoryImpl.class
 com\busmgmt\pojo\Customers.class
@@ -73,10 +76,12 @@ com\busmgmt\pojo\Orders.class
 com\busmgmt\pojo\Routestatistics.class
 com\busmgmt\repository\UserRepository.class
 com\busmgmt\service\BusRouteService.class
+com\busmgmt\service\ReceiptService.class
 com\busmgmt\pojo\Bustrips_.class
 com\busmgmt\repository\BusTripRepository.class
 com\busmgmt\controllers\APIBusCompanyController.class
 com\busmgmt\pojo\Bustrips.class
+com\busmgmt\repository\DeliveryRepository.class
 com\busmgmt\repository\BusRouteRepository.class
 com\busmgmt\controllers\APIBusRouteController.class
 com\busmgmt\service\ReviewService.class
@@ -87,6 +92,7 @@ com\busmgmt\formatters\BusTripFormatter.class
 com\busmgmt\repository\ReviewRepository.class
 com\busmgmt\controllers\UserController.class
 com\busmgmt\repository\impl\BusRouteRepositoryImpl.class
+com\busmgmt\controllers\APIDeliveryController.class
 com\busmgmt\repository\impl\BusTripRepositoryImpl.class
 com\busmgmt\service\impl\BusRouteServiceImpl.class
 com\busmgmt\pojo\Busseat_.class
