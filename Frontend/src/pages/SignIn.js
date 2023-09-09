@@ -1,23 +1,35 @@
-import React, {useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import './SignIn.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { MyUserContext } from "../App";
 import Apis, { authApi, endpoints } from "../config/Apis";
 import cookie from "react-cookies";
-import { Navigate, useNavigate,useSearchParams  } from "react-router-dom";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
+import 'firebase/compat/auth';
+
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
 
 const SignIn = () => {
     const [user, dispatch] = useContext(MyUserContext);
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
+
+    const auth = firebase.auth();
     const [q] = useSearchParams();
+
+    const signInWithGoogle = () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider);
+    }
 
     const login = (evt) => {
         evt.preventDefault();
-        
-      
+
+
         const process = async () => {
             try {
                 let res = await Apis.post(endpoints['login'], {
@@ -25,8 +37,8 @@ const SignIn = () => {
                     "password": password,
                 });
                 cookie.save("token", res.data);
-                
-                let {data} = await authApi().get(endpoints['current-user']);
+
+                let { data } = await authApi().get(endpoints['current-user']);
                 cookie.save("user", data);
 
                 dispatch({
@@ -45,16 +57,16 @@ const SignIn = () => {
         let next = q.get("next") || "/";
         return <Navigate to={next} />
     }
-   
-        return (
-            <>
 
-                <div>
+    return (
+        <>
+
+            <div>
                 <main class="main-form" onSubmit={login}>
                     <div class="sign-in-form">
                         <section class="wrapper">
                             <div class="heading">
-                                
+
                                 <h1 class="text text-large">Đăng nhập</h1>
                                 <p class="text text-normal">Chưa có tài khoản? <span><a href="#" class="text text-links">Tạo tài khoản</a></span>
                                 </p>
@@ -70,7 +82,7 @@ const SignIn = () => {
                                 </div>
                                 <div class="input-control">
                                     <a href="#" class="text text-links">Quên mật khẩu</a>
-                                    <input type="submit" name="submit" class="input-submit" value="Đăng nhập"  />
+                                    <input type="submit" name="submit" class="input-submit" value="Đăng nhập" />
                                 </div>
                             </form>
                             <div class="striped">
@@ -78,13 +90,13 @@ const SignIn = () => {
                                 <span class="striped-text">Hoặc</span>
                                 <span class="striped-line"></span>
                             </div>
-                            <Button variant="outline-primary">Hoặc đăng nhập bằng Google</Button>{' '}
+                            <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
                         </section>
                     </div>
                 </main>
-                </div>
-            </>
-        )
-    
+            </div>
+        </>
+    )
+
 }
 export default SignIn;

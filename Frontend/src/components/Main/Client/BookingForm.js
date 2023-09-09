@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./BookingForm.css";
 import Seat from "D:/Project LTJAVA/BusMgmtApp/Frontend/src/context/Seat.js";
+import { useSearchParams } from "react-router-dom";
+import Apis, {endpoints} from "../../../config/Apis";
+import MySpinner from "../MySpinner";
+
 
 function BookingForm() {
   const [firstFloorSeats, setFirstFloorSeats] = useState([]);
   const [secondFloorSeats, setSecondFloorSeats] = useState([]);
   const [selectedSeatId, setSelectedSeatId] = useState('');
-  const [selectedSeatPrice, setSelectedSeatPrice] = useState(0);
+  const [price, setSelectedPrice] = useState('');
   const [isChoosing, isSeatClicked] = useState(false);
+  const [q] = useSearchParams();
+  const [bustrips, setBusTrips] = useState(null);
+
 
   useEffect(() => {
     // Initialize the first and second floor seats arrays with Seat objects
@@ -31,8 +38,34 @@ function BookingForm() {
       }
     }
 
+    const loadBusTrips = async () => {
+      try {
+
+          let e = endpoints['bustrips'];
+
+          let tripId = q.get("tripId");
+          if (tripId !== null)
+              e = `${e}?tripId=${tripId}`;
+          else {
+              let kw = q.get("kw");
+              if (kw !== null)
+                  e = `${e}?kw=${kw}`;
+          }
+
+          let res = await Apis.get(e);
+          // Set the bus trips data using setBusTrips function
+          setBusTrips(res.data);
+      } catch (ex) {
+          console.error(ex);
+      }
+  };
+
+  loadBusTrips();
+
+
     setFirstFloorSeats(firstFloorInitialSeats);
     setSecondFloorSeats(secondFloorInitialSeats);
+    loadBusTrips();
   }, []);
 
   const handleSeatClick = (seat) => {
@@ -43,10 +76,11 @@ function BookingForm() {
 
     // Update the selected seat information
     setSelectedSeatId(`${seat.floor}`);
-    setSelectedSeatPrice(seat.price);
-    
+    setSelectedPrice(bustrips.map(p=>p.price));
   };
 
+  if ( bustrips === null)
+  return <MySpinner />
 
   return (
     <>
@@ -170,12 +204,11 @@ function BookingForm() {
             </div>
           </div>
         </div>
-        <div id="customerInfo">
-          <div className="seat-information">
+          <div id="customerInfo">
+        <div className="seat-information">
             <label className="ghe-chon">Ghế đã chọn: {selectedSeatId} </label>
            
-            <label className="tong-tien">Tổng tiền</label>
-            <label>0đ</label>
+            <label className="tong-tien">Tổng tiền: {price}</label> 
           </div>
           <form id="infoForm">
             <label htmlFor="name">Họ tên:</label>
@@ -187,6 +220,7 @@ function BookingForm() {
           </form>
           <button className="continue-button">Tiếp tục</button>
         </div>
+
       </div>
     </>
   );

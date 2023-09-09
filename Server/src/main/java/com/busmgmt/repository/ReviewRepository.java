@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface ReviewRepository {
     List<Reviews> getReivewsByTripId(int tripId);
-    Reviews addComment(Reviews c);
+    Reviews addReview(Reviews r, int tripId);
 }

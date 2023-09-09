@@ -1,14 +1,13 @@
 package com.busmgmt.pojo;
 
 import com.busmgmt.pojo.Orders;
-import com.busmgmt.pojo.Reviews;
 import com.busmgmt.pojo.Users;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-08T14:25:08")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-09T16:46:19")
 @StaticMetamodel(Customers.class)
 public class Customers_ { 
 
@@ -21,6 +20,5 @@ public class Customers_ {
     public static volatile SetAttribute<Customers, Orders> ordersSet;
     public static volatile SingularAttribute<Customers, Users> userId;
     public static volatile SingularAttribute<Customers, String> email;
-    public static volatile SetAttribute<Customers, Reviews> reviewsSet;
 
 }

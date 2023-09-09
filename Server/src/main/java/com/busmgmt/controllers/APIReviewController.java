@@ -8,6 +8,7 @@ import com.busmgmt.pojo.Reviews;
 import com.busmgmt.service.ReviewService;
 import java.util.List;
 import java.util.Map;
+import javax.print.attribute.standard.Media;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,16 +35,16 @@ public class APIReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/bustrips/{tripId}/comments/")
+    @GetMapping("/bustrips/{tripId}/reviews/")
+    @CrossOrigin
     public ResponseEntity<List<Reviews>> list(@PathVariable(value = "tripId") int id) {
         return new ResponseEntity<>(this.reviewService.getReivewsByTripId(id), HttpStatus.OK);
     }
     
-    @PostMapping(path="/comments/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/reviews/", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
-    public ResponseEntity<Reviews> addComment(@RequestBody Reviews comment) {
-        Reviews c = this.reviewService.addComment(comment);
-        
-        return new ResponseEntity<>(c, HttpStatus.CREATED);
+    public ResponseEntity<Reviews> addReview(@RequestBody Reviews review) {
+        Reviews r = this.reviewService.addReview(review);
+        return new ResponseEntity<>(r, HttpStatus.CREATED);
     }
 }

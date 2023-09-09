@@ -6,7 +6,6 @@ package com.busmgmt.controllers;
 
 import com.busmgmt.pojo.Bustrips;
 import com.busmgmt.service.BusTripService;
-import com.busmgmt.service.ReviewService;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -64,10 +63,10 @@ public class APIBusTripController {
         Bustrips bt = this.busTripService.addBustrip(bustrips);
         return new ResponseEntity<>(bt, HttpStatus.CREATED);
     }
-    
-    @RequestMapping(path = "/bustrips/{tripId}/", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @RequestMapping(path = "/bustrips/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
-    public ResponseEntity<Bustrips> details(@PathVariable(value = "tripId") int id) {
+    public ResponseEntity<Bustrips> getBustripById(@PathVariable (value = "id") int id) {
         return new ResponseEntity<>(this.busTripService.getBusTripById(id), HttpStatus.OK);
     }
 
@@ -77,7 +76,7 @@ public class APIBusTripController {
     public void delete(@PathVariable(value = "id") int tripId) {
         this.busTripService.deleteBustrip(tripId);
     }
-    
+
     @PatchMapping(path = "/bustrips/", produces = {MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
     public ResponseEntity<Bustrips> updateBustrip(@RequestBody Bustrips bustrips) throws Exception {

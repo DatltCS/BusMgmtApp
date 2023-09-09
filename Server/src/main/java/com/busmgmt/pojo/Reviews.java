@@ -22,7 +22,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import lombok.Data;
 
 /**
  *
@@ -30,13 +29,13 @@ import lombok.Data;
  */
 @Entity
 @Table(name = "reviews")
-@Data
-//@NamedQueries({
-//    @NamedQuery(name = "Reviews.findAll", query = "SELECT r FROM Reviews r"),
-//    @NamedQuery(name = "Reviews.findByReviewId", query = "SELECT r FROM Reviews r WHERE r.reviewId = :reviewId"),
-//    @NamedQuery(name = "Reviews.findByRating", query = "SELECT r FROM Reviews r WHERE r.rating = :rating"),
-//    @NamedQuery(name = "Reviews.findByComment", query = "SELECT r FROM Reviews r WHERE r.comment = :comment"),
-//    @NamedQuery(name = "Reviews.findByCreatedDate", query = "SELECT r FROM Reviews r WHERE r.createdDate = :createdDate")})
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Reviews.findAll", query = "SELECT r FROM Reviews r"),
+    @NamedQuery(name = "Reviews.findByReviewId", query = "SELECT r FROM Reviews r WHERE r.reviewId = :reviewId"),
+    @NamedQuery(name = "Reviews.findByRating", query = "SELECT r FROM Reviews r WHERE r.rating = :rating"),
+    @NamedQuery(name = "Reviews.findByComment", query = "SELECT r FROM Reviews r WHERE r.comment = :comment"),
+    @NamedQuery(name = "Reviews.findByCreatedDate", query = "SELECT r FROM Reviews r WHERE r.createdDate = :createdDate")})
 public class Reviews implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,97 +53,100 @@ public class Reviews implements Serializable {
     @Size(min = 1, max = 300)
     @Column(name = "comment")
     private String comment;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "createdDate")
     @Temporal(TemporalType.DATE)
     private Date createdDate;
     @JoinColumn(name = "tripId", referencedColumnName = "tripId")
     @ManyToOne(optional = false)
     private Bustrips tripId;
-    @JoinColumn(name = "customerId", referencedColumnName = "customerId")
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
     @ManyToOne(optional = false)
-    private Customers customerId;
+    private Users userId;
 
-//    public Reviews() {
-//    }
-//
-//    public Reviews(Integer reviewId) {
-//        this.reviewId = reviewId;
-//    }
-//
-//    public Reviews(Integer reviewId, int rating, String comment) {
-//        this.reviewId = reviewId;
-//        this.rating = rating;
-//        this.comment = comment;
-//        this.createdDate = createdDate;
-//    }
-//
-//    public Integer getReviewId() {
-//        return reviewId;
-//    }
-//
-//    public void setReviewId(Integer reviewId) {
-//        this.reviewId = reviewId;
-//    }
-//
-//    public int getRating() {
-//        return rating;
-//    }
-//
-//    public void setRating(int rating) {
-//        this.rating = rating;
-//    }
-//
-//    public String getComment() {
-//        return comment;
-//    }
-//
-//    public void setComment(String comment) {
-//        this.comment = comment;
-//    }
-//
-//    public Date getCreatedDate() {
-//        return createdDate;
-//    }
-//
-//    public void setCreatedDate(Date createdDate) {
-//        this.createdDate = createdDate;
-//    }
-//
-//    public Bustrips getTripId() {
-//        return tripId;
-//    }
-//
-//    public void setTripId(Bustrips tripId) {
-//        this.tripId = tripId;
-//    }
-//
-//
-//
-//    @Override
-//    public int hashCode() {
-//        int hash = 0;
-//        hash += (reviewId != null ? reviewId.hashCode() : 0);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object object) {
-//        // TODO: Warning - this method won't work in the case the id fields are not set
-//        if (!(object instanceof Reviews)) {
-//            return false;
-//        }
-//        Reviews other = (Reviews) object;
-//        if ((this.reviewId == null && other.reviewId != null) || (this.reviewId != null && !this.reviewId.equals(other.reviewId))) {
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "com.busmgmt.pojo.Reviews[ reviewId=" + reviewId + " ]";
-//    }
-//    
+    public Reviews() {
+    }
+
+    public Reviews(Integer reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public Reviews(Integer reviewId, int rating, String comment) {
+        this.reviewId = reviewId;
+        this.rating = rating;
+        this.comment = comment;
+    }
+
+    public Integer getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(Integer reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Bustrips getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(Bustrips tripId) {
+        this.tripId = tripId;
+    }
+
+    public Users getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Users userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (reviewId != null ? reviewId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Reviews)) {
+            return false;
+        }
+        Reviews other = (Reviews) object;
+        if ((this.reviewId == null && other.reviewId != null) || (this.reviewId != null && !this.reviewId.equals(other.reviewId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.busmgmt.pojo.Reviews[ reviewId=" + reviewId + " ]";
+    }
+    
 }

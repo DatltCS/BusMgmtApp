@@ -73,11 +73,7 @@ CREATE TABLE `bus` (
 
 LOCK TABLES `bus` WRITE;
 /*!40000 ALTER TABLE `bus` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `bus` VALUES (501,1,'Xe Phương Trang ',30,'ghế ngồi VIP','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg'),(502,2,'Xe Kumho ',34,'giường nằm','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg'),(504,2,'Can\'t forget',10,'Funny type','https://res.cloudinary.com/dc9dlukr6/image/upload/v1693672865/dz4eiyq9hdqzdgicsclw.jpg'),(505,2,'Can\'t forget',10,'Funny type','https://res.cloudinary.com/dc9dlukr6/image/upload/v1693735462/nsyz0ryronorq9fv1mhj.jpg');
-=======
 INSERT INTO `bus` VALUES (501,1,'Xe Kumho ',30,'ghế ngồi VIP','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg'),(502,2,'Xe Kumho ',34,'giường nằm','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg'),(504,2,'Can\'t forget',10,'Funny type','https://res.cloudinary.com/dc9dlukr6/image/upload/v1693672865/dz4eiyq9hdqzdgicsclw.jpg'),(510,1,'Xe Kumho ',60,'Ghế ngồi VIP','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg'),(807,6,'Can\'t forget',34,'Funny type','https://res.cloudinary.com/dc9dlukr6/image/upload/v1693857797/tkbtnzuygrvik0xc88hi.jpg'),(900,1,'Xe Phương Trang ',30,'ghế ngồi VIP','https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg');
->>>>>>> 9ce350c6c79c44be72cf9f70d86b302301dd3902
 /*!40000 ALTER TABLE `bus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,14 +96,9 @@ CREATE TABLE `buscompanies` (
   `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs DEFAULT NULL,
   `allowedDelivery` tinyint DEFAULT NULL,
   PRIMARY KEY (`companyId`),
-<<<<<<< HEAD
-  KEY `userId_idx` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs COMMENT='	';
-=======
   KEY `fk_buscompanies_user_idx` (`userId`),
   CONSTRAINT `fk_buscompanies_user` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs COMMENT='	';
->>>>>>> 9ce350c6c79c44be72cf9f70d86b302301dd3902
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,11 +107,7 @@ CREATE TABLE `buscompanies` (
 
 LOCK TABLES `buscompanies` WRITE;
 /*!40000 ALTER TABLE `buscompanies` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `buscompanies` VALUES (1,8,'Futa Buslines',30,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg','enabled','Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.','02838386853','hotro@futa.vn',1),(2,9,'Kumho Samco Buslines',15,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg','enabled','292 – Đinh Bộ Lĩnh, Phường 26, quận Bình Thạnh, TPHCM.','0903580000','lienhe@kumhosamco.com.vn',1),(3,15,'Nhà xe Hadilao',75,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1693735556/ler4jnnvynfq4kodqprs.jpg','Enabled','23/89 Lê Văn Duyệt, phường 3, quận Bình Thạnh','0386221906','datluongtan1410@gmail.com',0),(4,15,'Nhà xe Hadilao',75,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1693735576/zpq7eteltnwam30fdmy9.png','Enabled','23/89 Lê Văn Duyệt, phường 3, quận Bình Thạnh','0386221906','datluongtan1410@gmail.com',0),(5,15,'Hanh Cafe',75,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1693742572/obgnb0cqhkdqqt8n8ndd.jpg','Enabled','23/89 Lê Văn Duyệt, phường 3, quận Bình Thạnh','0386221906','datluongtan1410@gmail.com',0);
-=======
 INSERT INTO `buscompanies` VALUES (1,8,'Futa Buslines',30,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_phuong_trang_to30yn.jpg','enabled','Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.','02838386853','hotro@futa.vn',1),(2,9,'Kumho Samco Buslines',15,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1692612156/assets/xe_kumho_txflpf.jpg','enabled','292 – Đinh Bộ Lĩnh, Phường 26, quận Bình Thạnh, TPHCM.','0903580000','lienhe@kumhosamco.com.vn',1),(3,15,'Nhà xe Hadilao',75,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1693735556/ler4jnnvynfq4kodqprs.jpg','Enabled','23/89 Lê Văn Duyệt, phường 3, quận Bình Thạnh','0386221906','datluongtan1410@gmail.com',0),(4,15,'Nhà xe Hadilao',75,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1693735576/zpq7eteltnwam30fdmy9.png','Enabled','23/89 Lê Văn Duyệt, phường 3, quận Bình Thạnh','0386221906','datluongtan1410@gmail.com',0),(5,15,'Hanh Cafe',75,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1693742572/obgnb0cqhkdqqt8n8ndd.jpg','Enabled','23/89 Lê Văn Duyệt, phường 3, quận Bình Thạnh','0386221906','datluongtan1410@gmail.com',0),(6,17,'Tâm Hạnh',75,'https://res.cloudinary.com/dc9dlukr6/image/upload/v1693857756/u4uhpp16uobkhng7przq.png','Enabled','23/89 Lê Văn Duyệt, phường 3, quận Bình Thạnh','0386221906','datluongtan1410@gmail.com',0);
->>>>>>> 9ce350c6c79c44be72cf9f70d86b302301dd3902
 /*!40000 ALTER TABLE `buscompanies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +125,7 @@ CREATE TABLE `busroutes` (
   `placeStop` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   PRIMARY KEY (`routeId`),
   UNIQUE KEY `id_tuyen_UNIQUE` (`routeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,8 +134,34 @@ CREATE TABLE `busroutes` (
 
 LOCK TABLES `busroutes` WRITE;
 /*!40000 ALTER TABLE `busroutes` DISABLE KEYS */;
-INSERT INTO `busroutes` VALUES (1,'Cần Thơ - Hồ Chí Minh','Cần Thơ','Hồ Chí Minh'),(2,'Hà Tiên - Hồ Chí Minh','Hà Tiên ','Hồ Chí Minh'),(3,'Hà Tiên - Cần Thơ','Hà Tiên ','Cần Thơ'),(4,'Phan Thiết - Hồ Chí Minh','Phan Thiết','Hồ Chí Minh');
+INSERT INTO `busroutes` VALUES (1,'Cần Thơ - Hồ Chí Minh','Cần Thơ','Nha Trang'),(2,'Hà Tiên - Hồ Chí Minh','Hà Tiên ','Hồ Chí Minh'),(4,'Phan Thiết - Hồ Chí Minh','Phan Thiết','Hồ Chí Minh'),(5,'Cần Thơ - Phan Thiết','Cần Thơ','Hồ Chí Minh');
 /*!40000 ALTER TABLE `busroutes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `busseat`
+--
+
+DROP TABLE IF EXISTS `busseat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `busseat` (
+  `seatId` int NOT NULL AUTO_INCREMENT,
+  `licensePlateId` int NOT NULL,
+  `numSeat` varchar(3) COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
+  PRIMARY KEY (`seatId`),
+  KEY `fk_busseat_bus_idx` (`licensePlateId`),
+  CONSTRAINT `fk_busseat_bus` FOREIGN KEY (`licensePlateId`) REFERENCES `bus` (`licensePlateId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `busseat`
+--
+
+LOCK TABLES `busseat` WRITE;
+/*!40000 ALTER TABLE `busseat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `busseat` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -171,11 +184,7 @@ CREATE TABLE `bustrips` (
   KEY `routeId_idx` (`routeId`),
   CONSTRAINT `licensePlateId` FOREIGN KEY (`licensePlateId`) REFERENCES `bus` (`licensePlateId`),
   CONSTRAINT `routeId` FOREIGN KEY (`routeId`) REFERENCES `busroutes` (`routeId`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
->>>>>>> 9ce350c6c79c44be72cf9f70d86b302301dd3902
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +193,7 @@ CREATE TABLE `bustrips` (
 
 LOCK TABLES `bustrips` WRITE;
 /*!40000 ALTER TABLE `bustrips` DISABLE KEYS */;
-INSERT INTO `bustrips` VALUES (1,3,501,'Hà Tiên - Cần Thơ',180,'2023-09-05 09:00:00','2023-09-05 11:00:00'),(2,2,502,'Hà Tiên - Hồ Chí Minh',290,'2023-09-05 23:00:00','2023-09-05 05:00:00'),(3,2,502,'Hà Tiên - Cần Thơ',180,'2023-09-05 09:00:00','2023-09-05 11:00:00');
+INSERT INTO `bustrips` VALUES (2,2,502,'Hà Tiên - Hồ Chí Minh',290,'2023-09-05 23:00:00','2023-09-05 05:00:00');
 /*!40000 ALTER TABLE `bustrips` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +238,7 @@ DROP TABLE IF EXISTS `deliveries`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `deliveries` (
   `deliveryId` int NOT NULL AUTO_INCREMENT,
-  `customerId` int NOT NULL,
+  `orderId` int NOT NULL,
   `tripId` int NOT NULL,
   `description` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `receiverName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
@@ -242,11 +251,11 @@ CREATE TABLE `deliveries` (
   `status` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `price` decimal(10,0) NOT NULL,
   PRIMARY KEY (`deliveryId`),
-  KEY `customerId_idx` (`customerId`),
   KEY `fk_delivery_tripId_idx` (`tripId`),
-  CONSTRAINT `customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
+  KEY `fk_delivery_orderId_idx` (`orderId`),
+  CONSTRAINT `fk_delivery_orderId` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`),
   CONSTRAINT `fk_delivery_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,7 +264,36 @@ CREATE TABLE `deliveries` (
 
 LOCK TABLES `deliveries` WRITE;
 /*!40000 ALTER TABLE `deliveries` DISABLE KEYS */;
+INSERT INTO `deliveries` VALUES (2,1,2,'dddd','a','0','w@gmail.com','2023-05-01 08:00:00','2023-05-01 09:00:00','2023-05-01 08:00:00','offline','waitting',250000);
 /*!40000 ALTER TABLE `deliveries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `orderId` int NOT NULL AUTO_INCREMENT,
+  `createDate` datetime NOT NULL,
+  `amount` decimal(16,0) DEFAULT NULL,
+  `customerId` int DEFAULT NULL,
+  PRIMARY KEY (`orderId`),
+  KEY `fk_orders_customer_idx` (`customerId`),
+  CONSTRAINT `fk_orders_customer` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'2023-12-23 08:00:00',150,1),(2,'2023-12-23 08:00:00',200,1);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -296,16 +334,16 @@ DROP TABLE IF EXISTS `reviews`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
   `reviewId` int NOT NULL AUTO_INCREMENT,
-  `customerId` int NOT NULL,
+  `userId` int NOT NULL,
   `tripId` int NOT NULL,
   `rating` int NOT NULL,
   `comment` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
-  `createdDate` date NOT NULL,
+  `createdDate` date DEFAULT NULL,
   PRIMARY KEY (`reviewId`),
-  KEY `fk_reviews_customerId_idx` (`customerId`),
   KEY `fk_reviews_tripId_idx` (`tripId`),
-  CONSTRAINT `fk_reviews_customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
-  CONSTRAINT `fk_reviews_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`)
+  KEY `fk_reviews_userId_idx` (`userId`),
+  CONSTRAINT `fk_reviews_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`),
+  CONSTRAINT `fk_reviews_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -315,7 +353,6 @@ CREATE TABLE `reviews` (
 
 LOCK TABLES `reviews` WRITE;
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
-INSERT INTO `reviews` VALUES (1,1,1,5,'Tuyệt vời','2023-08-25'),(2,1,1,4,'Cũng tạm','2023-08-26');
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,7 +394,7 @@ DROP TABLE IF EXISTS `tickets`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tickets` (
   `ticketId` int NOT NULL AUTO_INCREMENT,
-  `customerId` int NOT NULL,
+  `orderId` int NOT NULL,
   `tripId` int NOT NULL,
   `numSeat` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `price` decimal(10,0) NOT NULL,
@@ -365,15 +402,11 @@ CREATE TABLE `tickets` (
   `paymentMethod` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_vi_0900_as_cs NOT NULL,
   `createDate` datetime NOT NULL,
   PRIMARY KEY (`ticketId`),
-  KEY `fk_tickets_customerId_idx` (`customerId`),
   KEY `fk_tickets_tripId_idx` (`tripId`),
-  CONSTRAINT `fk_tickets_customerId` FOREIGN KEY (`customerId`) REFERENCES `customers` (`customerId`),
+  KEY `fk_tickets_order_idx` (`orderId`),
+  CONSTRAINT `fk_tickets_order` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`),
   CONSTRAINT `fk_tickets_tripId` FOREIGN KEY (`tripId`) REFERENCES `bustrips` (`tripId`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
->>>>>>> 9ce350c6c79c44be72cf9f70d86b302301dd3902
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,10 +415,6 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `tickets` VALUES (1,1,1,'A03',250000,'payed','offline','2022-09-03 08:00:00'),(2,1,1,'A04',250000,'payed','offline','2022-09-03 08:00:00');
->>>>>>> 9ce350c6c79c44be72cf9f70d86b302301dd3902
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,11 +443,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `users` VALUES (1,'nhaxePhuongTrang','PT9876','Nhà xe','enabled'),(2,'nhaxeKumho','Kumho1234','Nhà xe','disabled'),(3,'quynhdao632','quynhdao632002','Admin','enabled'),(4,'luongdat001','luongdat1234','Admin','enabled'),(5,'vananh002','vananh002','Khách hàng','enabled'),(6,'minhanh003','minhanh003','Khách hàng','enabled'),(8,'luongdat','$2a$10$.B.2.eTpDFbnLClyGjnaNufCMaIDbwzE87EgVBZ6IcX48Ztl5UNEC','ROLE_ADMIN','enable'),(9,'hello','$2a$10$IyhwYJziP4iXD.r1Sj8t4OM1DsTU0VMcBJwzQt.IcK93BjPOMradS','ROLE_BUSCOMPANY','enable'),(11,'luongtandat','$2a$10$WemmUemeqOo9DcyWvTULNeBlougstzdfCkpP0.EDt.O5IMUcFQ7aS','ROLE_ADMIN','enable'),(12,'datluong','$2a$10$ODREIsU/IrKTL2WyFhoCQuHAz5SMiQ/c81dtzo6nqWs09gGDM.Md.','ROLE_USER','enable'),(14,'1234','$2a$10$HAOQeNLWcxnVVK9YD03xK.wJMa3LsRj4wsDSiOsHbAHWlGebpsO1K','ROLE_USER','enable'),(15,'ngocanh','$2a$10$xClHphz.VA2ZSzKVNIlrtOtE0UxJjVcOcKg9T8ANRrvWERv2n3XvG','ROLE_USER','enable'),(17,'ngocanh1','$2a$10$pM.iZSdXp/yeU5UVmBeZAu6L.8R0Zzxth1F1ceYq/uLS57ucK0xFK','ROLE_USER','enable');
-=======
 INSERT INTO `users` VALUES (1,'nhaxePhuongTrang','PT9876','Nhà xe','enabled',NULL),(2,'nhaxeKumho','Kumho1234','Nhà xe','disabled',NULL),(3,'quynhdao632','quynhdao632002','Admin','enabled',NULL),(4,'luongdat001','luongdat1234','Admin','enabled',NULL),(5,'vananh002','vananh002','Khách hàng','enabled',NULL),(6,'minhanh003','minhanh003','Khách hàng','enabled',NULL),(8,'luongdat','$2a$10$.B.2.eTpDFbnLClyGjnaNufCMaIDbwzE87EgVBZ6IcX48Ztl5UNEC','ROLE_ADMIN','enable',NULL),(9,'hello','$2a$10$IyhwYJziP4iXD.r1Sj8t4OM1DsTU0VMcBJwzQt.IcK93BjPOMradS','ROLE_BUSCOMPANY','enable',NULL),(11,'luongtandat','$2a$10$WemmUemeqOo9DcyWvTULNeBlougstzdfCkpP0.EDt.O5IMUcFQ7aS','ROLE_ADMIN','enable',NULL),(12,'datluong','$2a$10$ODREIsU/IrKTL2WyFhoCQuHAz5SMiQ/c81dtzo6nqWs09gGDM.Md.','ROLE_USER','enable',NULL),(14,'1234','$2a$10$HAOQeNLWcxnVVK9YD03xK.wJMa3LsRj4wsDSiOsHbAHWlGebpsO1K','ROLE_USER','enable',NULL),(15,'ngocanh','$2a$10$xClHphz.VA2ZSzKVNIlrtOtE0UxJjVcOcKg9T8ANRrvWERv2n3XvG','ROLE_USER','enable',NULL),(17,'ngocanh1','$2a$10$pM.iZSdXp/yeU5UVmBeZAu6L.8R0Zzxth1F1ceYq/uLS57ucK0xFK','ROLE_USER','enable',NULL);
->>>>>>> 9ce350c6c79c44be72cf9f70d86b302301dd3902
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -431,8 +456,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
--- Dump completed on 2023-09-03 22:23:54
-=======
--- Dump completed on 2023-09-05 14:25:00
->>>>>>> 9ce350c6c79c44be72cf9f70d86b302301dd3902
+-- Dump completed on 2023-09-08 17:45:33

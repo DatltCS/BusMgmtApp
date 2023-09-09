@@ -1,5 +1,6 @@
 
-import React , { useContext, useEffect, useState } from "react";
+import{ useContext, useEffect, useState } from "react";
+import React from "react";
 import { Button, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import Moment from "react-moment";
 import { Link, useParams } from "react-router-dom";
@@ -31,8 +32,8 @@ const BusTripsDetails = () => {
     const addComment = () => {
         const process = async () => {
             let {data} = await authApi().post(endpoints['add-comment'], {
-                "content": content, 
-                "bustrips": bus.tripId
+                "comment": content, 
+                "tripId": bus.tripId
             });
 
             setComments([...comments, data]);
@@ -67,7 +68,7 @@ const BusTripsDetails = () => {
         <hr />
         <ListGroup>
             {comments.map(c => <ListGroup.Item id={c.reviewId}>
-                        {c.user.username} - {c.content} - <Moment locale="vi" fromNow>{c.createdDate}</Moment>
+                {c.userId.username}- {c.comment} - <Moment locale="vi" fromNow>{c.createdDate}</Moment>
                     </ListGroup.Item>)
             }
         </ListGroup>

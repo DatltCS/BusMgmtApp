@@ -37,22 +37,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username"),
     @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
     @NamedQuery(name = "Users.findByUserRole", query = "SELECT u FROM Users u WHERE u.userRole = :userRole"),
-    @NamedQuery(name = "Users.findByAccountStatus", query = "SELECT u FROM Users u WHERE u.accountStatus = :accountStatus")})
+    @NamedQuery(name = "Users.findByAccountStatus", query = "SELECT u FROM Users u WHERE u.accountStatus = :accountStatus"),
+    @NamedQuery(name = "Users.findByAvatar", query = "SELECT u FROM Users u WHERE u.avatar = :avatar")})
 public class Users implements Serializable {
 
-    /**
-     * @return the avatar
-     */
-    public String getAvatar() {
-        return avatar;
-    }
-
-    /**
-     * @param avatar the avatar to set
-     */
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
     public static final String ADMIN ="ROLE_ADMIN";
     public static final String USER = "ROLE_USER";
     public static final String BUSCOMPANY = "ROLE_BUSCOMPANY";
@@ -97,15 +85,18 @@ public class Users implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "accountStatus")
     private String accountStatus;
-    @Size(max = 256)
+    @Size(max = 200)
     @Column(name = "avatar")
     private String avatar;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
-    private Set<Buscompanies> buscompaniesSet;
+    private Set<Admin> adminSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
-    private Set<Admin> adminSet;
+    private Set<Reviews> reviewsSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
+    private Set<Buscompanies> buscompaniesSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
     private Set<Customers> customersSet;
@@ -167,13 +158,12 @@ public class Users implements Serializable {
         this.accountStatus = accountStatus;
     }
 
-    @XmlTransient
-    public Set<Buscompanies> getBuscompaniesSet() {
-        return buscompaniesSet;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setBuscompaniesSet(Set<Buscompanies> buscompaniesSet) {
-        this.buscompaniesSet = buscompaniesSet;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @XmlTransient
@@ -183,6 +173,24 @@ public class Users implements Serializable {
 
     public void setAdminSet(Set<Admin> adminSet) {
         this.adminSet = adminSet;
+    }
+
+    @XmlTransient
+    public Set<Reviews> getReviewsSet() {
+        return reviewsSet;
+    }
+
+    public void setReviewsSet(Set<Reviews> reviewsSet) {
+        this.reviewsSet = reviewsSet;
+    }
+
+    @XmlTransient
+    public Set<Buscompanies> getBuscompaniesSet() {
+        return buscompaniesSet;
+    }
+
+    public void setBuscompaniesSet(Set<Buscompanies> buscompaniesSet) {
+        this.buscompaniesSet = buscompaniesSet;
     }
 
     @XmlTransient

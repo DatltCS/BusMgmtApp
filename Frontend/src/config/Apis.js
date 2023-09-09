@@ -11,9 +11,10 @@ export const endpoints = {
     "register":`${SERVER_CONTEXT}/api/users/`,
     "bustrips":`${SERVER_CONTEXT}/api/bustrips/`,
     "current-user": `${SERVER_CONTEXT}/api/current-user/`,
-    "comments": (tripId) => `${SERVER_CONTEXT}/api/bustrips/${tripId}/comments/`,
+    "comments": (tripId) => `${SERVER_CONTEXT}/api/bustrips/${tripId}/reviews/`,
     "details": (tripId) => `${SERVER_CONTEXT}/api/bustrips/${tripId}/`,
-    "add-comment": `${SERVER_CONTEXT}/api/comments/`,
+    "add-comment":  `${SERVER_CONTEXT}/api/reviews/`,
+    "add-ticket":  `${SERVER_CONTEXT}/api/tickets/`,
 }
 
 export const authApi = () => {
@@ -27,9 +28,5 @@ export const authApi = () => {
 }
 
 export default axios.create({
-    baseURL: 'http://localhost:8080',
-    headers: {
-        "Authorization":  cookie.load("token"),
-        
-    }
+    baseURL: SERVER
 })

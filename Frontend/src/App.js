@@ -12,6 +12,7 @@ import Register from './pages/Register';
 import SideBar from '../src/components/Main/Bus/Sidebar';
 import SidebarContent from '../src/components/Main/Bus/SidebarContent';
 import BusTripsDetails from '../src/components/Main/Bus/BusTripsDetails';
+import ChatWindow from '../src/components/Main/Chat/ChatWindow';
 
 
 
@@ -39,6 +40,8 @@ const App = () => {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/bustrips/:tripId" element={<BusTripsDetails />} />
+          <Route path="/bustrips" element={<OrderTickets />} />
+          <Route path="/chat-window" element={<ChatWindow />} />
         </Routes>
 
       </BrowserRouter>

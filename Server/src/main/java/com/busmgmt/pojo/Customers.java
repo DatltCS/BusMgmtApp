@@ -68,9 +68,6 @@ public class Customers implements Serializable {
     @Size(max = 45)
     @Column(name = "email")
     private String email;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    @JsonIgnore
-    private Set<Reviews> reviewsSet;
     @OneToMany(mappedBy = "customerId")
     @JsonIgnore
     private Set<Orders> ordersSet;
@@ -83,16 +80,6 @@ public class Customers implements Serializable {
 
     public Customers(Integer customerId) {
         this.customerId = customerId;
-    }
-
-    public Customers(Integer customerId, String firstName, String lastName, String phone, String address, String avatar, String email) {
-        this.customerId = customerId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.address = address;
-        this.avatar = avatar;
-        this.email = email;
     }
 
     public Integer getCustomerId() {
@@ -149,15 +136,6 @@ public class Customers implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @XmlTransient
-    public Set<Reviews> getReviewsSet() {
-        return reviewsSet;
-    }
-
-    public void setReviewsSet(Set<Reviews> reviewsSet) {
-        this.reviewsSet = reviewsSet;
     }
 
     @XmlTransient

@@ -4,7 +4,10 @@
  */
 package com.busmgmt.repository.impl;
 
+import com.busmgmt.pojo.Bustrips;
+import com.busmgmt.pojo.Customers;
 import com.busmgmt.pojo.Reviews;
+import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.ReviewRepository;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -44,13 +47,23 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         
         return q.getResultList();
     }
-    
+
     @Override
-    public Reviews addComment(Reviews c) {
-        Session s = this.factory.getObject().getCurrentSession();
+    public Reviews addReview(Reviews r, int tripId) {
+        Session session = this.factory.getObject().getCurrentSession();
         try {
-            s.save(c);
-            return c;
+            if (tripId != 0) {
+                Bustrips bt = session.get(Bustrips.class,tripId);
+//                Users u = session.get(Users.class,userId);
+                if (bt != null) {
+//                    r.setUserId(u);
+                    r.setTripId(bt);
+                    session.save(r);
+                    session.flush();
+                    return r;
+                }
+            }
+            return null;
         } catch (HibernateException ex) {
             ex.printStackTrace();
             return null;

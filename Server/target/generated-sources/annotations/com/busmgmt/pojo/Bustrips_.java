@@ -11,7 +11,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-08T14:25:08")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-09T16:46:19")
 @StaticMetamodel(Bustrips.class)
 public class Bustrips_ { 
 

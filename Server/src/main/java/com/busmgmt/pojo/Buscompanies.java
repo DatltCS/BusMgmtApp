@@ -68,45 +68,34 @@ public class Buscompanies implements Serializable {
     @Basic(optional = false)
     @Column(name = "companyId")
     private Integer companyId;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45, message = "{buscompanies.nameCompany.nameErr}")
+    @Size(max = 45, message = "{buscompanies.nameCompany.nameErr}")
     @Column(name = "nameCompany")
     private String nameCompany;
     @Basic(optional = false)
     @NotNull(message = "{buscompanies.totalBus.totalErr}")
     @Column(name = "totalBus")
-    private int totalBus;
-    @Basic(optional = false)
-    @Size(min = 0, max = 256)
+    private Integer totalBus;
+    @Size(max = 256)
     @Column(name = "avatar")
     private String avatar;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20, message = "{buscompanies.status.statusErr}")
+    @Size(max = 20, message = "{buscompanies.status.statusErr}")
     @Column(name = "status")
     private String status;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 256, message = "{buscompanies.address.addressErr}")
+    @Size(max = 256, message = "{buscompanies.address.addressErr}")
     @Column(name = "address")
     private String address;
-    @Pattern(regexp = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message = "Invalid phone/fax format, should be as 0xx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 11)
+     @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
+    @Size(max = 11)
     @Column(name = "phone")
     private String phone;
-    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+     @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 45)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
     @NotNull(message = "{buscompanies.allowedDelivery.deliveryErr}")
     @Column(name = "allowedDelivery")
-    private short allowedDelivery;
+    private Short allowedDelivery;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     @JsonIgnore
     private Set<Bus> busSet;
@@ -118,6 +107,7 @@ public class Buscompanies implements Serializable {
     private Set<Revenuestatistics> revenuestatisticsSet;
 
     @Transient
+    @JsonIgnore
     private MultipartFile file;
 
     public Buscompanies() {
@@ -125,18 +115,6 @@ public class Buscompanies implements Serializable {
 
     public Buscompanies(Integer companyId) {
         this.companyId = companyId;
-    }
-
-    public Buscompanies(Integer companyId, String nameCompany, int totalBus, String avatar, String status, String address, String phone, String email, short allowedDelivery) {
-        this.companyId = companyId;
-        this.nameCompany = nameCompany;
-        this.totalBus = totalBus;
-        this.avatar = avatar;
-        this.status = status;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.allowedDelivery = allowedDelivery;
     }
 
     public Integer getCompanyId() {
@@ -155,11 +133,11 @@ public class Buscompanies implements Serializable {
         this.nameCompany = nameCompany;
     }
 
-    public int getTotalBus() {
+    public Integer getTotalBus() {
         return totalBus;
     }
 
-    public void setTotalBus(int totalBus) {
+    public void setTotalBus(Integer totalBus) {
         this.totalBus = totalBus;
     }
 
@@ -203,11 +181,11 @@ public class Buscompanies implements Serializable {
         this.email = email;
     }
 
-    public short getAllowedDelivery() {
+    public Short getAllowedDelivery() {
         return allowedDelivery;
     }
 
-    public void setAllowedDelivery(short allowedDelivery) {
+    public void setAllowedDelivery(Short allowedDelivery) {
         this.allowedDelivery = allowedDelivery;
     }
 
@@ -261,5 +239,5 @@ public class Buscompanies implements Serializable {
     public String toString() {
         return "com.busmgmt.pojo.Buscompanies[ companyId=" + companyId + " ]";
     }
-
+    
 }
