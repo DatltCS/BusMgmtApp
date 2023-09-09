@@ -47,12 +47,14 @@ com\busmgmt\service\BusService.class
 com\busmgmt\pojo\Deliveries_.class
 com\busmgmt\controllers\APIBusController.class
 com\busmgmt\pojo\Busroutes.class
+com\busmgmt\repository\StatisticRepository.class
 com\busmgmt\pojo\Users.class
 com\busmgmt\pojo\Revenuestatistics.class
 com\busmgmt\pojo\Reviews.class
 com\busmgmt\repository\TicketRepository.class
 com\busmgmt\pojo\Admin_.class
 com\busmgmt\pojo\Routestatistics_.class
+com\busmgmt\repository\impl\StatisticRepositoryImpl.class
 com\busmgmt\configs\DispatcherServletInitializer.class
 com\busmgmt\filters\CustomAccessDeniedHandler.class
 com\busmgmt\service\UserService.class

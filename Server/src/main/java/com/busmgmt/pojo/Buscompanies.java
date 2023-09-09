@@ -107,6 +107,7 @@ public class Buscompanies implements Serializable {
     private Set<Revenuestatistics> revenuestatisticsSet;
 
     @Transient
+    @JsonIgnore
     private MultipartFile file;
 
     public Buscompanies() {

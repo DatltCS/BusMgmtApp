@@ -64,13 +64,20 @@ public class APIBusTripController {
         return new ResponseEntity<>(bt, HttpStatus.CREATED);
     }
 
+    @GetMapping(path = "/bustrips/{id}", produces = {MediaType.APPLICATION_JSON_VALUE},
+                                         consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @CrossOrigin
+    public ResponseEntity<Bustrips> getBustripById(@PathVariable (value = "id") int id) {
+        return new ResponseEntity<>(this.busTripService.getBusTripById(id), HttpStatus.OK);
+    }
+
     @DeleteMapping("/bustrips/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @CrossOrigin
     public void delete(@PathVariable(value = "id") int tripId) {
         this.busTripService.deleteBustrip(tripId);
     }
-    
+
     @PatchMapping(path = "/bustrips/", produces = {MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
     public ResponseEntity<Bustrips> updateBustrip(@RequestBody Bustrips bustrips) throws Exception {

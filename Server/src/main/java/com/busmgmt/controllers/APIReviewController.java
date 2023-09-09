@@ -41,10 +41,10 @@ public class APIReviewController {
         return new ResponseEntity<>(this.reviewService.getReivewsByTripId(id), HttpStatus.OK);
     }
     
-//    @PostMapping(path = "/bustrips/{tripId}/reviews/", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @CrossOrigin
-//    public ResponseEntity<Reviews> addReview(@RequestBody Reviews review) {
-//        Reviews r = this.reviewService.addReview(review);
-//        return new ResponseEntity<>(r, HttpStatus.CREATED);
-//    }
+    @PostMapping(path = "/bustrips/{tripId}/reviews/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+    public ResponseEntity<Reviews> addReview(@RequestBody Reviews review) {
+        Reviews r = this.reviewService.addReview(review);
+        return new ResponseEntity<>(r, HttpStatus.CREATED);
+    }
 }

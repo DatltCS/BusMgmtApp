@@ -91,6 +91,7 @@ public class Bus implements Serializable {
     private Set<Busseat> busseatSet;
 
     @Transient
+    @JsonIgnore
     private MultipartFile file;
 
     public Bus() {
