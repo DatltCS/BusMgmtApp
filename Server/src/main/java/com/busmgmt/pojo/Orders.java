@@ -41,6 +41,20 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Orders.findByAmount", query = "SELECT o FROM Orders o WHERE o.amount = :amount")})
 public class Orders implements Serializable {
 
+    /**
+     * @return the userId
+     */
+    public Users getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(Users userId) {
+        this.userId = userId;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +77,9 @@ public class Orders implements Serializable {
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     @ManyToOne
     private Customers customerId;
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @ManyToOne
+    private Users userId;
 
     public Orders() {
     }

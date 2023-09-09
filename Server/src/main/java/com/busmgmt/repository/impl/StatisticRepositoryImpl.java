@@ -41,74 +41,105 @@ public class StatisticRepositoryImpl implements StatisticRepository{
     private LocalSessionFactoryBean factory;
     @Autowired
     private SimpleDateFormat f;
+    
+
+//    @Override
+//    public List<Object[]> statsTripByRoute() {
+//        Session session = this.factory.getObject().getCurrentSession();
+//        CriteriaBuilder b = session.getCriteriaBuilder();
+//        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+//        Root rBt = q.from(Bustrips.class);
+//        Root rBr = q.from(Busroutes.class);
+//
+//        q.multiselect(rBr.get("routeId"), rBr.get("routeName"), b.count(rBt.get("tripId")));
+//
+//        q.where(b.equal(rBt.get("bustrips"), rBr.get("routeId")));
+//        q.groupBy(rBr.get("routeId"));
+//
+//        Query query = session.createQuery(q);
+//        return query.getResultList();
+//    }
+//
+//    @Override
+//    public List<Object[]> statsRevenue(Map<String, String> params) {
+//        Session session = this.factory.getObject().getCurrentSession();
+//        CriteriaBuilder b = session.getCriteriaBuilder();
+//        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+//        Root rBt = q.from(Bustrips.class);
+//        Root rT = q.from(Tickets.class);
+//        Root rO = q.from(Orders.class);
+//
+//        q.multiselect(rBt.get("tripId"), rBt.get("tripName"), b.sum(rT.get("price")));
+//
+//        List<Predicate> predicates = new ArrayList<>();
+//        predicates.add(b.equal(rT.get("tripId"), rBt.get("tripId")));
+//        predicates.add(b.equal(rT.get("orderId"), rO.get("orderId")));
+//
+//        String fd = params.get("fromDate");
+//        if (fd != null && !fd.isEmpty()) {
+//            try {
+//                predicates.add(b.greaterThanOrEqualTo(rO.get("createdDate"), f.parse(fd)));
+//            } catch (ParseException ex) {
+//                Logger.getLogger(StatisticRepository.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//
+//        String td = params.get("toDate");
+//        if (td != null && !td.isEmpty()) {
+//            try {
+//                predicates.add(b.lessThanOrEqualTo(rO.get("createdDate"), f.parse(td)));
+//            } catch (ParseException ex) {
+//                Logger.getLogger(StatisticRepository.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//
+//        String quarter = params.get("quarter");
+//        if (quarter != null && !quarter.isEmpty()) {
+//            String year = params.get("year");
+//            if (year != null && !year.isEmpty()) {
+//                predicates.addAll(Arrays.asList(
+//                        b.equal(b.function("YEAR", Integer.class, rO.get("createdDate")), Integer.parseInt(year)),
+//                        b.equal(b.function("QUARTER", Integer.class, rO.get("createdDate")), Integer.parseInt(quarter))
+//                ));
+//            }
+//        }
+//
+//        q.where(predicates.toArray(Predicate[]::new));
+//
+//        q.groupBy(rBt.get("tripId"));
+//
+//        Query query = session.createQuery(q);
+//        return query.getResultList();
+//
+//    }
 
     @Override
-    public List<Object[]> statsTripByRoute() {
-        Session session = this.factory.getObject().getCurrentSession();
-        CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-        Root rBt = q.from(Bustrips.class);
-        Root rBr = q.from(Busroutes.class);
-
-        q.multiselect(rBr.get("routeId"), rBr.get("routeName"), b.count(rBt.get("tripId")));
-
-        q.where(b.equal(rBt.get("bustrips"), rBr.get("routeId")));
-        q.groupBy(rBr.get("routeId"));
-
-        Query query = session.createQuery(q);
-        return query.getResultList();
+    public List<Object[]> statsTripByRouteByYear(Long startY, Long endY) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Object[]> statsRevenue(Map<String, String> params) {
-        Session session = this.factory.getObject().getCurrentSession();
-        CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-        Root rBt = q.from(Bustrips.class);
-        Root rT = q.from(Tickets.class);
-        Root rO = q.from(Orders.class);
+    public List<Object[]> statsTripByRouteByQuarter(Long start, Long end) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-        q.multiselect(rBt.get("tripId"), rBt.get("tripName"), b.sum(rT.get("price")));
+    @Override
+    public List<Object[]> statsTripByRouteByMonth(Long year) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-        List<Predicate> predicates = new ArrayList<>();
-        predicates.add(b.equal(rT.get("tripId"), rBt.get("tripId")));
-        predicates.add(b.equal(rT.get("orderId"), rO.get("orderId")));
+    @Override
+    public List<Object[]> statsRevenueTicketsByYear(Long startY, Long endY) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-        String fd = params.get("fromDate");
-        if (fd != null && !fd.isEmpty()) {
-            try {
-                predicates.add(b.greaterThanOrEqualTo(rO.get("createdDate"), f.parse(fd)));
-            } catch (ParseException ex) {
-                Logger.getLogger(StatisticRepository.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+    @Override
+    public List<Object[]> statsRevenueTicketsByQUater(Long startY, Long endY) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-        String td = params.get("toDate");
-        if (td != null && !td.isEmpty()) {
-            try {
-                predicates.add(b.lessThanOrEqualTo(rO.get("createdDate"), f.parse(td)));
-            } catch (ParseException ex) {
-                Logger.getLogger(StatisticRepository.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        String quarter = params.get("quarter");
-        if (quarter != null && !quarter.isEmpty()) {
-            String year = params.get("year");
-            if (year != null && !year.isEmpty()) {
-                predicates.addAll(Arrays.asList(
-                        b.equal(b.function("YEAR", Integer.class, rO.get("createdDate")), Integer.parseInt(year)),
-                        b.equal(b.function("QUARTER", Integer.class, rO.get("createdDate")), Integer.parseInt(quarter))
-                ));
-            }
-        }
-
-        q.where(predicates.toArray(Predicate[]::new));
-
-        q.groupBy(rBt.get("tripId"));
-
-        Query query = session.createQuery(q);
-        return query.getResultList();
-
+    @Override
+    public List<Object[]> statsRevenueTicketsByMonth(Long startY, Long endY) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

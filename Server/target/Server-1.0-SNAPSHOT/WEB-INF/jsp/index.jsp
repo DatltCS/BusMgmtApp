@@ -19,6 +19,9 @@
         <div>
             <a href="<c:url value="/buscompanies" />" class="btn btn-danger mt-1">Add Bus Company</a>
         </div>
+        <div>
+            <a href="<c:url value="/buscompanies/active" />" class="btn btn-danger mt-1">Active Bus Company</a>
+        </div>
     </sec:authorize>
 
     <c:if test="${count > 1}">

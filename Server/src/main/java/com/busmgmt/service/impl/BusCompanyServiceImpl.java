@@ -47,4 +47,21 @@ public class BusCompanyServiceImpl implements BusCompanyService {
         return this.busCompanyRepository.addBuscompanies(buscompanies);
     }
 
+    @Override
+    public boolean activeBuscompanies(Buscompanies buscompanies) {
+        buscompanies.setStatus(Boolean.TRUE);
+        return this.busCompanyRepository.activeBuscompanies(buscompanies);
+    }
+
+    @Override
+    public boolean lockBuscompanies(Buscompanies buscompanies) {
+        buscompanies.setStatus(Boolean.FALSE);
+        return this.busCompanyRepository.lockBuscompanies(buscompanies);
+    }
+
+    @Override
+    public Buscompanies getBusCompanyById(int id) {
+        return this.busCompanyRepository.getBusCompanyById(id);
+    }
+
 }

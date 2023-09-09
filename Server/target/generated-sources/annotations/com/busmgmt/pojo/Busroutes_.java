@@ -7,7 +7,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-09T15:30:46")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-10T03:12:12")
 @StaticMetamodel(Busroutes.class)
 public class Busroutes_ { 
 

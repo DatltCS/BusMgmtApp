@@ -45,5 +45,38 @@ public class BusCompanyRepositoryImpl implements BusCompanyRepository{
         }
         return false;
     }
+
+    @Override
+    public boolean activeBuscompanies(Buscompanies buscompanies) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.update(buscompanies);
+
+            return true;
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean lockBuscompanies(Buscompanies buscompanies) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.update(buscompanies);
+
+            return true;
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public Buscompanies getBusCompanyById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+
+        return s.get(Buscompanies.class, id);
+    }
     
 }

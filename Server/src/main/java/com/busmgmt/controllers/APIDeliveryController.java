@@ -4,14 +4,18 @@
  */
 package com.busmgmt.controllers;
 
+import com.busmgmt.pojo.Cart;
 import com.busmgmt.pojo.Deliveries;
 import com.busmgmt.service.DeliveryService;
+import com.busmgmt.service.UserService;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -33,6 +38,9 @@ public class APIDeliveryController {
 
     @Autowired
     private DeliveryService deliveryService;
+    @Autowired
+    private UserService userService;
+
 
     @GetMapping("/deliveries/")
     @CrossOrigin
@@ -48,8 +56,16 @@ public class APIDeliveryController {
 
     @PostMapping(path = "/deliveries/", produces = {MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
-    public ResponseEntity<Deliveries> addBustrip(@RequestBody Deliveries deliveries) throws Exception {
+    public ResponseEntity<Deliveries> addDelivery(@RequestBody Deliveries deliveries) throws Exception {
         Deliveries d = this.deliveryService.addDelivery(deliveries);
         return new ResponseEntity<>(d, HttpStatus.CREATED);
     }
+    
+    @PostMapping("/deliveries/pay/")
+    @ResponseStatus(HttpStatus.OK)
+    @CrossOrigin
+    public void mailSender(@RequestBody Map<String, Cart> carts){
+        
+    }
+
 }

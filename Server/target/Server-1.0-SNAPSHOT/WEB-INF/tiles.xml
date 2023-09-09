@@ -43,5 +43,10 @@
         <put-attribute name="content" 
                        value="/WEB-INF/jsp/register.jsp" />
     </definition>
+    <definition name="activeBusCompany" extends="baseLayout">
+        <put-attribute name="title" value="Active Bus Company" />
+        <put-attribute name="content" 
+                       value="/WEB-INF/jsp/activeBusCompany.jsp" />
+    </definition>
 
 </tiles-definitions>

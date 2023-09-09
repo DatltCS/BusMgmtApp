@@ -12,6 +12,12 @@ import java.util.Map;
  * @author Admin
  */
 public interface StatisticRepository {
-    List<Object[]> statsTripByRoute();
-    List<Object[]> statsRevenue(Map<String, String> params);
+    List<Object[]> statsTripByRouteByYear(Long startY, Long endY);
+    List<Object[]> statsTripByRouteByQuarter(Long start, Long end);
+    List<Object[]> statsTripByRouteByMonth(Long year);
+    
+    
+    List<Object[]> statsRevenueTicketsByYear(Long startY, Long endY);
+    List<Object[]> statsRevenueTicketsByQUater(Long startY, Long endY);
+    List<Object[]> statsRevenueTicketsByMonth(Long startY, Long endY);
 }

@@ -45,6 +45,20 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Deliveries.findByPrice", query = "SELECT d FROM Deliveries d WHERE d.price = :price")})
 public class Deliveries implements Serializable {
 
+    /**
+     * @return the num
+     */
+    public Integer getNum() {
+        return num;
+    }
+
+    /**
+     * @param num the num to set
+     */
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,6 +112,8 @@ public class Deliveries implements Serializable {
     @NotNull
     @Column(name = "price")
     private long price;
+    @Column(name = "num")
+    private Integer num;
     @JoinColumn(name = "tripId", referencedColumnName = "tripId")
     @ManyToOne(optional = false)
     private Bustrips tripId;
