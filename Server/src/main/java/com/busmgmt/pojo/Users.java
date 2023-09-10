@@ -41,7 +41,21 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findByAvatar", query = "SELECT u FROM Users u WHERE u.avatar = :avatar")})
 public class Users implements Serializable {
 
-    public static final String ADMIN ="ROLE_ADMIN";
+    /**
+     * @return the isCompany
+     */
+    public Boolean getIsCompany() {
+        return isCompany;
+    }
+
+    /**
+     * @param isCompany the isCompany to set
+     */
+    public void setIsCompany(Boolean isCompany) {
+        this.isCompany = isCompany;
+    }
+
+    public static final String ADMIN = "ROLE_ADMIN";
     public static final String USER = "ROLE_USER";
     public static final String BUSCOMPANY = "ROLE_BUSCOMPANY";
 
@@ -88,6 +102,8 @@ public class Users implements Serializable {
     @Size(max = 200)
     @Column(name = "avatar")
     private String avatar;
+    @Column(name = "isCompany")
+    private Boolean isCompany;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
     private Set<Admin> adminSet;
@@ -226,5 +242,5 @@ public class Users implements Serializable {
     public String toString() {
         return "com.busmgmt.pojo.Users[ userId=" + userId + " ]";
     }
-    
+
 }

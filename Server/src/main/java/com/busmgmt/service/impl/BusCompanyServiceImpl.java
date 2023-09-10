@@ -50,6 +50,7 @@ public class BusCompanyServiceImpl implements BusCompanyService {
     @Override
     public boolean activeBuscompanies(Buscompanies buscompanies) {
         buscompanies.setStatus(Boolean.TRUE);
+        
         return this.busCompanyRepository.activeBuscompanies(buscompanies);
     }
 

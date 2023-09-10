@@ -14,13 +14,16 @@
     <h1 class ="text-center text-infor mt-1">Bus List</h1>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
         <div>
-            <a href="<c:url value="/buses" />" class="btn btn-danger mt-1">Add Bus</a>
+            <a href="<c:url value="/buses" />" class="btn btn-success mt-1">Add Bus</a>
         </div>
         <div>
-            <a href="<c:url value="/buscompanies" />" class="btn btn-danger mt-1">Add Bus Company</a>
+            <a href="<c:url value="/buscompanies" />" class="btn btn-success mt-1">Add Bus Company</a>
         </div>
         <div>
-            <a href="<c:url value="/buscompanies/active" />" class="btn btn-danger mt-1">Active Bus Company</a>
+            <a href="<c:url value="/buscompanies/active" />" class="btn btn-success mt-1">Active Bus Company</a>
+        </div>
+        <div>
+            <a href="<c:url value="/buscompanies/register" />" class="btn btn-success mt-1">Company register</a>
         </div>
     </sec:authorize>
 

@@ -93,4 +93,24 @@ public class UserRepositoryImpl implements UserRepository {
         return q.getResultList();
     }
 
+//    @Override
+    public boolean registerBuscompanies(Users user) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.update(user);
+
+            return true;
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public Users getUserById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+
+        return s.get(Users.class, id);
+    }
+
 }

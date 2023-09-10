@@ -56,6 +56,7 @@ public class BusCompanyController {
         return "buscompany";
     }
     
+    
     @GetMapping("/buscompanies/active")
     public String listForActive(Model model) {
         model.addAttribute("activeBusCompany", new Buscompanies());

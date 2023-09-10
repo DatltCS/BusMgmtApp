@@ -77,6 +77,7 @@ com\busmgmt\pojo\Busroutes_.class
 com\busmgmt\pojo\Orders.class
 com\busmgmt\pojo\Routestatistics.class
 com\busmgmt\repository\UserRepository.class
+com\busmgmt\controllers\CompanyRegisterController.class
 com\busmgmt\service\BusRouteService.class
 com\busmgmt\service\ReceiptService.class
 com\busmgmt\pojo\Bustrips_.class

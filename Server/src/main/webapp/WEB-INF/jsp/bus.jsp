@@ -38,6 +38,9 @@
         <form:input type="file" class="form-control" id="file" 
                     path="file"/>
         <label for="file">Image Bus</label>
+        <c:if test="${bus.image != null}">
+            <img src="${bus.image}" width="120" />
+        </c:if>
     </div>
 
     <div class="form-floating">

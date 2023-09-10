@@ -84,6 +84,7 @@ D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\Bus
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Admin.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\configs\HibernateConfig.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\repository\impl\BusCompanyRepositoryImpl.java
+D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\controllers\CompanyRegisterController.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\components\JwtService.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Bus.java
 D:\HK9\Lập trình Java\BusMgmt\Server\src\main\java\com\busmgmt\pojo\Orders.java
