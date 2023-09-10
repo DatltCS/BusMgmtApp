@@ -74,23 +74,18 @@ const SignIn = () => {
                             <form name="signin" class="form">
                                 <div class="input-control">
                                     <label for="ten" class="input-label" hidden>Tên đăng nhập</label>
-                                    <input type="text" name="ten" id="ten" class="input-field" value={username} onChange={e => setUsername(e.target.value)} placeholder="Tên đăng nhập" />
+                                    <input type="text" name="ten" id="ten" class="input-field" value={username} onChange={e => setUsername(e.target.value)} placeholder="Tên đăng nhập" required/>
                                 </div>
                                 <div class="input-control">
                                     <label for="password" class="input-label" hidden>Mật khẩu</label>
-                                    <input type="password" name="password" id="password" class="input-field" value={password} onChange={e => setPassword(e.target.value)} placeholder="Mật khẩu" />
+                                    <input type="password" name="password" id="password" class="input-field" value={password} onChange={e => setPassword(e.target.value)} placeholder="Mật khẩu" required/>
                                 </div>
                                 <div class="input-control">
                                     <a href="#" class="text text-links">Quên mật khẩu</a>
                                     <input type="submit" name="submit" class="input-submit" value="Đăng nhập" />
                                 </div>
                             </form>
-                            <div class="striped">
-                                <span class="striped-line"></span>
-                                <span class="striped-text">Hoặc</span>
-                                <span class="striped-line"></span>
-                            </div>
-                            <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
+                            
                         </section>
                     </div>
                 </main>

@@ -92,20 +92,52 @@ function OrderTickets() {
       <Col>
 
         {bustrips.map((p) => {
+          const dateStart = p.timeStart instanceof Date ? p.timeStart : new Date(p.timeStart);
+          const dateEnd = p.timeStart instanceof Date ? p.timeStart : new Date(p.timeStart);
+
+          // Check if date is a valid Date object
+          if (isNaN(dateStart.getTime()) && isNaN(dateEnd.getTime())) {
+            // Handle the case where c.timeStart is not a valid date
+            return null; // or handle it in some way
+          }
+        
+          const formattedDateStart = dateStart.toLocaleDateString("vi-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          });
+
+          const formattedTimeStart = dateStart.toLocaleTimeString("vi-GB", {
+              hour: "numeric",
+              minute: "numeric",
+            });
+
+          const formattedDateEnd = dateEnd.toLocaleDateString("vi-GB", {
+              day: "numeric",
+              month: "long",
+              year: "numeric"
+            });
+          
+            
+            const formattedTimeEnd = dateEnd.toLocaleTimeString("vi-GB", {
+              hour: "numeric",
+              minute: "numeric",
+            });
+
           let url = `/bustrips/${p.tripId}`;
           return (<div className="bus-list">
             <div className="bus-item">
               <div className="icon">
                 <img src="/clock.png" />
               </div>
-              <text className="label">{p.timeStart}</text>
+              <text className="label">{formattedDateStart} {formattedTimeStart}</text>
             </div>
             <div className="bus-item">
               <div className="icon">
                 <img src="/bus.png" />
               </div>
               <div className="label">
-                <div className="bus-line">{p.tripName}</div>
+                <div className="bus-line">{formattedDateEnd} {formattedTimeEnd}</div>
               </div>
             </div>
 

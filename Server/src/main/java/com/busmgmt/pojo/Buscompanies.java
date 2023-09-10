@@ -78,9 +78,9 @@ public class Buscompanies implements Serializable {
     @Size(max = 256)
     @Column(name = "avatar")
     private String avatar;
-    @Size(max = 20, message = "{buscompanies.status.statusErr}")
+    @NotNull(message = "{buscompanies.status.statusErr}")
     @Column(name = "status")
-    private String status;
+    private Boolean status;
     @Size(max = 256, message = "{buscompanies.address.addressErr}")
     @Column(name = "address")
     private String address;
@@ -149,11 +149,11 @@ public class Buscompanies implements Serializable {
         this.avatar = avatar;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

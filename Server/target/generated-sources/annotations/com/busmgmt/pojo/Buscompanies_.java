@@ -8,7 +8,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-09T16:46:19")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-10T20:49:53")
 @StaticMetamodel(Buscompanies.class)
 public class Buscompanies_ { 
 
@@ -23,6 +23,6 @@ public class Buscompanies_ {
     public static volatile SingularAttribute<Buscompanies, Users> userId;
     public static volatile SetAttribute<Buscompanies, Revenuestatistics> revenuestatisticsSet;
     public static volatile SingularAttribute<Buscompanies, String> email;
-    public static volatile SingularAttribute<Buscompanies, String> status;
+    public static volatile SingularAttribute<Buscompanies, Boolean> status;
 
 }

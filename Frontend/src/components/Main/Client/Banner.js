@@ -9,32 +9,28 @@ import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [selectedStartPlace, setSelectedStartPlace] = useState("");
-  const [selectedDestination, setSelectedDestination] = useState("");
-  const [startPlaceOpen, setStartPlaceOpen] = useState(false);
-  const [destinationOpen, setDestinationOpen] = useState(false);
   const nav = useNavigate();
   const [kw1, setKw1] = useState("");
   const [kw2, setKw2] = useState("");
 
 
   
-
-  
-
-  const search = (evt) => {
+  const search = async (evt) =>  {
     evt.preventDefault();
-    console.log(kw1+kw2);
+    console.log(kw1+ ' 1 - ' +kw2);
     // Construct the URL with selectedStartPlace and selectedDestination
-    nav(`/?kw=${kw2}`);
+     if(kw1 !== ''){
+      console.log(2 + `/?kw=${kw1}`)
+      nav(`/?kw=${kw1}`);
+    }else if(kw2 !== ''){
+      console.log(2 + `/?kw=${kw2}`)
+      nav(`/?kw=${kw2}`);
+    }else{
+      console.log(2 + `/?kw=${''}`)
+      nav(`/?kw=${''}`);}
+      
   };
-
  
-  useEffect(() => {
-    
-
-   
-  }, []);
 
  
 

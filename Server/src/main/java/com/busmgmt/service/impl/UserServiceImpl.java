@@ -86,4 +86,16 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.getUsers();
     }
 
+    @Override
+    public boolean registerBuscompanies(Users user) {
+        user.setUserRole("ROLE_BUSCOMPANY");
+        user.setIsCompany(Boolean.FALSE);
+        return this.userRepository.registerBuscompanies(user);
+    }
+
+    @Override
+    public Users geUserById(int id) {
+        return this.userRepository.getUserById(id);
+    }
+
 }

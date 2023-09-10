@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import TicketManagement from "./TicketManagement";
 import OrdersManagement from "./OrdersManagement";
 import ClientBookTicketForm from "./ClientBookTicketForm";
+import BusManagement from "./BusManagement";
 
 
 const Content = ({ sidebarIsOpen, toggleSidebar }) => (
@@ -14,7 +15,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
   >
 
     <Routes>
-      <Route  path="/about" component={() => "About"} />
+      <Route  path="/bustrips-management" element={<BusManagement/>}  />
       <Route path="/Pages" component={() => "Pages"} />
       <Route path="/faq" component={() => "FAQ"} />
       <Route path="/contact" component={() => "Contact"} />

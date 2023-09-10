@@ -45,7 +45,6 @@ public class Reviews implements Serializable {
     @Column(name = "reviewId")
     private Integer reviewId;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "rating")
     private int rating;
     @Basic(optional = false)

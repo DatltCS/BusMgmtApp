@@ -1,76 +1,82 @@
 import React, { useEffect, useState } from 'react';
 import "./OrdersManagement.css";
+import Apis, { endpoints } from '../../../config/Apis';
+import { useSearchParams } from 'react-router-dom';
+import MySpinner from '../MySpinner';
+import { Table } from 'react-bootstrap';
+
 
 function OrdersManagement() {
-    const [sortedColumn, setSortedColumn] = useState(null);
-    const [sortOrder, setSortOrder] = useState('asc');
-
-    const orders = [
-        {
-            nameproduct: 'áo khoác Airism', namesender: 'Minh Anh', namereceiver: 'Phương Thanh', phonereceiver: '0912232555', phonesender: '0877781892', addressreceiver: '05 Phan Thị Ràng, Kiên Lương, Kiên Giang',
-            addresssender: '82 Nghĩa Hưng, Bắc Hải, TPHCM', timesend: '07/09/2023', timereceive: '12/09/2023'
-        },
-    ];
+    const [q] = useSearchParams();
+    const [deliveries, setDeliveries] = useState(null);
 
     useEffect(() => {
-        if (sortedColumn) {
-            const sortedOrders = [...orders].sort((a, b) => {
-                const aValue = a[sortedColumn];
-                const bValue = b[sortedColumn];
+        const loadDeliveries = async () => {
+            try {
+                let e = endpoints["deliveries"];
 
-                if (aValue < bValue) {
-                    return sortOrder === 'asc' ? -1 : 1;
-                } else if (aValue > bValue) {
-                    return sortOrder === 'asc' ? 1 : -1;
+                let deliveryId = q.get("deliveryId");
+                if (deliveryId !== null) {
+                    e = `${e}?deliveryId=${deliveryId}`;
+                    console.log("deliveryId " + e);
                 } else {
-                    return 0;
+                    e = `${e}`;
+                    console.log("link" + e);
                 }
-            });
 
-            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-            orders.length = 0;
-            orders.push(...sortedOrders);
-        }
-    }, [sortedColumn, sortOrder]);
+                let res = await Apis.get(e);
+                console.log('api', res);
+                setDeliveries(res.data);
+                console.log(res.data)
+                console.log(deliveries)
+            } catch (ex) {
+                console.error(ex);
+            }
+        };
 
-    const handleSort = (column) => {
-        setSortedColumn(column);
-    };
+        loadDeliveries();
+    }, [q]);
+
+    if (deliveries === null)
+        return <MySpinner />;
 
     return (
-        <div className="container">
-            <h3>Danh sách đơn hàng</h3>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th onClick={() => handleSort('nameproduct')}>Tên món hàng</th>
-                        <th onClick={() => handleSort('namesender')}>Họ tên người gửi</th>
-                        <th onClick={() => handleSort('namereceiver')}>Họ tên người nhận</th>
-                        <th onClick={() => handleSort('phonereceiver')}>Số điện thoại người nhận</th>
-                        <th onClick={() => handleSort('phonersender')}>Số điện thoại người gửi</th>
-                        <th onClick={() => handleSort('addressreceiver')}>Địa chỉ người nhận</th>
-                        <th onClick={() => handleSort('addresssender')}>Địa chỉ người gửi</th>
-                        <th onClick={() => handleSort('timesend')}>Thời gian gửi</th>
-                        <th onClick={() => handleSort('timereceive')}>Thời gian nhận</th>
+        <>
+        <h3>DANH SÁCH ĐƠN HÀNG</h3>
+        <Table striped bordered hover> 
+               
+            <thead>
+                <tr>
+                    <th>Tên món hàng</th>
+                    <th>Họ tên người gửi</th>
+                    <th>Số điện thoại người gửi</th>
+                    <th>Email người gửi</th>
+                    <th>Họ tên người nhận</th>
+                    <th>Số điện thoại người nhận</th>
+                    <th>Email người nhận</th>
+                    <th>Thời gian gửi</th>
+                    <th>Thời gian nhận</th>
+                    <th>Hình thức thanh toán</th>
+                </tr>
+            </thead>
+            <tbody>
+                {deliveries.map((d) => (
+                    <tr key={d.deliveryId}>
+                        <td>{d.description}</td>
+                        <td>{d.orderId.customerId.firstName} {d.orderId.customerId.lastName}</td>
+                        <td>{d.orderId.customerId.phone}</td>
+                        <td>{d.orderId.customerId.email}</td>
+                        <td>{d.receiverName}</td>
+                        <td>{d.receiverPhone}</td>
+                        <td>{d.receiverEmail}</td>
+                        <td>{d.sendTime}</td>
+                        <td>{d.receiveTime}</td>
+                        <td>{d.paymentMethod}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    {orders.map((order) => (
-                        <tr key={order.nameproduct}>
-                            <td>{order.nameproduct}</td>
-                            <td>{order.namesender}</td>
-                            <td>{order.namereceiver}</td>
-                            <td>{order.phonereceiver}</td>
-                            <td>{order.phonesender}</td>
-                            <td>{order.addressreceiver}</td>
-                            <td>{order.addresssender}</td>
-                            <td>{order.timesend}</td>
-                            <td>{order.timereceive}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                ))}
+            </tbody>
+        </Table>
+        </>
     );
 }
 

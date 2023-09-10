@@ -15,6 +15,7 @@ export const endpoints = {
     "details": (tripId) => `${SERVER_CONTEXT}/api/bustrips/${tripId}/`,
     "add-comment":  `${SERVER_CONTEXT}/api/reviews/`,
     "add-ticket":  `${SERVER_CONTEXT}/api/tickets/`,
+    "deliveries": `${SERVER_CONTEXT}/api/deliveries/`,
 }
 
 export const authApi = () => {

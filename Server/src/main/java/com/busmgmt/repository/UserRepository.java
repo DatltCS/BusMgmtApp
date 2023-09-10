@@ -4,7 +4,6 @@
  */
 package com.busmgmt.repository;
 
-import com.busmgmt.pojo.Customers;
 import com.busmgmt.pojo.Users;
 import java.util.List;
 
@@ -19,5 +18,7 @@ public interface UserRepository {
 //    int getMaxUserId();
     boolean authUser(String username, String password);
     Users addUsers(Users users);
-    Customers getCustomerByName(String name);
+    Users getUserById(int id);
+    //
+    boolean registerBuscompanies(Users user);
 }

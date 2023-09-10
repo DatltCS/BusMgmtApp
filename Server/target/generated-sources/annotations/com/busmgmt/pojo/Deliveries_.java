@@ -7,12 +7,13 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-09T16:46:19")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2023-09-10T20:49:53")
 @StaticMetamodel(Deliveries.class)
 public class Deliveries_ { 
 
     public static volatile SingularAttribute<Deliveries, Orders> orderId;
     public static volatile SingularAttribute<Deliveries, String> receiverName;
+    public static volatile SingularAttribute<Deliveries, Integer> num;
     public static volatile SingularAttribute<Deliveries, String> description;
     public static volatile SingularAttribute<Deliveries, Bustrips> tripId;
     public static volatile SingularAttribute<Deliveries, Date> sendTime;

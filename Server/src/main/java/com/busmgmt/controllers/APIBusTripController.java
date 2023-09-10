@@ -64,7 +64,7 @@ public class APIBusTripController {
         return new ResponseEntity<>(bt, HttpStatus.CREATED);
     }
 
-    @RequestMapping(path = "/bustrips/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/bustrips/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
     @CrossOrigin
     public ResponseEntity<Bustrips> getBustripById(@PathVariable (value = "id") int id) {
         return new ResponseEntity<>(this.busTripService.getBusTripById(id), HttpStatus.OK);

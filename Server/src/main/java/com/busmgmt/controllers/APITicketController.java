@@ -44,7 +44,7 @@ public class APITicketController {
     
     @PostMapping(path = "/tickets/", produces = {MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
-    public ResponseEntity<Tickets> addBustrip(@RequestBody Tickets tickets) throws Exception {
+    public ResponseEntity<Tickets> addTicket(@RequestBody Tickets tickets) throws Exception {
         Tickets t = this.ticketService.addTicket(tickets);
         return new ResponseEntity<>(t, HttpStatus.CREATED);
     }
@@ -58,7 +58,7 @@ public class APITicketController {
     
     @PatchMapping(path = "/tickets/", produces = {MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
-    public ResponseEntity<Tickets> updateBustrip(@RequestBody Tickets tickets) throws Exception {
+    public ResponseEntity<Tickets> updateTicket(@RequestBody Tickets tickets) throws Exception {
         Tickets bt = this.ticketService.updateTicket(tickets);
         return new ResponseEntity<>(bt, HttpStatus.OK);
     }

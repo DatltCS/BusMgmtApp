@@ -4,7 +4,6 @@
  */
 package com.busmgmt.repository.impl;
 
-import com.busmgmt.pojo.Customers;
 import com.busmgmt.pojo.Users;
 import com.busmgmt.repository.UserRepository;
 import java.sql.Connection;
@@ -93,13 +92,25 @@ public class UserRepositoryImpl implements UserRepository {
 
         return q.getResultList();
     }
-    
-    @Override
-    public Customers getCustomerByName(String name) {
+
+//    @Override
+    public boolean registerBuscompanies(Users user) {
         Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createQuery("FROM Users WHERE firstName=:fn");
-        q.setParameter("fn",name);
-        return (Customers) q.getSingleResult();
+        try {
+            s.update(user);
+
+            return true;
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public Users getUserById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+
+        return s.get(Users.class, id);
     }
 
 }

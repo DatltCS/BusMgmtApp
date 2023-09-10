@@ -19,11 +19,11 @@ const Sidebar = ({ isOpen, toggle }) => (
     <div className="side-menu">
       <Nav vertical className="list-unstyled pb-3">
         <p>Dashboard</p>
-        <SubMenu title="Trang chủ" icon={faHome} items={submenus[0]} />
+        <SubMenu title="Quản lý" icon={faHome} items={submenus[0]} />
         <NavItem>
-          <NavLink tag={Link} to={"/about"}>
+          <NavLink tag={Link} to={"/bus-information"}>
             <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-            About
+            Thông tin nhà xe
           </NavLink>
         </NavItem>
         <SubMenu title="Pages" icon={faCopy} items={submenus[1]} />
@@ -61,8 +61,8 @@ const submenus = [
       target: "bus-orders",
     },
     {
-      itle: "Home 3",
-      target: "Home-3",
+      title: "Quản lý chuyến xe và tuyến xe",
+      target: "bustrips-management",
     },
   ],
   [
